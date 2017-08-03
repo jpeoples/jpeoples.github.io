@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% set title="Jacob Peoples &ndash; Blog" %}
+
+{% block content_header %}
+{% endblock %}
+    {% block nav %}
+      {{ super() }}
+      {% include "layouts/main_nav.html" %}
+    {% endblock %}
+
+{% block content %}
+{{ super() }}
+<div class="archive">
+{% for month in months %}
+  <h3>{{month.month}}</h3>
+  <ul>
+      {% for post in month.posts %}
+      <li><a href="{{post.fullhref}}">{{post.title}}</a></li>
+      {%endfor %}
+    </ul>
+{% endfor %}
+</div>
+{% endblock %}

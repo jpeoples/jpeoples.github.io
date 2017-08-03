@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    {% block head %}
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="{{base_url}}font-awesome.min.css" />
+    <link rel="stylesheet" href="{{base_url}}{{css}}" />
+    {% if has_math %}
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax();
+        all.forEach(function (element, index) {
+          element.SourceElement().parentNode.className += ' has-jax';
+        });
+      });
+    </script>
+    {% endif %}
+    <meta name="description" content="{% if description is defined %}{{description}}{% else %}Personal blog of Jacob Peoples{% endif %}" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+<header>
+    <nav>
+    {% block nav %}
+    {% endblock %}
+    </nav>
+</header>
+<hr class="smallhr">
+<main>
+{% block main %}
+{% block content_header %}
+<header>
+{% if date is defined %}
+<p id="date">{{date}}</p>
+{% endif %}
+<h1>{{title}}</h1>
+</header>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% endblock %}
+</main>
+<hr class="smallhr">
+<footer>
+    <nav>
+        {% include "layouts/main_nav.html" %}
+    </nav>
+</footer>
+
+{% block footer_scripts %}
+{% endblock %}
+
+</div>
+
+</body>
+
+</html>
