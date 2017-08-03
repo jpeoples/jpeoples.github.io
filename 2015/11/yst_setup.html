@@ -1,0 +1,162 @@
+<html lang="en">
+<head>
+    
+    <title>Running yst on Windows</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome.min.css" />
+    <link rel="stylesheet" href="/site.css" />
+    
+    <meta name="description" content="Personal blog of Jacob Peoples" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+<div class="container">
+<header>
+    <nav>
+    
+      
+    
+      <ul>
+          <li><a href="/">All Posts</a></li>
+      </ul>
+    
+    </nav>
+</header>
+<hr class="smallhr">
+<main>
+
+<article>
+
+
+<header>
+
+<p id="date">November 22, 2015</p>
+
+<h1>Running yst on Windows</h1>
+</header>
+
+
+<div class="article-body">
+
+<p><a href="https://github.com/jgm/yst">yst</a> is a static site generator by John McFarlane, the originator of
+the most utilitarian <a href="http://pandoc.org/">Pandoc</a>.  It is, as far as I can tell, very
+simple, and that simplicity is what drew me to consider switching the
+site over.  Even though I ultimately decided not to go with it, I did
+manage to get it set up and building the test site on my machine.  In
+that process I hit a few road-blocks, so I thought I'd put the details
+here in one place in case anyone else is having similar problems.</p>
+<h2 id="installing">Installing</h2>
+<p>The <a href="https://github.com/jgm/yst">readme</a> on github makes it sound so easy:</p>
+<div class="codehilite"><pre><span></span>cabal update
+cabal install yst
+</pre></div>
+
+
+<p>I did not get the error detailed in the readme regarding
+template-haskell dependencies.</p>
+<p>Instead, I had an error installing a dependency: hdbc-sqlite3.  It's a
+simple enough error -- you simply need to install sqlite3 on your system
+-- but for me at least, nothing is obvious when it comes to Windows.</p>
+<p>After poking around on Google I found <a href="http://xyz.mmizzi.com/stuff/2014/11/3/install-hdbc-sqlite3-on-windows">this</a> post that
+explained the correct sqlite3 files to download to get hdbc-sqlite3 to
+build.  No worries.  Problem solved, right? Wrong.</p>
+<p>yst complains really fast if the sqlite3 dll is not on your path, so add
+it now.</p>
+<h2 id="first-run">First Run</h2>
+<p>After getting yst installed the next step in the read me is to generate
+the test site:</p>
+<div class="codehilite"><pre><span></span>yst create mysite
+</pre></div>
+
+
+<p>generates the test site source, then</p>
+<div class="codehilite"><pre><span></span>cd mysite
+yst
+</pre></div>
+
+
+<p>and voilà! Under the <code>site</code> subdirectory you have your static site.</p>
+<p>Right?  Wrong.</p>
+<p>Here's the output when I run yst:</p>
+<div class="codehilite"><pre><span></span>Updating site\js\nav.js
+Updating site\css\screen.css
+Updating site\css\print.css
+Updating site\css\hk-pyg.css
+Updating site\april_events.tex
+yst: site\april_events.tex: commitBuffer: invalid argument (invalid
+character)
+</pre></div>
+
+
+<p>Invalid character?</p>
+<p>The yst test site likes to show off it's unicode support, and this is
+the source of our issue.</p>
+<p>As detailed by the <a href="http://jaspervdj.be/hakyll/tutorials/faq.html">hakyll FAQ</a></p>
+<blockquote>
+<p>If you get any of the errors:</p>
+<p>commitBuffer: invalid argument (invalid character) </p>
+<p>or:</p>
+<p>hGetContents: invalid argument (Invalid or incomplete multibyte or wide
+   character)</p>
+<p>It means that your Hakyll executable couldn’t write to (in
+the former case) or read (in the latter) from an UTF-8 encoded file.</p>
+</blockquote>
+<p>So for some reason yst can't write unicode to the output file.</p>
+<p>I'm not sure why, but the same FAQ page provides a solution for Windows
+just a short ways down the page.  Running</p>
+<div class="codehilite"><pre><span></span>chcp 65001
+</pre></div>
+
+
+<p>before running <code>yst</code> solved the problem for me, and left me with a
+beautiful test site.</p>
+
+</div>
+
+
+</article>
+
+</main>
+<hr class="smallhr">
+<footer>
+    <nav>
+            <ul>
+        <li><a href="https://jacobpeoples.com">Jacob Peoples</a></li>
+        <li><a href="https://github.com/jpeoples"><i class="fa fa-github"></i></a></li>
+        <li><a href="https://twitter.com/__jpeoples"><i class="fa fa-twitter"></i></a></li>
+    </ul>
+    </nav>
+</footer>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'https://jacobpeoples.com/blog/2015/11/yst_setup.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://jacobpeoples.com/blog/2015/11/yst_setup.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</body>
+
+</html>

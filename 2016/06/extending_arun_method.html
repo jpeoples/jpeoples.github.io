@@ -1,0 +1,290 @@
+<html lang="en">
+<head>
+    
+    <title>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome.min.css" />
+    <link rel="stylesheet" href="/site.css" />
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax();
+        all.forEach(function (element, index) {
+          element.SourceElement().parentNode.className += ' has-jax';
+        });
+      });
+    </script>
+    
+    <meta name="description" content="Personal blog of Jacob Peoples" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+<div class="container">
+<header>
+    <nav>
+    
+      
+    
+      <ul>
+          <li><a href="/">All Posts</a></li>
+      </ul>
+    
+    </nav>
+</header>
+<hr class="smallhr">
+<main>
+
+<article>
+
+
+<header>
+
+<p id="date">June 30, 2016</p>
+
+<h1>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</h1>
+</header>
+
+
+<div class="article-body">
+
+<p>I recently wanted to extend my implementation of the ICP algorithm to
+include isotropic scaling.  Internally, ICP alternates between finding
+the closest points in the target shape to those in the source shape --
+thus giving two corresponding point sets -- and finding the optimal
+rigid transformation to align those point sets.  As the alignment of the
+shapes improve, so do the estimates of the closest points, and so on,
+hence, the Iterative Closest Point algorithm.</p>
+<p>In the original paper Besl and McKay<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+use a quaternion based method for finding the optimal rigid
+transformation, but the algorithm can be implemented just as well
+using a rotation-matrix method such as Arun's method.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></p>
+<h2 id="without-scaling">Without Scaling</h2>
+<p>The method of Arun et al. is as follows:</p>
+<p>Given <script type="math/tex">\{X_i\}</script>, and <script type="math/tex">\{Y_i\}</script> as two sets of <script type="math/tex">N</script>
+<script type="math/tex">d</script>-dimensional points,  we want to find rotation matrix <script type="math/tex">R</script> and
+translation vector <script type="math/tex">t</script> such that
+<script type="math/tex; mode=display">
+\sum_{i=1}^n || R X_i + t - Y_i||^2
+</script>
+is minimised.</p>
+<p>The solution for translation is simple: the optimal translation will be
+that which matches the centroid of the rotated source shape to that of
+the target.  That is
+<script type="math/tex; mode=display">
+t = \mu_Y - R\mu_X
+</script>
+where <script type="math/tex">\mu_Z</script> refers to the centroid of <script type="math/tex">Z</script>, and <script type="math/tex">R</script> is the optimal
+rotation.  See the next section for a proof of this.</p>
+<p>The rotation is more complex, but they show that given the singular
+value decomposition
+<script type="math/tex; mode=display">
+\sum_i (X_i-\mu_X)(Y_i-\mu_Y)^T = U \Lambda V^T
+</script>
+then
+<script type="math/tex; mode=display">
+R = VSU^T
+</script>
+where
+<script type="math/tex; mode=display">
+S = \left\lbrace
+\begin{aligned}
+    & I & \mathrm{if} & \det(U)\det(V) = 1 \\
+    &\mathrm{diag}(1,1,\dots,1,-1) & \mathrm{if} & \det(U)\det(V) = -1
+\end{aligned}
+\right.
+</script>
+</p>
+<h2 id="adding-scaling">Adding Scaling</h2>
+<p>A solution including isotropic scaling was published by Umeyama in
+1991.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> However, I also gave a shot at my own derivation, and I will
+show that our results are the same.</p>
+<p>Adding in a scale factor, the objective function becomes
+<script type="math/tex; mode=display">
+f(X, Y; s, R, t) = \sum_i ||sRX_i +t - Y_i||^2
+</script>
+</p>
+<p>The solution for <script type="math/tex">t</script> can be found by setting the partial derivative to
+zero
+<script type="math/tex; mode=display">
+\frac{\partial f}{\partial t} = 2\sum_i sRX_i + t - Y_i = 0
+</script>
+hence
+<script type="math/tex; mode=display">
+t = \frac{\sum_i Y_i - sRX_i}{N} = \mu_Y - sR\mu_X.
+</script>
+</p>
+<p>This is exactly the result mentioned above for <script type="math/tex">t</script>, with the addition of
+the scale factor <script type="math/tex">s</script>.</p>
+<p>We can solve for <script type="math/tex">s</script> by taking a partial derivative, this time with
+respect to <script type="math/tex">s</script>
+<script type="math/tex; mode=display">
+\frac{\partial f}{\partial s} = \sum_i 2(sRX_i + t - Y_i)^T RX_i = 0
+</script>
+</p>
+<p>It is a straightforward expnsion of the above to arrive at
+<script type="math/tex; mode=display">
+0 = \sum_i sX_i^T X_i + t^T R X_i - Y_i^T R X_i
+</script>
+</p>
+<p>and expanding <script type="math/tex">t</script> with the previous solution and rearranging yields
+<script type="math/tex; mode=display">
+\sum_i s(X_i - \mu_X)^T X_i = \sum_i Y_i^T RX_i - \mu_Y^T R X_i
+</script>
+</p>
+<p>Now note that <script type="math/tex">\sum_i (X_i - \mu_X) = 0</script> and expand <script type="math/tex">X_i</script> on the left
+hand side to <script type="math/tex">X_i - \mu_X + \mu_X</script>:
+<script type="math/tex; mode=display">
+\begin{multline*}
+\sum_i s(X_i - \mu_X)^T X_i = \sum_i s(X_i - \mu_X)^T (X_i - \mu_X +
+\mu_X) = \\ \sum_i s(X_i - \mu_X)^T (X_i - \mu_X) + (X_i - \mu_X)^T\mu_X
+\end{multline*}
+</script>
+</p>
+<p>That last term is 0 and so
+<script type="math/tex; mode=display">
+\sum_i s(X_i - \mu_X)^T (X_i - \mu_X) = \sum_i Y_i^TRX_i - \mu_Y^T R X_i
+</script>
+</p>
+<p>That is
+<script type="math/tex; mode=display">
+s = \frac{ \sum_i (Y_i^T R X_i) - N \mu_Y^T R \mu_X }{ \sum_j || X_j - \mu_X ||^2 }
+= \frac{\sum_i (Y_i- \mu_Y)^T R (X_i - \mu_X)}{\sum_j || X_j - \mu_X
+||^2}
+</script>
+both of which are pretty nice.</p>
+<p><em>Note: In my implementation I found that though the second form is more
+satisfying to me mathematically, the 1st form seemed to work better for
+computations. I don't have an explanation for this.</em></p>
+<h2 id="comparing-with-umeyamas-solution">Comparing with Umeyama's Solution</h2>
+<p>Using the notation I have been using in this post, Umeyama showed that
+<script type="math/tex; mode=display">
+s = \frac{\operatorname{Tr}(\Lambda S)}{\sum_j ||X_j - \mu_X||^2}
+</script>
+</p>
+<p>Already, we see our denominators match, so we want to show
+<script type="math/tex; mode=display">
+\operatorname{Tr}(\Lambda S) = \sum_i (Y_i- \mu_Y)^T R (X_i - \mu_X)
+</script>
+</p>
+<p>Somehow we have to get the trace in there, so we'll need two facts about
+trace:</p>
+<ol>
+<li>The trace of the product of two matrices is related by
+    <script type="math/tex">\operatorname{Tr}(A^T B) =
+    \operatorname{Tr}(A B^T) =
+    \operatorname{Tr}(B A^T) =
+    \operatorname{Tr}(B^T A)</script>.</li>
+<li>For vectors <script type="math/tex">u</script>and <script type="math/tex">v</script>, the inner product and outer product are
+    related by <script type="math/tex">u^Tv = \operatorname{Tr}(vu^T)</script>
+</li>
+</ol>
+<p>Based on the 2nd fact, and recalling that
+<script type="math/tex; mode=display">
+\sum_i (X_i - \mu_X)(Y_i - \mu_Y)^T = U\Lambda V^T
+</script>
+we can write the numerator of our <script type="math/tex">s</script> equation as
+<script type="math/tex; mode=display">
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(R \sum_i (X_i-\mu_X)(Y_i -
+\mu_Y)^T)
+</script>
+</p>
+<p>We can now immediately substitute in <script type="math/tex">R = VSU^T</script> and
+<script type="math/tex">\sum_i (X_i - \mu_X)(Y_i - \mu_Y)^T = U\Lambda V^T</script>
+giving
+<script type="math/tex; mode=display">
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(VSU^T U \Lambda V^T)
+</script>
+</p>
+<p>immediately the <script type="math/tex">U</script>, and <script type="math/tex">U^T</script> cancel leaving <script type="math/tex">VS \Lambda V^T</script>.
+Transposing <script type="math/tex">VS</script> and <script type="math/tex">\Lambda V^T</script> (from the 1st fact) gives
+<script type="math/tex; mode=display">
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(SV^T V
+\Lambda) = \operatorname{Tr}(S \Lambda) = \operatorname{Tr}(\Lambda S)
+</script>
+as required.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Arun, K. S.; Huang, T. S. &amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+</div>
+
+
+</article>
+
+</main>
+<hr class="smallhr">
+<footer>
+    <nav>
+            <ul>
+        <li><a href="https://jacobpeoples.com">Jacob Peoples</a></li>
+        <li><a href="https://github.com/jpeoples"><i class="fa fa-github"></i></a></li>
+        <li><a href="https://twitter.com/__jpeoples"><i class="fa fa-twitter"></i></a></li>
+    </ul>
+    </nav>
+</footer>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</body>
+
+</html>

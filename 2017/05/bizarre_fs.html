@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    
+    <title>Lying cat: Bizarre Filesystem Behaviour</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome.min.css" />
+    <link rel="stylesheet" href="/site.css" />
+    
+    <meta name="description" content="Personal blog of Jacob Peoples" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+<div class="container">
+<header>
+    <nav>
+    
+      
+    
+      <ul>
+          <li><a href="/">All Posts</a></li>
+      </ul>
+    
+    </nav>
+</header>
+<hr class="smallhr">
+<main>
+
+<article>
+
+
+<header>
+
+<p id="date">May 5, 2017</p>
+
+<h1>Lying cat: Bizarre Filesystem Behaviour</h1>
+</header>
+
+
+<div class="article-body">
+
+<p>Just a short post on something odd that happened to me last night.</p>
+<p>I was working on the Jinja template to generate the posts on this
+website. I had a local server launched in the build directory of the
+website so I could preview the results as I went. It was working fine; I
+could make changes, rebuild, refresh, and immediately see those changes.
+The usual.</p>
+<p>However, I noticed that the dates I wanted to appear underneath the
+title of blog posts were not showing up. I double checked the template,
+which seemed to be correct. It is a snippet like so:</p>
+<div class="codehilite"><pre><span></span>{% if formatted_date is defined %}
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;</span>{{formatted_date}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+{% endif %}
+</pre></div>
+
+
+<p>The odd thing was that in the rendered templates I was viewing in the
+browser, the actual result was:</p>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>So somehow the <code>formated_date</code> variable was being defined, but was
+empty...</p>
+<p>Except it wasn't.</p>
+<p>I printed out the variable in the context dictionary just before
+rendering and saw the correct dates displayed for each post.</p>
+<h1 id="the-weird-part">The Weird Part</h1>
+<p>So far this is just a typical annoying bug story. Here's the weird part:</p>
+<p>I opened the file directly by double clicking it in the build directory
+and the page showed up in the browser, <em>with the date</em>, even though it
+wouldn't show up when browsing from the local server, which should have
+been the same file. Even this I would have been happy to attribute to
+some weird browser behaviour, or some weird behaviour of the python http
+server. I don't know that much about web stuff in general so I can
+believe anything.</p>
+<p>But here's the thing. I closed the server and reopened it. Still the
+date didn't show up. Weird. So then I literally typed:</p>
+<div class="codehilite"><pre><span></span>cat path/to/post | less
+</pre></div>
+
+
+<p>and scrolled down to where the date should be. It still wasn't there.
+Meanwhile, I have the very same file open in the browser and it <em>is</em>.</p>
+<p>Then I go:</p>
+<div class="codehilite"><pre><span></span>pushd path/to/
+cat post | less
+</pre></div>
+
+
+<p>and sure enough, <em>the date shows up!</em>. Then:</p>
+<div class="codehilite"><pre><span></span>popd
+cat path/to/post | less
+</pre></div>
+
+
+<p>and it still shows up!</p>
+<p>So what on earth was going on the first time I typed <code>cat</code>?!</p>
+
+</div>
+
+
+</article>
+
+</main>
+<hr class="smallhr">
+<footer>
+    <nav>
+            <ul>
+        <li><a href="https://jacobpeoples.com">Jacob Peoples</a></li>
+        <li><a href="https://github.com/jpeoples"><i class="fa fa-github"></i></a></li>
+        <li><a href="https://twitter.com/__jpeoples"><i class="fa fa-twitter"></i></a></li>
+    </ul>
+    </nav>
+</footer>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'https://jacobpeoples.com/blog/2017/05/bizarre_fs.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://jacobpeoples.com/blog/2017/05/bizarre_fs.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</body>
+
+</html>
