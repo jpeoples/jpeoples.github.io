@@ -144,7 +144,7 @@ build_dir = "build"
 base_url = 'https://jacobpeoples.com/blog/'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'local':
-    base_url = 'localhost:8000'
+    base_url = 'http://localhost:8000/'
 
 mdextensions = [
         'markdown.extensions.extra',
@@ -167,7 +167,7 @@ jinja_env = jinja2.Environment(loader=loader)
 jinja_env.filters.update({"markdown": mdfilter})
 #jinja_env.globals.update(post_push = post_push)
 jinja_render_env = {
-        'css': "/site.css",
+        'css': "site.css",
         'base_url': base_url
         }
 posts = []

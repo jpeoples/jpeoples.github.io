@@ -671,7 +671,7 @@ main { margin-top: 2em; }
 header h1 { margin-top: 0;}
 header p { margin-bottom: 0; }
 nav { margin-left: auto; margin-right: auto; text-align: center; line-height: 1em;}
-nav ul { margin-top: 10px; list-style: none; display: inline-block; }
+nav ul { padding-left: 0; margin-top: 10px; list-style: none; display: inline-block; }
 nav ul li { display: inline-block; padding-right: 2px; padding-left:2px; }
 header nav a{ text-decoration: none; }
 header nav a:hover { color: #333;  }
