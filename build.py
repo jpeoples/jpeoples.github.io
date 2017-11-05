@@ -144,7 +144,8 @@ build_dir = "build"
 base_url = 'https://jacobpeoples.com/blog/'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'local':
-    base_url = 'http://localhost:8000/'
+    base_url = 'http://localhost:8080/'
+    print(base_url)
 
 mdextensions = [
         'markdown.extensions.extra',

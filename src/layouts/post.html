@@ -2,9 +2,7 @@
 
     {% block nav %}
       {{ super() }}
-      <ul>
-          <li><a href="{{base_url}}">All Posts</a></li>
-      </ul>
+      {% include "layouts/main_nav.html" %}
     {% endblock %}
 
 
@@ -22,24 +20,26 @@
 
 {% block footer_scripts %}
 {{super() }}
-<div id="disqus_thread"></div>
+<div id="disqus_thread"><a onclick="load_comments();">Load comments</a></div>
 <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
-    var disqus_config = function () {
-        this.page.url = '{{fullhref}}';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '{{fullhref}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-        var d = document, s = d.createElement('script');
+    function load_comments() {
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        var disqus_config = function () {
+            this.page.url = '{{fullhref}}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{fullhref}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
 
-        s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    }
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 {% endblock %}

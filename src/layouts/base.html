@@ -2,8 +2,6 @@
 <head>
     {% block head %}
     <title>{{ title }}</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link rel="stylesheet" href="{{base_url}}css/font-awesome.min.css" />
     <link rel="stylesheet" href="{{base_url}}{{css}}" />
     {% if has_math %}
     <script type="text/javascript" async
@@ -55,10 +53,10 @@
 {% block main %}
 {% block content_header %}
 <header>
+<h1>{{title}}</h1>
 {% if date is defined %}
 <p id="date">{{date}}</p>
 {% endif %}
-<h1>{{title}}</h1>
 </header>
 {% endblock %}
 {% block content %}
