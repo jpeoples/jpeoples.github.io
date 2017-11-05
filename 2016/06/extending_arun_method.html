@@ -2,8 +2,6 @@
 <head>
     
     <title>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link rel="stylesheet" href="https://jacobpeoples.com/blog/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://jacobpeoples.com/blog/site.css" />
     
     <script type="text/javascript" async
@@ -49,9 +47,12 @@
     
       
     
-      <ul>
-          <li><a href="https://jacobpeoples.com/blog/">All Posts</a></li>
-      </ul>
+          <ul>
+        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
+        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="https://github.com/jpeoples">github</a></li>
+        <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
+    </ul>
     
     </nav>
 </header>
@@ -62,10 +63,10 @@
 
 
 <header>
+<h1>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</h1>
 
 <p id="date">June 30, 2016</p>
 
-<h1>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</h1>
 </header>
 
 
@@ -251,9 +252,10 @@ as required.</p>
 <footer>
     <nav>
             <ul>
-        <li><a href="https://jacobpeoples.com">Jacob Peoples</a></li>
-        <li><a href="https://github.com/jpeoples"><i class="fa fa-github"></i></a></li>
-        <li><a href="https://twitter.com/__jpeoples"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
+        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="https://github.com/jpeoples">github</a></li>
+        <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
     </nav>
 </footer>
@@ -261,24 +263,26 @@ as required.</p>
 
 
 
-<div id="disqus_thread"></div>
+<div id="disqus_thread"><a onclick="load_comments();">Load comments</a></div>
 <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
-    var disqus_config = function () {
-        this.page.url = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-        var d = document, s = d.createElement('script');
+    function load_comments() {
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        var disqus_config = function () {
+            this.page.url = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'https://jacobpeoples.com/blog/2016/06/extending_arun_method.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
 
-        s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    }
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
