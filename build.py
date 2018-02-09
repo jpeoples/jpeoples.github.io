@@ -141,7 +141,7 @@ build_rules = [
 
 source_dir = "src"
 build_dir = "build"
-base_url = 'https://jacobpeoples.com/blog/'
+base_url = 'https://jpeoples.github.io/blog/'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'local':
     base_url = 'http://localhost:8080/'
