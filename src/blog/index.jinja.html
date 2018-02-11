@@ -10,17 +10,14 @@
 
 {% block content %}
 {{ super() }}
-
-<h1>jpeoples</h1>
-<p>Don't listen to me.</p>
-
-
-<div class="recent">
-<h2>Recent Posts</h2>
-<ul>
-{% for post in posts[:5] %}
-    <li><a href="{{post.fullhref}}">{{post.title}}</a></li>
-{%endfor %}
-</ul>
+<div class="archive">
+{% for month in months %}
+  <h3>{{month.month}}</h3>
+  <ul>
+      {% for post in month.posts %}
+      <li><a href="{{post.fullhref}}">{{post.title}}</a></li>
+      {%endfor %}
+    </ul>
+{% endfor %}
 </div>
 {% endblock %}

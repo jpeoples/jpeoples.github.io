@@ -31,13 +31,20 @@ def build_all(input_directory, output_directory, build_rules):
 
     for directory_path, directories, file_names in os.walk(input_directory):
         # strip off the input_directory to get just the rel path.
-        directory_path = os.path.relpath(directory_path, input_directory)
+        directory_path = forward_sep(os.path.relpath(directory_path, input_directory))
+
+
 
         for fn in file_names:
-            rel_file_path = os.path.join(directory_path, fn)
+            rel_file_path = url_join(directory_path, fn)
             for pattern, rule in build_rules:
+                #print("fnmatchcase(", rel_file_path, ",", pattern, ")")
                 # find the first matching build rule and apply it.
+
                 if fnmatchcase(rel_file_path, pattern):
+                    #print("   passed")
+
+                    #print(fn, "matched", pattern)
                     rule(input_directory, output_directory,
                          directory_path, fn)
                     break
@@ -129,19 +136,20 @@ def post_push(title, datestr, content, href):
 
 build_rules = [
         ('*.swp', ignore_file),
-        ('layouts*', ignore_file),
+        ('./layouts*', ignore_file),
+        ('./index.jinja.html', ignore_file),
+        ('./blog/index.jinja.html', ignore_file),
+        ('*.draft.*', ignore_file),
+        ('./rss.jinja.xml', ignore_file),
         ('*.jinja.md', jinja_md),
         ('*.jinja.*', jinja_file),
         #('*conf.yaml', ignore_file,
-        ('*.draft.*', ignore_file),
-        ('index.jinja.html', ignore_file),
-        ('rss.jinja.xml', ignore_file),
         ('*', copy_file)
         ]
 
 source_dir = "src"
 build_dir = "build"
-base_url = 'https://jpeoples.github.io/blog/'
+base_url = 'https://jpeoples.github.io/'
 
 if len(sys.argv) > 1 and sys.argv[1] == 'local':
     base_url = 'http://localhost:8080/'
@@ -177,4 +185,6 @@ sort_posts(posts)
 months = group_posts_by_month(posts)
 
 jinja_render_env['months'] = months
+jinja_render_env['posts'] = posts
 jinja_file(source_dir, build_dir, '', 'index.jinja.html')
+jinja_file(source_dir, build_dir, '', 'blog/index.jinja.html')
