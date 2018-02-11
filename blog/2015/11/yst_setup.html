@@ -2,7 +2,7 @@
 <head>
     
     <title>Running yst on Windows</title>
-    <link rel="stylesheet" href="https://jacobpeoples.com/blog/site.css" />
+    <link rel="stylesheet" href="http://localhost:8080/site.css" />
     
     <meta name="description" content="Personal blog of Jacob Peoples" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -17,8 +17,8 @@
       
     
           <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -50,9 +50,8 @@ that process I hit a few road-blocks, so I thought I'd put the details
 here in one place in case anyone else is having similar problems.</p>
 <h2 id="installing">Installing</h2>
 <p>The <a href="https://github.com/jgm/yst">readme</a> on github makes it sound so easy:</p>
-<div class="codehilite"><pre><span></span>cabal update
-cabal install yst
-</pre></div>
+<pre class="codehilite"><code>cabal update
+cabal install yst</code></pre>
 
 
 <p>I did not get the error detailed in the readme regarding
@@ -68,27 +67,24 @@ it now.</p>
 <h2 id="first-run">First Run</h2>
 <p>After getting yst installed the next step in the read me is to generate
 the test site:</p>
-<div class="codehilite"><pre><span></span>yst create mysite
-</pre></div>
+<pre class="codehilite"><code>yst create mysite</code></pre>
 
 
 <p>generates the test site source, then</p>
-<div class="codehilite"><pre><span></span>cd mysite
-yst
-</pre></div>
+<pre class="codehilite"><code>cd mysite
+yst</code></pre>
 
 
 <p>and voilà! Under the <code>site</code> subdirectory you have your static site.</p>
 <p>Right?  Wrong.</p>
 <p>Here's the output when I run yst:</p>
-<div class="codehilite"><pre><span></span>Updating site\js\nav.js
+<pre class="codehilite"><code>Updating site\js\nav.js
 Updating site\css\screen.css
 Updating site\css\print.css
 Updating site\css\hk-pyg.css
 Updating site\april_events.tex
 yst: site\april_events.tex: commitBuffer: invalid argument (invalid
-character)
-</pre></div>
+character)</code></pre>
 
 
 <p>Invalid character?</p>
@@ -107,8 +103,7 @@ the former case) or read (in the latter) from an UTF-8 encoded file.</p>
 <p>So for some reason yst can't write unicode to the output file.</p>
 <p>I'm not sure why, but the same FAQ page provides a solution for Windows
 just a short ways down the page.  Running</p>
-<div class="codehilite"><pre><span></span>chcp 65001
-</pre></div>
+<pre class="codehilite"><code>chcp 65001</code></pre>
 
 
 <p>before running <code>yst</code> solved the problem for me, and left me with a
@@ -124,8 +119,8 @@ beautiful test site.</p>
 <footer>
     <nav>
             <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -143,8 +138,8 @@ beautiful test site.</p>
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
         var disqus_config = function () {
-            this.page.url = 'https://jacobpeoples.com/blog/2015/11/yst_setup.html';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'https://jacobpeoples.com/blog/2015/11/yst_setup.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://localhost:8080/blog/2015/11/yst_setup.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'http://localhost:8080/blog/2015/11/yst_setup.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
             var d = document, s = d.createElement('script');

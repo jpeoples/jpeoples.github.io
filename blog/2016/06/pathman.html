@@ -2,7 +2,7 @@
 <head>
     
     <title>PATHMAN -- A Simple Path Manager for MATLAB</title>
-    <link rel="stylesheet" href="https://jacobpeoples.com/blog/site.css" />
+    <link rel="stylesheet" href="http://localhost:8080/site.css" />
     
     <meta name="description" content="Personal blog of Jacob Peoples" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -17,8 +17,8 @@
       
     
           <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -60,21 +60,18 @@ control.</p>
 <p><a href="https://github.com/jpeoples/PATHMAN">PATHMAN</a> is a tool, implemented in MATLAB, to help with this
 situation.  In particular it allows you to give short names to packs of
 code, and add/remove them from the path using the commands</p>
-<div class="codehilite"><pre><span></span>pathman use shortname
+<pre class="codehilite"><code>pathman use shortname
 % and
-pathman unuse shortname
-</pre></div>
+pathman unuse shortname</code></pre>
 
 
 <p>It also allows you to list installed packs via</p>
-<div class="codehilite"><pre><span></span>pathman list [glob]
-</pre></div>
+<pre class="codehilite"><code>pathman list [glob]</code></pre>
 
 
 <p>where <code>glob</code> can be used to narrow pack names, and update installed
 packs after editing their source directories via</p>
-<div class="codehilite"><pre><span></span>pathman update packname
-</pre></div>
+<pre class="codehilite"><code>pathman update packname</code></pre>
 
 
 <p>Such usage becomes particularly useful if you have many different code
@@ -87,67 +84,60 @@ intended to be run on the MATLAB command line).</p>
 project located in <code>~/research/somealgs</code> which I now want to add to
 PATHMAN with the name "somealgs".  Suppose the source directory looks
 like</p>
-<div class="codehilite"><pre><span></span>somealgs/
+<pre class="codehilite"><code>somealgs/
     somesubalgs/
         % functions
     moresubalgs/
         % functions
     examples/
         % example scripts
-    % more functions
-</pre></div>
+    % more functions</code></pre>
 
 
 <p>If I run</p>
-<div class="codehilite"><pre><span></span>pathman install ~/research/somealgs as somealgs
-</pre></div>
+<pre class="codehilite"><code>pathman install ~/research/somealgs as somealgs</code></pre>
 
 
 <p>then this directory will be copied to a configurable PATHMAN root
 directory, and that copy directory, and all subdirectories can be added
 to path via</p>
-<div class="codehilite"><pre><span></span>pathman use somealgs
-</pre></div>
+<pre class="codehilite"><code>pathman use somealgs</code></pre>
 
 
 <p>and removed via</p>
-<div class="codehilite"><pre><span></span>pathman unuse somealgs
-</pre></div>
+<pre class="codehilite"><code>pathman unuse somealgs</code></pre>
 
 
 <p>Suppose I then realize the examples/ subdirectory should not be added to
 the path.</p>
 <p>In my source directory, I can add the functions <code>addtopath</code> and
 <code>rmfrompath</code> to implement this addpath, rmpath logic.</p>
-<div class="codehilite"><pre><span></span><span class="c">% addtopath.m</span>
-<span class="k">function</span><span class="w"> </span><span class="nf">addtopath</span><span class="p">(</span>root<span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="c">% root will be passed by pathman, specifying the root of source</span>
-    <span class="c">% tree</span>
-    <span class="n">addpath</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="n">addpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;somesubalgs&#39;</span><span class="p">));</span>
-    <span class="n">addpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;moresubalgs&#39;</span><span class="p">));</span>
-<span class="k">end</span>
+<pre class="codehilite"><code class="language-matlab">% addtopath.m
+function addtopath(root)
+    % root will be passed by pathman, specifying the root of source
+    % tree
+    addpath(root);
+    addpath(fullfile(root, 'somesubalgs'));
+    addpath(fullfile(root, 'moresubalgs'));
+end
 
-<span class="c">% rmfrompath.m</span>
-<span class="k">function</span><span class="w"> </span><span class="nf">rmfrompath</span><span class="p">(</span>root<span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">rmpath</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="n">rmpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;somesubalgs&#39;</span><span class="p">));</span>
-    <span class="n">rmpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;moresubalgs&#39;</span><span class="p">));</span>
-<span class="k">end</span>
-</pre></div>
+% rmfrompath.m
+function rmfrompath(root)
+    rmpath(root);
+    rmpath(fullfile(root, 'somesubalgs'));
+    rmpath(fullfile(root, 'moresubalgs'));
+end</code></pre>
 
 
 <p>Finally, to tell PATHMAN about my updated source tree I call</p>
-<div class="codehilite"><pre><span></span>pathman update somealgs
-</pre></div>
+<pre class="codehilite"><code>pathman update somealgs</code></pre>
 
 
 <p>Now PATHMAN will use that logic when I call <code>use</code> and <code>unuse</code>.</p>
 <p>Alternatively, I can tell PATHMAN to exclude that directory when copying
 and then just use the default use/unuse logic.  To do so, add the file
 <code>.pathmanignore</code> to the source directory containing the single line</p>
-<div class="codehilite"><pre><span></span>example
-</pre></div>
+<pre class="codehilite"><code>example</code></pre>
 
 
 <p>This will cause PATHMAN to delete the copied example subdirectory after
@@ -157,10 +147,9 @@ work).</p>
 <h3 id="installation-and-more-information">Installation and More Information</h3>
 <p>For install information and further usage guidelines see the <a href="https://github.com/jpeoples/PATHMAN">PATHMAN
 repository</a> and the PATHMAN MATLAB help</p>
-<div class="codehilite"><pre><span></span>pathman help
+<pre class="codehilite"><code>pathman help
 % or
-help(pathman)
-</pre></div>
+help(pathman)</code></pre>
 
 
 <p>which lists and documents all the command-line options for pathman.</p>
@@ -176,8 +165,8 @@ help(pathman)
 <footer>
     <nav>
             <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -195,8 +184,8 @@ help(pathman)
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
         var disqus_config = function () {
-            this.page.url = 'https://jacobpeoples.com/blog/2016/06/pathman.html';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'https://jacobpeoples.com/blog/2016/06/pathman.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://localhost:8080/blog/2016/06/pathman.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'http://localhost:8080/blog/2016/06/pathman.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
             var d = document, s = d.createElement('script');

@@ -2,7 +2,7 @@
 <head>
     
     <title>Lying cat: Bizarre Filesystem Behaviour</title>
-    <link rel="stylesheet" href="https://jacobpeoples.com/blog/site.css" />
+    <link rel="stylesheet" href="http://localhost:8080/site.css" />
     
     <meta name="description" content="Personal blog of Jacob Peoples" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -17,8 +17,8 @@
       
     
           <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -50,16 +50,14 @@ The usual.</p>
 <p>However, I noticed that the dates I wanted to appear underneath the
 title of blog posts were not showing up. I double checked the template,
 which seemed to be correct. It is a snippet like so:</p>
-<div class="codehilite"><pre><span></span>{% if formatted_date is defined %}
-<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;</span>{{formatted_date}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-{% endif %}
-</pre></div>
+<pre class="codehilite"><code class="language-html">{% if formatted_date is defined %}
+&lt;p id=&quot;date&quot;&gt;{{formatted_date}}&lt;/p&gt;
+{% endif %}</code></pre>
 
 
 <p>The odd thing was that in the rendered templates I was viewing in the
 browser, the actual result was:</p>
-<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</pre></div>
+<pre class="codehilite"><code class="language-html">&lt;p id=&quot;date&quot;&gt;&lt;/p&gt;</code></pre>
 
 
 <p>So somehow the <code>formated_date</code> variable was being defined, but was
@@ -78,22 +76,19 @@ server. I don't know that much about web stuff in general so I can
 believe anything.</p>
 <p>But here's the thing. I closed the server and reopened it. Still the
 date didn't show up. Weird. So then I literally typed:</p>
-<div class="codehilite"><pre><span></span>cat path/to/post | less
-</pre></div>
+<pre class="codehilite"><code>cat path/to/post | less</code></pre>
 
 
 <p>and scrolled down to where the date should be. It still wasn't there.
 Meanwhile, I have the very same file open in the browser and it <em>is</em>.</p>
 <p>Then I go:</p>
-<div class="codehilite"><pre><span></span>pushd path/to/
-cat post | less
-</pre></div>
+<pre class="codehilite"><code>pushd path/to/
+cat post | less</code></pre>
 
 
 <p>and sure enough, <em>the date shows up!</em>. Then:</p>
-<div class="codehilite"><pre><span></span>popd
-cat path/to/post | less
-</pre></div>
+<pre class="codehilite"><code>popd
+cat path/to/post | less</code></pre>
 
 
 <p>and it still shows up!</p>
@@ -109,8 +104,8 @@ cat path/to/post | less
 <footer>
     <nav>
             <ul>
-        <li><a href="https://jacobpeoples.com">jpeoples</a></li>
-        <li><a href="https://jacobpeoples.com/blog/">posts</a></li>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
         <li><a href="https://github.com/jpeoples">github</a></li>
         <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
     </ul>
@@ -128,8 +123,8 @@ cat path/to/post | less
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
         var disqus_config = function () {
-            this.page.url = 'https://jacobpeoples.com/blog/2017/05/bizarre_fs.html';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'https://jacobpeoples.com/blog/2017/05/bizarre_fs.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://localhost:8080/blog/2017/05/bizarre_fs.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'http://localhost:8080/blog/2017/05/bizarre_fs.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
             var d = document, s = d.createElement('script');

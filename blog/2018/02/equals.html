@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+    
+    <title>Abuse of the Equals Sign</title>
+    <link rel="stylesheet" href="http://localhost:8080/site.css" />
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$'], ['\\[','\\]']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax();
+        all.forEach(function (element, index) {
+          element.SourceElement().parentNode.className += ' has-jax';
+        });
+      });
+    </script>
+    
+    <meta name="description" content="Personal blog of Jacob Peoples" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+<div class="container">
+<header>
+    <nav>
+    
+      
+    
+          <ul>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
+        <li><a href="https://github.com/jpeoples">github</a></li>
+        <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
+    </ul>
+    
+    </nav>
+</header>
+<hr class="smallhr">
+<main>
+
+<article>
+
+
+<header>
+<h1>Abuse of the Equals Sign</h1>
+
+<p id="date">February 9, 2018</p>
+
+</header>
+
+
+<div class="article-body">
+
+<p>The symbol "=" means "equals". It is to be written only when the things
+on either side are known to be equal, or if we are saying some meta
+statement like, "we want to show that X = Y".</p>
+<p>Suppose we have proved or assumed that <script type="math/tex">\sum_{i=2}^n 2i = (n-1)(n+2)</script>,
+and we want to show that <script type="math/tex">\sum_{i=2}^{n+1} 2i = n(n+3)</script>.</p>
+<p>Here's one way:</p>
+<blockquote>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{i=2}^{n+1} 2i &= \sum_{i=1}^n 2i + 2(n+1) \\
+     &= \sum_{i=2}^n 2i + 2(n+1) \\
+     &= (n-1)(n+2) + 2(n+1) \text{ (by the induction hypothesis) } \\
+     &= n^2 + n - 2 + 2n + 2 \\
+     &= n^2 + 3n \\
+     &= n(n+3)
+\end{aligned}</script>
+</p>
+</blockquote>
+<p>Here every line and equals sign is justified by either basic algebra or
+previously established facts. Every "=" really means "equals".</p>
+<p>However, sometimes we may not know ahead of time how to go from left to
+right directly. In such cases, here is an alternative way:</p>
+<blockquote>
+<p>We want to show <script type="math/tex">\sum_{i=2}^{n+1} 2i = n(n+3)</script>. Observe that
+<script type="math/tex; mode=display">\sum_{i=2}^{n+1} 2i = \sum_{i=2}^n 2i + 2(n+1)
+     = (n-1)(n+2) + 2(n+1) 
+     = n^2 + n - 2 + 2n + 2
+     = n^2 + 3n </script>
+</p>
+<p>On the other hand,
+<script type="math/tex; mode=display">n(n+3) = n^2 + 3n</script>
+</p>
+<p>Indeed they are equal and so we have shown <script type="math/tex">\sum_{i=2}^{n+1} 2i = n(n+3)</script>.</p>
+</blockquote>
+<p><em>Either of these approaches is perfectly acceptable in a test situation,
+and which is clearest may depend on the problem at hand, or the
+preferences of the reader.</em></p>
+<h1 id="equals-vs-equals">"Equals" vs "Equals?"</h1>
+<p>What a lot of students end up writing is something like the following:</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+ \sum_{i=2}^{n+1} 2i &= n(n+3) \\
+ (n-1)(n+2) + 2(n+1) &= n(n+3) \\
+  n^2 + n - 2 + 2n + 2 &= n^2 + 3n \\
+  n^2 + 3n &= n^2 + 3n
+\end{aligned}</script>
+</p>
+<p>Up until the very last line, none of these "=" mean "equals". They mean
+something like "equals?". On the other hand, adjacent lines in the left
+column or the right column really are known to be equal, yet no "=" is
+written between them! <em>This is abuse of the equals sign</em>! The true known
+equalities flow down the left column and back up the right column (or
+down the right and up the left).</p>
+<p>I know it makes sense while you write it, but as readers (or graders)
+we now need to not only try and follow your calculations, but also
+decide whether you really mean "equals" or "equals?" anywhere you've
+written "=".</p>
+<p>If you're unsure how to go from left to right and want to manipulate
+each side separately that is OK. <em>But do not abuse the equal sign</em>. Go
+for the second style shown above instead. Or if you have extra time you
+could figure out how to do the calculations in order on the back of the
+page, and then write a clearer presentation for your final answer.</p>
+<p>In any case, by consistently using "=" to mean "equals" and never
+"equals?", graders don't need to try and figure out what you mean at
+every "=".  They just need to follow your calculations and decide if
+they are correct.</p>
+
+</div>
+
+
+</article>
+
+</main>
+<hr class="smallhr">
+<footer>
+    <nav>
+            <ul>
+        <li><a href="http://localhost:8080/">jpeoples</a></li>
+        <li><a href="http://localhost:8080//blog/">posts</a></li>
+        <li><a href="https://github.com/jpeoples">github</a></li>
+        <li><a href="https://twitter.com/__jpeoples">twitter</a></li>
+    </ul>
+    </nav>
+</footer>
+
+
+
+
+<div id="disqus_thread"><a onclick="load_comments();">Load comments</a></div>
+<script>
+    function load_comments() {
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        var disqus_config = function () {
+            this.page.url = 'http://localhost:8080/blog/2018/02/equals.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'http://localhost:8080/blog/2018/02/equals.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+
+            s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</body>
+
+</html>
