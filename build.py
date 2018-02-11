@@ -101,6 +101,10 @@ def jinja_build(inpath, outpath):
     with open(outpath, 'w', encoding='utf-8') as f:
         f.write(odata)
 
+def format_date(dateobj):
+    dateobj = parse_date(dateobj)
+    return dateobj.strftime("%B %d, %Y")
+
 def rss_date(datestr):
     thedate = parse_date(datestr)
     return thedate.strftime("%a, %d %b %Y %H:%M:%S %z") + "EST"
@@ -108,14 +112,14 @@ def rss_date(datestr):
 def sort_posts(posts):
     posts.sort(key=lambda x: x['dateobj'], reverse=True)
 
-def group_posts_by_month(posts):
-    months = []
+def group_posts_by_year(posts):
+    years = []
     mposts = []
     for post in posts:
-        post_month = post['dateobj'].strftime('%B, %Y')
-        if post_month not in months:
-            months.append(post_month)
-            mposts.append({'month': post_month, 'posts': []})
+        post_year = post['dateobj'].strftime('%Y')
+        if post_year not in years:
+            years.append(post_year)
+            mposts.append({'year': post_year, 'posts': []})
 
         mposts[-1]['posts'].append(post)
     return mposts
@@ -173,7 +177,7 @@ def mdfilter(x):
 
 loader = jinja2.FileSystemLoader(source_dir)
 jinja_env = jinja2.Environment(loader=loader)
-jinja_env.filters.update({"markdown": mdfilter})
+jinja_env.filters.update({"markdown": mdfilter, "format_date": format_date})
 #jinja_env.globals.update(post_push = post_push)
 jinja_render_env = {
         'css': "site.css",
@@ -182,9 +186,9 @@ jinja_render_env = {
 posts = []
 build_all(source_dir, build_dir, build_rules)
 sort_posts(posts)
-months = group_posts_by_month(posts)
+years = group_posts_by_year(posts)
 
-jinja_render_env['months'] = months
+jinja_render_env['years'] = years
 jinja_render_env['posts'] = posts
 jinja_file(source_dir, build_dir, '', 'index.jinja.html')
 jinja_file(source_dir, build_dir, '', 'blog/index.jinja.html')
