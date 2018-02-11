@@ -50,8 +50,9 @@ that process I hit a few road-blocks, so I thought I'd put the details
 here in one place in case anyone else is having similar problems.</p>
 <h2 id="installing">Installing</h2>
 <p>The <a href="https://github.com/jgm/yst">readme</a> on github makes it sound so easy:</p>
-<pre class="codehilite"><code>cabal update
-cabal install yst</code></pre>
+<div class="codehilite"><pre><span></span>cabal update
+cabal install yst
+</pre></div>
 
 
 <p>I did not get the error detailed in the readme regarding
@@ -67,24 +68,27 @@ it now.</p>
 <h2 id="first-run">First Run</h2>
 <p>After getting yst installed the next step in the read me is to generate
 the test site:</p>
-<pre class="codehilite"><code>yst create mysite</code></pre>
+<div class="codehilite"><pre><span></span>yst create mysite
+</pre></div>
 
 
 <p>generates the test site source, then</p>
-<pre class="codehilite"><code>cd mysite
-yst</code></pre>
+<div class="codehilite"><pre><span></span>cd mysite
+yst
+</pre></div>
 
 
 <p>and voilà! Under the <code>site</code> subdirectory you have your static site.</p>
 <p>Right?  Wrong.</p>
 <p>Here's the output when I run yst:</p>
-<pre class="codehilite"><code>Updating site\js\nav.js
+<div class="codehilite"><pre><span></span>Updating site\js\nav.js
 Updating site\css\screen.css
 Updating site\css\print.css
 Updating site\css\hk-pyg.css
 Updating site\april_events.tex
 yst: site\april_events.tex: commitBuffer: invalid argument (invalid
-character)</code></pre>
+character)
+</pre></div>
 
 
 <p>Invalid character?</p>
@@ -103,7 +107,8 @@ the former case) or read (in the latter) from an UTF-8 encoded file.</p>
 <p>So for some reason yst can't write unicode to the output file.</p>
 <p>I'm not sure why, but the same FAQ page provides a solution for Windows
 just a short ways down the page.  Running</p>
-<pre class="codehilite"><code>chcp 65001</code></pre>
+<div class="codehilite"><pre><span></span>chcp 65001
+</pre></div>
 
 
 <p>before running <code>yst</code> solved the problem for me, and left me with a

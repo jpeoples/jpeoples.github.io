@@ -50,14 +50,16 @@ The usual.</p>
 <p>However, I noticed that the dates I wanted to appear underneath the
 title of blog posts were not showing up. I double checked the template,
 which seemed to be correct. It is a snippet like so:</p>
-<pre class="codehilite"><code class="language-html">{% if formatted_date is defined %}
-&lt;p id=&quot;date&quot;&gt;{{formatted_date}}&lt;/p&gt;
-{% endif %}</code></pre>
+<div class="codehilite"><pre><span></span>{% if formatted_date is defined %}
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;</span>{{formatted_date}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+{% endif %}
+</pre></div>
 
 
 <p>The odd thing was that in the rendered templates I was viewing in the
 browser, the actual result was:</p>
-<pre class="codehilite"><code class="language-html">&lt;p id=&quot;date&quot;&gt;&lt;/p&gt;</code></pre>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
 
 
 <p>So somehow the <code>formated_date</code> variable was being defined, but was
@@ -76,19 +78,22 @@ server. I don't know that much about web stuff in general so I can
 believe anything.</p>
 <p>But here's the thing. I closed the server and reopened it. Still the
 date didn't show up. Weird. So then I literally typed:</p>
-<pre class="codehilite"><code>cat path/to/post | less</code></pre>
+<div class="codehilite"><pre><span></span>cat path/to/post | less
+</pre></div>
 
 
 <p>and scrolled down to where the date should be. It still wasn't there.
 Meanwhile, I have the very same file open in the browser and it <em>is</em>.</p>
 <p>Then I go:</p>
-<pre class="codehilite"><code>pushd path/to/
-cat post | less</code></pre>
+<div class="codehilite"><pre><span></span>pushd path/to/
+cat post | less
+</pre></div>
 
 
 <p>and sure enough, <em>the date shows up!</em>. Then:</p>
-<pre class="codehilite"><code>popd
-cat path/to/post | less</code></pre>
+<div class="codehilite"><pre><span></span>popd
+cat path/to/post | less
+</pre></div>
 
 
 <p>and it still shows up!</p>

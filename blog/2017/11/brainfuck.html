@@ -41,8 +41,9 @@
 
 <div class="article-body">
 
-<pre class="codehilite"><code>$ bf &quot;++++++++[&gt;++++[&gt;++&gt;+++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;+&gt;+&gt;-&gt;&gt;+[&lt;]&lt;-]&gt;&gt;.&gt;---.+++++++..+++.&gt;&gt;.&lt;-.&lt;.+++.------.--------.&gt;&gt;+.&gt;++.&quot;
-Hello World!</code></pre>
+<div class="codehilite"><pre><span></span>$ bf <span class="s2">&quot;++++++++[&gt;++++[&gt;++&gt;+++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;+&gt;+&gt;-&gt;&gt;+[&lt;]&lt;-]&gt;&gt;.&gt;---.+++++++..+++.&gt;&gt;.&lt;-.&lt;.+++.------.--------.&gt;&gt;+.&gt;++.&quot;</span>
+Hello World!
+</pre></div>
 
 
 <p><a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a> is a minimalistic esoteric programming language. The
@@ -65,26 +66,27 @@ interpreters I've seen around online use a fixed data array. Below I'll
 discuss a nice simple means for implementing a dynamically
 growing data array.</p>
 <h2 id="the-block-structure">The block structure</h2>
-<pre class="codehilite"><code class="language-C">struct block_data
-{
-    size_t block_size;
-    size_t blocks_allocated;
-    size_t block_array_cap;
-    unsigned char **blocks;
-};
-/* Initialize block_data, and free internal memory */
-void create_block_data(struct block_data *blks, size_t block_size);
-void destroy_block_data(struct block_data *blks);
+<div class="codehilite"><pre><span></span><span class="k">struct</span> <span class="n">block_data</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">block_size</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">blocks_allocated</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">block_array_cap</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">**</span><span class="n">blocks</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="cm">/* Initialize block_data, and free internal memory */</span>
+<span class="kt">void</span> <span class="nf">create_block_data</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">block_size</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">destroy_block_data</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">);</span>
 
-/* Handles growing the blocks array, and allocating blocks */
-int block_data_grow_array(struct block_data *blks, size_t min_cap);
-int block_data_allocate_blocks(struct block_data *blks, size_t up_to);
+<span class="cm">/* Handles growing the blocks array, and allocating blocks */</span>
+<span class="kt">int</span> <span class="nf">block_data_grow_array</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">min_cap</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">block_data_allocate_blocks</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">up_to</span><span class="p">);</span>
 
-/* Clear block_data. This just initialized all allocated blocks to 0 */
-void block_data_clear(struct block_data *blks);
+<span class="cm">/* Clear block_data. This just initialized all allocated blocks to 0 */</span>
+<span class="kt">void</span> <span class="nf">block_data_clear</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">);</span>
 
-/* Lookup a cell */
-unsigned char *block_data_get_cell(struct block_data *blks, size_t i);</code></pre>
+<span class="cm">/* Lookup a cell */</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">block_data_get_cell</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
+</pre></div>
 
 
 <p>Here <code>blocks</code> is an array of <code>block_array_cap</code> pointers to blocks.
@@ -97,8 +99,9 @@ index inside that block, returning a pointer to the requested data.</p>
 <h2 id="the-interpreter-loop">The interpreter loop</h2>
 <p>Given this structure, implementing the interpreter is pretty easy. The
 whole shebang lives in one function:</p>
-<pre class="codehilite"><code class="language-C">void interpret(char *begin, char *end, FILE *in, FILE *out,
-               struct block_data *blocks);</code></pre>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
+               <span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blocks</span><span class="p">);</span>
+</pre></div>
 
 
 <p><code>begin</code> and <code>end</code> point to the instructions to interpret, <code>in</code> and
@@ -109,52 +112,53 @@ that in the various
 <a href="https://github.com/saulpw/brainfuck/blob/master/main.c">fixed-size</a>
 <a href="https://gist.github.com/maxcountryman/1699708">interpreters</a>
 floating around on the internet:</p>
-<pre class="codehilite"><code class="language-C">void interpret(char *begin, char *end, FILE *in, FILE *out,
-               struct block_data *blocks)
-{
-    int           r = 0;
-    char          *ip = begin;
-    size_t        data_ptr_ix = 0;
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
+               <span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blocks</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span>           <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">char</span>          <span class="o">*</span><span class="n">ip</span> <span class="o">=</span> <span class="n">begin</span><span class="p">;</span>
+    <span class="kt">size_t</span>        <span class="n">data_ptr_ix</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    unsigned char *data_ptr = block_data_get_cell(blocks, data_ptr_ix);
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data_ptr</span> <span class="o">=</span> <span class="n">block_data_get_cell</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">data_ptr_ix</span><span class="p">);</span>
 
-    while (ip &lt; end) {
-        switch (*ip) {
-        case '&gt;':
-            data_ptr_ix++;
-            data_ptr = block_data_get_cell(blocks, data_ptr_ix);
-            break;
-        case '&lt;':
-            data_ptr_ix--;
-            data_ptr = block_data_get_cell(blocks, data_ptr_ix);
-            break;
-        case '+':
-            *data_ptr += 1;
-            break;
-        case '-':
-            *data_ptr -= 1;
-            break;
-        case '.':
-            fputc(*data_ptr, out);
-            break;
-        case ',':
-            *data_ptr = fgetc(in);
-            break;
-        case '[':
-            if (*data_ptr) break;
-            ip = match_pairs(ip, begin, end, '[', ']', 1);
-            break;
-        case ']':
-            if (!*data_ptr) break;
-            ip = match_pairs(ip, begin, end, ']', '[', -1);
-            break;
-        default: /* All other characters are simply ignored */
-            break;
-        }
-        ip++;
-    }
-    return SUCCESS;
-}</code></pre>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ip</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="o">*</span><span class="n">ip</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="sc">&#39;&gt;&#39;</span><span class="o">:</span>
+            <span class="n">data_ptr_ix</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">data_ptr</span> <span class="o">=</span> <span class="n">block_data_get_cell</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">data_ptr_ix</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;&lt;&#39;</span><span class="o">:</span>
+            <span class="n">data_ptr_ix</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">data_ptr</span> <span class="o">=</span> <span class="n">block_data_get_cell</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">data_ptr_ix</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="o">:</span>
+            <span class="o">*</span><span class="n">data_ptr</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;-&#39;</span><span class="o">:</span>
+            <span class="o">*</span><span class="n">data_ptr</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;.&#39;</span><span class="o">:</span>
+            <span class="n">fputc</span><span class="p">(</span><span class="o">*</span><span class="n">data_ptr</span><span class="p">,</span> <span class="n">out</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;,&#39;</span><span class="o">:</span>
+            <span class="o">*</span><span class="n">data_ptr</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">in</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;[&#39;</span><span class="o">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">data_ptr</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="n">ip</span> <span class="o">=</span> <span class="n">match_pairs</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="sc">&#39;[&#39;</span><span class="p">,</span> <span class="sc">&#39;]&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">&#39;]&#39;</span><span class="o">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!*</span><span class="n">data_ptr</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="n">ip</span> <span class="o">=</span> <span class="n">match_pairs</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="sc">&#39;]&#39;</span><span class="p">,</span> <span class="sc">&#39;[&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span> <span class="cm">/* All other characters are simply ignored */</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ip</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>Here <code>match_pairs</code> is a function to search for matching brackets in a
@@ -164,9 +168,10 @@ error handling than shown here is available
 <a href="https://gist.github.com/jpeoples/e71d432d1765c1d67f9ebb91b9b906e2">here</a>.
 It includes a bit of additional code for reading files for instructions.
 You can call the interpreter with</p>
-<pre class="codehilite"><code>bf your,instructions.here
+<div class="codehilite"><pre><span></span>bf your,instructions.here
 # OR
-bf -f path/to/file/with/bf/code</code></pre>
+bf -f path/to/file/with/bf/code
+</pre></div>
 
 
 <h2 id="making-it-better">Making it better</h2>
