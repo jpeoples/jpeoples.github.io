@@ -1,8 +1,5 @@
 {% extends "layouts/base.html" %}
-{% set title="Jacob Peoples &ndash; Blog" %}
-
-{% block content_header %}
-{% endblock %}
+{% set title="Blog Archive" %}
     {% block nav %}
       {{ super() }}
       {% include "layouts/main_nav.html" %}
@@ -10,14 +7,12 @@
 
 {% block content %}
 {{ super() }}
-<div class="archive">
 {% for year in years %}
-  <h3>{{year.year}}</h3>
+  <h2>{{year.year}}</h2>
   <ul>
       {% for post in year.posts %}
       <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a></li>
       {%endfor %}
     </ul>
 {% endfor %}
-</div>
 {% endblock %}

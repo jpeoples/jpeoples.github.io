@@ -1,8 +1,6 @@
 {% extends "layouts/base.html" %}
-{% set title="Jacob Peoples" %}
+{% set title="Recent Blog Posts" %}
 
-{% block content_header %}
-{% endblock %}
     {% block nav %}
       {{ super() }}
       {% include "layouts/main_nav.html" %}
@@ -11,13 +9,10 @@
 {% block content %}
 {{ super() }}
 
-<div class="recent">
-<h2>Recent Blog Posts</h2>
 <ul>
 {% for post in posts[:20] %}
 <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a></li>
 {%endfor %}
 </ul>
-<a href="{{base_url}}blog/">See all posts</a>
-</div>
+<div class="s-center"><a href="{{base_url}}blog/">See all posts</a></div>
 {% endblock %}
