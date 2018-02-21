@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     {% block head %}
-    <title>{{ title }}</title>
+    <title>{{ title }} &ndash; Jacob Peoples</title>
     <link rel="stylesheet" href="{{base_url}}{{css}}" />
     {% if has_math %}
     <script type="text/javascript" async
@@ -41,31 +41,32 @@
     {% endblock %}
 </head>
 <body>
-<div class="container">
-<header>
-    <nav>
+{#<div class="container"> #}
+<header class="s-center s-pad-above">
+    <nav class="s-link-no-visit">
     {% block nav %}
     {% endblock %}
     </nav>
 </header>
-<hr class="smallhr">
+<hr />
 <main>
 {% block main %}
 {% block content_header %}
-<header>
+<header class="s-center">
 <h1>{{title}}</h1>
 {% if date is defined %}
 <p id="date">{{date}}</p>
 {% endif %}
 </header>
+<hr />
 {% endblock %}
 {% block content %}
 {% endblock %}
 {% endblock %}
 </main>
-<hr class="smallhr">
-<footer>
-    <nav>
+<hr />
+<footer class="s-center">
+    <nav class="s-link-no-visit">
         {% include "layouts/main_nav.html" %}
     </nav>
 </footer>
@@ -73,7 +74,7 @@
 {% block footer_scripts %}
 {% endblock %}
 
-</div>
+{#</div> #}
 
 </body>
 
