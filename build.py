@@ -1,132 +1,52 @@
 import sys
-import os, os.path
+import os
 import shutil
-import functools
-from fnmatch import fnmatchcase
 from dateutil.parser import parse as parse_date
+import pathlib
+import bisect
 
 import jinja2
 import markdown
 
-def forward_sep(path):
-    return path.replace("\\", "/")
+    
+def ensure_directory(path):
+    try:
+        path.parent.mkdir(parents=True)
+    except FileExistsError:
+        pass
 
-def url_join(*args):
-    return "/".join(args)
+def path_replace_all_suffix(path, suffix):
+    while path.suffix:
+        path = path.with_suffix('')
+    return path.with_suffix(suffix)
 
-def build_all(input_directory, output_directory, build_rules):
-    """Build input_directory into output_directory.
-
-    build_rules is a sequence of rules of the form
-        [(pattern, rule), (pattern, rule), ...]
-    where pattern is a pattern matching string (Unix style) and rule is
-    a function to be applied to that file.
-
-    rules should have the signature
-        rule(input_directory, output_directory, rel_dir, filename)
-    where rel_dir is the path to the directory of the file, relative to
-    input_directory, and filename is the name of the file within that
-    directory.
-    """
-
-    for directory_path, directories, file_names in os.walk(input_directory):
-        # strip off the input_directory to get just the rel path.
-        directory_path = forward_sep(os.path.relpath(directory_path, input_directory))
-
-
-
+def walk_directory(input_directory):
+    for directory_path, _, file_names in os.walk(str(input_directory)):
+        relative_directory = pathlib.Path(directory_path).relative_to(input_directory)
         for fn in file_names:
-            rel_file_path = url_join(directory_path, fn)
-            for pattern, rule in build_rules:
-                #print("fnmatchcase(", rel_file_path, ",", pattern, ")")
-                # find the first matching build rule and apply it.
+            yield relative_directory.joinpath(fn)
 
-                if fnmatchcase(rel_file_path, pattern):
-                    #print("   passed")
+class FileMapper:
+    def __init__(self, indir, outdir):
+        self.indir = pathlib.Path(indir)
+        self.outdir = pathlib.Path(outdir)
 
-                    #print(fn, "matched", pattern)
-                    rule(input_directory, output_directory,
-                         directory_path, fn)
-                    break
+    def mirror(self, fn):
+        return self.indir / fn, self.outdir / fn
 
-def ensure_directory(pathname):
-    """Ensure directory specified by pathname exists, file or directory."""
-    path = os.path.split(pathname)[0] # get directory
-    print(path)
-    # create it if it does not exist.
-    if os.path.isdir(path): return
-    os.makedirs(path)
+    def to_html(self, fn):
+        return self.indir / fn, self.outdir / path_replace_all_suffix(fn, '.html')
 
-def copy_file(indir, outdir, reldir, fname):
-    inpath = os.path.join(indir, reldir, fname)
-    outpath = os.path.join(outdir, reldir, fname)
-    ensure_directory(outpath)
-    shutil.copy(inpath, outpath)
+    def remove_internal_extensions(self, fn):
+        return self.indir / fn, self.outdir / path_replace_all_suffix(fn, fn.suffix)
 
-def ignore_file(indir, outdir, reldir, fname):
+def copy_file(inpath, outpath):
+    shutil.copy(str(inpath), str(outpath))
+
+def ignore_file(*args, **kwargs):
     pass
 
-def jinja_md(indir, outdir, reldir, fname):
-    inpath = os.path.join(indir, reldir, fname)
-    parts = fname.split('.')
-    parts.remove('jinja')
-    parts.remove('md')
-    parts.append('html')
-    ofname = '.'.join(parts)
-    outpath = os.path.join(outdir, reldir, ofname)
-    ensure_directory(outpath)
-    jinja_build(inpath, outpath)
-
-def jinja_file(indir, outdir, reldir, fname):
-    inpath = os.path.join(indir, reldir, fname)
-    parts = fname.split('.')
-    parts.remove('jinja')
-    ofname = '.'.join(parts)
-    outpath = os.path.join(outdir, reldir, ofname)
-    ensure_directory(outpath)
-    jinja_build(inpath, outpath)
-
-
-def jinja_build(inpath, outpath):
-    href = forward_sep(os.path.relpath(outpath, build_dir))
-    jpath = forward_sep(os.path.relpath(inpath, source_dir))
-
-    template = jinja_env.get_template(jpath)
-    renderdict = jinja_render_env.copy()
-    renderdict['href'] = href
-    renderdict['fullhref'] = base_url + href
-    renderdict['post_push'] = post_push;
-    odata = template.render(renderdict)
-
-    with open(outpath, 'w', encoding='utf-8') as f:
-        f.write(odata)
-
-def format_date(dateobj):
-    dateobj = parse_date(dateobj)
-    return dateobj.strftime("%B %d, %Y")
-
-def rss_date(datestr):
-    thedate = parse_date(datestr)
-    return thedate.strftime("%a, %d %b %Y %H:%M:%S %z") + "EST"
-
-def sort_posts(posts):
-    posts.sort(key=lambda x: x['dateobj'], reverse=True)
-
-def group_posts_by_year(posts):
-    years = []
-    mposts = []
-    for post in posts:
-        post_year = post['dateobj'].strftime('%Y')
-        if post_year not in years:
-            years.append(post_year)
-            mposts.append({'year': post_year, 'posts': []})
-
-        mposts[-1]['posts'].append(post)
-    return mposts
-
-
-
-def post_push(title, datestr, content, href):
+def make_post(title, datestr, content, href):
     post = {
             'fullhref': base_url + href,
             'href': '/' + href,
@@ -135,29 +55,100 @@ def post_push(title, datestr, content, href):
             'content': content,
             'title': title
             }
-    #print(post)
-    posts.append(post)
+    return post
 
-build_rules = [
-        ('*.swp', ignore_file),
-        ('./layouts*', ignore_file),
-        ('./index.jinja.html', ignore_file),
-        ('./blog/index.jinja.html', ignore_file),
-        ('*.draft.*', ignore_file),
-        ('./rss.jinja.xml', ignore_file),
-        ('*.jinja.md', jinja_md),
-        ('*.jinja.*', jinja_file),
-        #('*conf.yaml', ignore_file,
-        ('*', copy_file)
-        ]
+class PostCollection:
+    def __init__(self):
+        self.posts = []
+        self.keys = []
 
-source_dir = "src"
-build_dir = "build"
-base_url = 'https://jpeoples.github.io/'
+    def post_push(self, post):
+        key = post['dateobj']
+        x = bisect.bisect_left(self.keys, key)
+        self.keys[x:x] = [key]
+        self.posts[x:x] = [post]
 
-if len(sys.argv) > 1 and sys.argv[1] == 'local':
-    base_url = 'http://localhost:8080/'
-    print(base_url)
+    def history(self, count=20):
+        for i, post in enumerate(reversed(self.posts)):
+            if count is not None and i >= count:
+                break
+            yield post
+
+    def by_year(self):
+        current_year = None
+        for post in reversed(self.posts):
+            date = post['dateobj']
+            if date.year != current_year:
+                if current_year is not None:
+                    yield obj
+                obj = {'year': date.year, 'posts': []}
+                current_year = date.year
+
+            obj['posts'].append(post)
+        yield obj
+
+
+def make_jinja_builder(template_load, prepare_dict):
+    def build(inpath, outpath):
+        template = template_load(inpath)
+        rdct = prepare_dict(outpath)
+
+        with outpath.open('w', encoding='utf-8') as f:
+            f.write(template.render(rdct))
+    return build
+
+def make_template_loader(indir, load):
+    def map(inpath):
+        return load(str(inpath.relative_to(indir)))
+    return map
+
+def make_render_dict(outdir, initial_dict, base_uri, post_collection):
+    def map(outpath):
+        href = outpath.relative_to(outdir).as_posix()
+        renderdict = initial_dict.copy()
+        renderdict['href'] = href
+        renderdict['fullhref'] = base_uri + href
+        renderdict['post_push'] = lambda t, d, c, h: post_collection.post_push(make_post(t,d,c,h))
+        return renderdict
+    return map
+
+def make_rule(file_map, file_transform):
+    def map(fn):
+        inpath, outpath = file_map(fn)
+        ensure_directory(outpath)
+        file_transform(inpath, outpath)
+    return map
+
+def build_all(input_directory, output_directory, build_rules):
+    for fn in walk_directory(input_directory):
+        build_rules(fn)
+
+def format_date(dateobj):
+    dateobj = parse_date(dateobj)
+    return dateobj.strftime('%B %d, %Y')
+
+def rss_date(dateobj):
+    thedate = parse_date(dateobj)
+    return thedate.strftime("%a, %d %b %Y %H:%M:%S %z") + "EST"
+
+class BuildRules:
+    def __init__(self, rules):
+        self.rules = rules
+
+    def match(self, fn):
+        # call first matching rule
+        for matcher, rule in self.rules:
+            if self._single_match(matcher, fn):
+                return rule(fn)
+
+    def _single_match(self, matcher, fn):
+        try:
+            ret = matcher(fn)
+        except TypeError:
+            # fallback is to match as glob string
+            ret = fn.match(matcher)
+        return ret
+
 
 mdextensions = [
         'markdown.extensions.extra',
@@ -168,27 +159,57 @@ mdextensions = [
         'mdx_math'
         ]
 mdextconf = {"mdx_math": {'enable_dollar_delimiter': True}}
+
 def mdfilter(x):
     s = markdown.markdown(x, extensions=mdextensions, extension_configs=mdextconf)
     return s
 
+def setup_jinja(source_dir, filters):
+    loader = jinja2.FileSystemLoader(str(source_dir))
+    jinja_env = jinja2.Environment(loader=loader)
+    jinja_env.filters.update(filters)
+    return jinja_env
 
-#mdfilter = lambda x: markdown.markdown(x, extensions=mdextensions, extension_configs=mdextconf)
 
-loader = jinja2.FileSystemLoader(source_dir)
-jinja_env = jinja2.Environment(loader=loader)
-jinja_env.filters.update({"markdown": mdfilter, "format_date": format_date})
-#jinja_env.globals.update(post_push = post_push)
-jinja_render_env = {
-        'css': "site.css",
-        'base_url': base_url
-        }
-posts = []
-build_all(source_dir, build_dir, build_rules)
-sort_posts(posts)
-years = group_posts_by_year(posts)
+if __name__ == "__main__":
 
-jinja_render_env['years'] = years
-jinja_render_env['posts'] = posts
-jinja_file(source_dir, build_dir, '', 'index.jinja.html')
-jinja_file(source_dir, build_dir, '', 'blog/index.jinja.html')
+    base_url = 'https://jpeoples.github.io/'
+    if len(sys.argv) > 1 and sys.argv[1] == 'local':
+        base_url = 'http://localhost:8080/'
+        print(base_url)
+    source_dir = pathlib.Path("src")
+    build_dir = pathlib.Path("build")
+    file_mapper = FileMapper(source_dir, build_dir)
+    jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': format_date})
+    
+    posts = PostCollection()
+    jinja_render_env = {
+            'css': "site.css",
+            'base_url': base_url
+            }
+
+    jinja_build = make_jinja_builder(make_template_loader(source_dir, jinja_env.get_template),
+                                    make_render_dict(build_dir, jinja_render_env, base_url, posts))
+
+    jinja_md = make_rule(file_mapper.to_html, jinja_build)
+    jinja_file = make_rule(file_mapper.remove_internal_extensions, jinja_build)
+    simple_copy = make_rule(file_mapper.mirror, copy_file)
+
+    build_rules = BuildRules([
+            ('*.swp', ignore_file),
+            ('./layouts*', ignore_file),
+            ('./index.jinja.html', ignore_file),
+            ('./blog/index.jinja.html', ignore_file),
+            ('*.draft.*', ignore_file),
+            ('./rss.jinja.xml', ignore_file),
+            ('*.jinja.md', jinja_md),
+            ('*.jinja.*', jinja_file),
+            #('*conf.yaml', ignore_file,
+            ('*', simple_copy)
+           ])
+
+
+    build_all(source_dir, build_dir, build_rules.match)
+    jinja_render_env['posts'] = posts
+    jinja_file(pathlib.Path('index.jinja.html'))
+    jinja_file(pathlib.Path('blog/index.jinja.html'))

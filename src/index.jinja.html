@@ -10,7 +10,7 @@
 {{ super() }}
 
 <ul>
-{% for post in posts[:20] %}
+{% for post in posts.history(20) %}
 <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a></li>
 {%endfor %}
 </ul>
