@@ -253,7 +253,7 @@ body {
     font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #222;
     margin: 0 auto;
-    width: 100%;
+    width: 95%;
     padding-left: 0;
     padding-right: 0;
 }
@@ -262,11 +262,7 @@ body {
 @media (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {
-    body {
-        width: 80%;
-    }
-}
+@media (min-width: 550px) { }
 
 /* Larger than tablet */
 @media (min-width: 750px) {}
