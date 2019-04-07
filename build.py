@@ -65,8 +65,9 @@ class PostCollection:
     def post_push(self, post):
         key = post['dateobj']
         x = bisect.bisect_left(self.keys, key)
-        self.keys[x:x] = [key]
-        self.posts[x:x] = [post]
+
+        self.keys.insert(x, key)
+        self.posts.insert(x,post)
 
     def history(self, count=20):
         for i, post in enumerate(reversed(self.posts)):
@@ -99,7 +100,7 @@ def make_jinja_builder(template_load, prepare_dict):
 
 def make_template_loader(indir, load):
     def map(inpath):
-        return load(str(inpath.relative_to(indir)))
+        return load(str(inpath.relative_to(indir).as_posix()))
     return map
 
 def make_render_dict(outdir, initial_dict, base_uri, post_collection):
