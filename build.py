@@ -9,6 +9,7 @@ import fnmatch
 import jinja2
 import markdown
 
+# Path utility functions
 def ensure_directory(path):
     try:
         path.parent.mkdir(parents=True)
@@ -16,6 +17,7 @@ def ensure_directory(path):
         pass
 
 def path_replace_all_suffix(path, suffix):
+    """Replace all extensions with a single new extension"""
     while path.suffix:
         path = path.with_suffix('')
     return path.with_suffix(suffix)
@@ -26,6 +28,7 @@ def walk_directory(input_directory):
         for fn in file_names:
             yield relative_directory.joinpath(fn)
 
+# File map operations (for mapping input file names to output file names)
 class FileMapper:
     def __init__(self, indir, outdir):
         self.indir = pathlib.Path(indir)
@@ -46,7 +49,8 @@ def copy_file(inpath, outpath):
 def ignore_file(*args, **kwargs):
     pass
 
-def make_post(title, datestr, content, href):
+# Put post data into a dict (href is relative url)
+def make_post(title, datestr, content, href, base_url):
     post = {
             'fullhref': base_url + href,
             'href': '/' + href,
@@ -111,7 +115,7 @@ def make_render_dict(outdir, initial_dict, base_uri, post_collection):
         renderdict = initial_dict.copy()
         renderdict['href'] = href
         renderdict['fullhref'] = base_uri + href
-        renderdict['post_push'] = lambda t, d, c, h: post_collection.post_push(make_post(t,d,c,h))
+        renderdict['post_push'] = lambda t, d, c, h: post_collection.post_push(make_post(t,d,c,h,base_uri))
         return renderdict
     return map
 
@@ -126,13 +130,13 @@ def build_all(input_directory, output_directory, build_rules):
     for fn in walk_directory(input_directory):
         build_rules(fn)
 
-def format_date(dateobj):
-    dateobj = parse_date(dateobj)
-    return dateobj.strftime('%B %d, %Y')
-
-def rss_date(dateobj):
+def format_date(dateobj, format_string):
     thedate = parse_date(dateobj)
-    return thedate.strftime("%a, %d %b %Y %H:%M:%S %z") + "EST"
+    return thedate.strftime(format_string)
+
+blog_date = lambda d: format_date(d, '%B %d, %Y')
+rss_date = lambda d: format_date(d, "%a, %d %b %Y %H:%M:%S %z") + "EST"
+
 
 class BuildRules:
     def __init__(self, rules):
@@ -159,17 +163,17 @@ class BuildRules:
         return ret
 
 
-mdextensions = [
-        'markdown.extensions.extra',
-        'markdown.extensions.admonition',
-        'markdown.extensions.toc',
-        'markdown.extensions.headerid',
-        'markdown.extensions.codehilite',
-        'mdx_math'
-        ]
-mdextconf = {"mdx_math": {'enable_dollar_delimiter': True}}
 
 def mdfilter(x):
+    mdextensions = [
+            'markdown.extensions.extra',
+            'markdown.extensions.admonition',
+            'markdown.extensions.toc',
+            'markdown.extensions.headerid',
+            'markdown.extensions.codehilite',
+            'mdx_math'
+            ]
+    mdextconf = {"mdx_math": {'enable_dollar_delimiter': True}}
     s = markdown.markdown(x, extensions=mdextensions, extension_configs=mdextconf)
     return s
 
@@ -182,14 +186,17 @@ def setup_jinja(source_dir, filters):
 
 if __name__ == "__main__":
 
+    # set base url
     base_url = 'https://jpeoples.github.io/'
     if len(sys.argv) > 1 and sys.argv[1] == 'local':
         base_url = 'http://localhost:8080/'
         print(base_url)
+
+    # set up the objects
     source_dir = pathlib.Path("src")
     build_dir = pathlib.Path("build")
     file_mapper = FileMapper(source_dir, build_dir)
-    jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': format_date})
+    jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': blog_date})
 
     posts = PostCollection()
     jinja_render_env = {
@@ -204,6 +211,9 @@ if __name__ == "__main__":
     jinja_file = make_rule(file_mapper.remove_internal_extensions, jinja_build)
     simple_copy = make_rule(file_mapper.mirror, copy_file)
 
+    # NOTE: We avoid building the index files for the main page and blog
+    # page in the first run since they require the post list which gets
+    # automatically built up in this run
     build_rules = BuildRules([
             ('*.swp', ignore_file),
             ('layouts*', ignore_file),
@@ -213,7 +223,6 @@ if __name__ == "__main__":
             ('blog/rss.jinja.xml', ignore_file),
             ('*.jinja.md', jinja_md),
             ('*.jinja.*', jinja_file),
-            #('*conf.yaml', ignore_file,
             ('*', simple_copy)
            ])
 
