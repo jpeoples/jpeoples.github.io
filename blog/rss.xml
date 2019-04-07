@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+    <title>Blog &amp;ndash; Jacob Peoples</title>
+    <link>https://jpeoples.github.io/blog</link>
+    
+    <item>
+        <title>Abuse of the Equals Sign</title>
+        <link>https://jpeoples.github.io/blog/2018/02/equals.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2018/02/equals.html</guid>
+        <pubDate>Fri, 09 Feb 2018 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;The symbol &#34;=&#34; means &#34;equals&#34;. It is to be written only when the things
+on either side are known to be equal, or if we are saying some meta
+statement like, &#34;we want to show that X = Y&#34;.&lt;/p&gt;
+&lt;p&gt;Suppose we have proved or assumed that &lt;script type=&#34;math/tex&#34;&gt;\sum_{i=2}^n 2i = (n-1)(n+2)&lt;/script&gt;,
+and we want to show that &lt;script type=&#34;math/tex&#34;&gt;\sum_{i=2}^{n+1} 2i = n(n+3)&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;Here&#39;s one way:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;\begin{aligned}
+\sum_{i=2}^{n+1} 2i &amp;= \sum_{i=1}^n 2i + 2(n+1) \\
+     &amp;= \sum_{i=2}^n 2i + 2(n+1) \\
+     &amp;= (n-1)(n+2) + 2(n+1) \text{ (by the induction hypothesis) } \\
+     &amp;= n^2 + n - 2 + 2n + 2 \\
+     &amp;= n^2 + 3n \\
+     &amp;= n(n+3)
+\end{aligned}&lt;/script&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here every line and equals sign is justified by either basic algebra or
+previously established facts. Every &#34;=&#34; really means &#34;equals&#34;.&lt;/p&gt;
+&lt;p&gt;However, sometimes we may not know ahead of time how to go from left to
+right directly. In such cases, here is an alternative way:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We want to show &lt;script type=&#34;math/tex&#34;&gt;\sum_{i=2}^{n+1} 2i = n(n+3)&lt;/script&gt;. Observe that
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;\sum_{i=2}^{n+1} 2i = \sum_{i=2}^n 2i + 2(n+1)
+     = (n-1)(n+2) + 2(n+1) 
+     = n^2 + n - 2 + 2n + 2
+     = n^2 + 3n &lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;On the other hand,
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;n(n+3) = n^2 + 3n&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;Indeed they are equal and so we have shown &lt;script type=&#34;math/tex&#34;&gt;\sum_{i=2}^{n+1} 2i = n(n+3)&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Either of these approaches is perfectly acceptable in a test situation,
+and which is clearest may depend on the problem at hand, or the
+preferences of the reader.&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;equals-vs-equals&#34;&gt;&#34;Equals&#34; vs &#34;Equals?&#34;&lt;/h1&gt;
+&lt;p&gt;What a lot of students end up writing is something like the following:&lt;/p&gt;
+&lt;p&gt;
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;\begin{aligned}
+ \sum_{i=2}^{n+1} 2i &amp;= n(n+3) \\
+ (n-1)(n+2) + 2(n+1) &amp;= n(n+3) \\
+  n^2 + n - 2 + 2n + 2 &amp;= n^2 + 3n \\
+  n^2 + 3n &amp;= n^2 + 3n
+\end{aligned}&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;Up until the very last line, none of these &#34;=&#34; mean &#34;equals&#34;. They mean
+something like &#34;equals?&#34;. On the other hand, adjacent lines in the left
+column or the right column really are known to be equal, yet no &#34;=&#34; is
+written between them! &lt;em&gt;This is abuse of the equals sign&lt;/em&gt;! The true known
+equalities flow down the left column and back up the right column (or
+down the right and up the left).&lt;/p&gt;
+&lt;p&gt;I know it makes sense while you write it, but as readers (or graders)
+we now need to not only try and follow your calculations, but also
+decide whether you really mean &#34;equals&#34; or &#34;equals?&#34; anywhere you&#39;ve
+written &#34;=&#34;.&lt;/p&gt;
+&lt;p&gt;If you&#39;re unsure how to go from left to right and want to manipulate
+each side separately that is OK. &lt;em&gt;But do not abuse the equal sign&lt;/em&gt;. Go
+for the second style shown above instead. Or if you have extra time you
+could figure out how to do the calculations in order on the back of the
+page, and then write a clearer presentation for your final answer.&lt;/p&gt;
+&lt;p&gt;In any case, by consistently using &#34;=&#34; to mean &#34;equals&#34; and never
+&#34;equals?&#34;, graders don&#39;t need to try and figure out what you mean at
+every &#34;=&#34;.  They just need to follow your calculations and decide if
+they are correct.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>A brainfuck interpreter in C</title>
+        <link>https://jpeoples.github.io/blog/2017/11/brainfuck.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2017/11/brainfuck.html</guid>
+        <pubDate>Wed, 01 Nov 2017 00:00:00 EST</pubDate>
+        <description>
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bf &lt;span class=&#34;s2&#34;&gt;&amp;quot;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&amp;quot;&lt;/span&gt;
+Hello World!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Brainfuck&#34;&gt;brainfuck&lt;/a&gt; is a minimalistic esoteric programming language. The
+basic model is to imagine an infinite array of byte cells all
+initialized to 0. The data pointer begins at the beginning of the array.
+A program is a sequence made up of eight different commands:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; increments the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&lt;/code&gt; decrements the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; increments the byte in the cell pointed to by the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-&lt;/code&gt; decrements the byte in the cell pointed to by the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; outputs the byte at the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;,&lt;/code&gt; reads one byte of input into the byte at the data pointer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[&lt;/code&gt; and &lt;code&gt;]&lt;/code&gt; allow looping. At &lt;code&gt;[&lt;/code&gt;, if the current byte is 0, jump to
+   the command after the matching &lt;code&gt;]&lt;/code&gt;.  At &lt;code&gt;]&lt;/code&gt;, if the byte is nonzero
+   jump to the command after the matching &lt;code&gt;[&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is pretty straightforward to implement, but many of the
+interpreters I&#39;ve seen around online use a fixed data array. Below I&#39;ll
+discuss a nice simple means for implementing a dynamically
+growing data array.&lt;/p&gt;
+&lt;h2 id=&#34;the-block-structure&#34;&gt;The block structure&lt;/h2&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;blocks_allocated&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_array_cap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/* Initialize block_data, and free internal memory */&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;create_block_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;destroy_block_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/* Handles growing the blocks array, and allocating blocks */&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;block_data_grow_array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;min_cap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;block_data_allocate_blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;up_to&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/* Clear block_data. This just initialized all allocated blocks to 0 */&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;block_data_clear&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/* Lookup a cell */&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;block_data_get_cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here &lt;code&gt;blocks&lt;/code&gt; is an array of &lt;code&gt;block_array_cap&lt;/code&gt; pointers to blocks.
+&lt;code&gt;blocks_allocated&lt;/code&gt; tracks how many of those blocks are already
+allocated. &lt;code&gt;block_size&lt;/code&gt; is the number of bytes in each block.&lt;/p&gt;
+&lt;p&gt;The key function here is &lt;code&gt;block_data_get_cell&lt;/code&gt;, which makes looking up a
+cell trivial. Simply provide the data pointer index &lt;code&gt;i&lt;/code&gt;, and it will do any
+necessary allocations, and do the math to find the correct block and
+index inside that block, returning a pointer to the requested data.&lt;/p&gt;
+&lt;h2 id=&#34;the-interpreter-loop&#34;&gt;The interpreter loop&lt;/h2&gt;
+&lt;p&gt;Given this structure, implementing the interpreter is pretty easy. The
+whole shebang lives in one function:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;interpret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+               &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;begin&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt; point to the instructions to interpret, &lt;code&gt;in&lt;/code&gt; and
+&lt;code&gt;out&lt;/code&gt; are streams for the I/O commands &lt;code&gt;.&lt;/code&gt; and &lt;code&gt;,&lt;/code&gt;, and &lt;code&gt;blocks&lt;/code&gt; is an
+initialized &lt;code&gt;block_data&lt;/code&gt; structure to represent the data array.&lt;/p&gt;
+&lt;p&gt;With all this in place the actual loop logic is not much different from
+that in the various
+&lt;a href=&#34;https://github.com/saulpw/brainfuck/blob/master/main.c&#34;&gt;fixed-size&lt;/a&gt;
+&lt;a href=&#34;https://gist.github.com/maxcountryman/1699708&#34;&gt;interpreters&lt;/a&gt;
+floating around on the internet:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;interpret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+               &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;          &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;size_t&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data_get_cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data_get_cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;&amp;lt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block_data_get_cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blocks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_ptr_ix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;fputc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fgetc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;[&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;match_pairs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;[&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_ptr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;match_pairs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;[&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;cm&#34;&gt;/* All other characters are simply ignored */&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SUCCESS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here &lt;code&gt;match_pairs&lt;/code&gt; is a function to search for matching brackets in a
+given range.&lt;/p&gt;
+&lt;p&gt;The entire source code for this interpreter, which includes a bit more
+error handling than shown here is available
+&lt;a href=&#34;https://gist.github.com/jpeoples/e71d432d1765c1d67f9ebb91b9b906e2&#34;&gt;here&lt;/a&gt;.
+It includes a bit of additional code for reading files for instructions.
+You can call the interpreter with&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bf your,instructions.here
+# OR
+bf -f path/to/file/with/bf/code
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;making-it-better&#34;&gt;Making it better&lt;/h2&gt;
+&lt;p&gt;There are some things we could do to make the interpreter better. For
+one thing, we could eliminate all the ignored characters from the code
+before calling interpret. Also
+searching for matching brackets every loop iteration could be
+sped up by creating a jump table before hand.
+Finally, the same loop structure could be used to implement a compiler
+converting a given brainfuck program into C code.
+I might look at some of these things in a future post.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>Lying cat: Bizarre Filesystem Behaviour</title>
+        <link>https://jpeoples.github.io/blog/2017/05/bizarre_fs.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2017/05/bizarre_fs.html</guid>
+        <pubDate>Fri, 05 May 2017 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;Just a short post on something odd that happened to me last night.&lt;/p&gt;
+&lt;p&gt;I was working on the Jinja template to generate the posts on this
+website. I had a local server launched in the build directory of the
+website so I could preview the results as I went. It was working fine; I
+could make changes, rebuild, refresh, and immediately see those changes.
+The usual.&lt;/p&gt;
+&lt;p&gt;However, I noticed that the dates I wanted to appear underneath the
+title of blog posts were not showing up. I double checked the template,
+which seemed to be correct. It is a snippet like so:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{% if formatted_date is defined %}
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;{{formatted_date}}&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The odd thing was that in the rendered templates I was viewing in the
+browser, the actual result was:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So somehow the &lt;code&gt;formated_date&lt;/code&gt; variable was being defined, but was
+empty...&lt;/p&gt;
+&lt;p&gt;Except it wasn&#39;t.&lt;/p&gt;
+&lt;p&gt;I printed out the variable in the context dictionary just before
+rendering and saw the correct dates displayed for each post.&lt;/p&gt;
+&lt;h1 id=&#34;the-weird-part&#34;&gt;The Weird Part&lt;/h1&gt;
+&lt;p&gt;So far this is just a typical annoying bug story. Here&#39;s the weird part:&lt;/p&gt;
+&lt;p&gt;I opened the file directly by double clicking it in the build directory
+and the page showed up in the browser, &lt;em&gt;with the date&lt;/em&gt;, even though it
+wouldn&#39;t show up when browsing from the local server, which should have
+been the same file. Even this I would have been happy to attribute to
+some weird browser behaviour, or some weird behaviour of the python http
+server. I don&#39;t know that much about web stuff in general so I can
+believe anything.&lt;/p&gt;
+&lt;p&gt;But here&#39;s the thing. I closed the server and reopened it. Still the
+date didn&#39;t show up. Weird. So then I literally typed:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat path/to/post | less
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and scrolled down to where the date should be. It still wasn&#39;t there.
+Meanwhile, I have the very same file open in the browser and it &lt;em&gt;is&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Then I go:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pushd path/to/
+cat post | less
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and sure enough, &lt;em&gt;the date shows up!&lt;/em&gt;. Then:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;popd
+cat path/to/post | less
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and it still shows up!&lt;/p&gt;
+&lt;p&gt;So what on earth was going on the first time I typed &lt;code&gt;cat&lt;/code&gt;?!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>Extending Arun&#39;s Method for Least Square Point Set Fitting with Isotropic Scaling</title>
+        <link>https://jpeoples.github.io/blog/2016/06/extending_arun_method.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2016/06/extending_arun_method.html</guid>
+        <pubDate>Thu, 30 Jun 2016 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;I recently wanted to extend my implementation of the ICP algorithm to
+include isotropic scaling.  Internally, ICP alternates between finding
+the closest points in the target shape to those in the source shape --
+thus giving two corresponding point sets -- and finding the optimal
+rigid transformation to align those point sets.  As the alignment of the
+shapes improve, so do the estimates of the closest points, and so on,
+hence, the Iterative Closest Point algorithm.&lt;/p&gt;
+&lt;p&gt;In the original paper Besl and McKay&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:1&#34; rel=&#34;footnote&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
+use a quaternion based method for finding the optimal rigid
+transformation, but the algorithm can be implemented just as well
+using a rotation-matrix method such as Arun&#39;s method.&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:2&#34; rel=&#34;footnote&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h2 id=&#34;without-scaling&#34;&gt;Without Scaling&lt;/h2&gt;
+&lt;p&gt;The method of Arun et al. is as follows:&lt;/p&gt;
+&lt;p&gt;Given &lt;script type=&#34;math/tex&#34;&gt;\{X_i\}&lt;/script&gt;, and &lt;script type=&#34;math/tex&#34;&gt;\{Y_i\}&lt;/script&gt; as two sets of &lt;script type=&#34;math/tex&#34;&gt;N&lt;/script&gt;
+&lt;script type=&#34;math/tex&#34;&gt;d&lt;/script&gt;-dimensional points,  we want to find rotation matrix &lt;script type=&#34;math/tex&#34;&gt;R&lt;/script&gt; and
+translation vector &lt;script type=&#34;math/tex&#34;&gt;t&lt;/script&gt; such that
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_{i=1}^n || R X_i + t - Y_i||^2
+&lt;/script&gt;
+is minimised.&lt;/p&gt;
+&lt;p&gt;The solution for translation is simple: the optimal translation will be
+that which matches the centroid of the rotated source shape to that of
+the target.  That is
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+t = \mu_Y - R\mu_X
+&lt;/script&gt;
+where &lt;script type=&#34;math/tex&#34;&gt;\mu_Z&lt;/script&gt; refers to the centroid of &lt;script type=&#34;math/tex&#34;&gt;Z&lt;/script&gt;, and &lt;script type=&#34;math/tex&#34;&gt;R&lt;/script&gt; is the optimal
+rotation.  See the next section for a proof of this.&lt;/p&gt;
+&lt;p&gt;The rotation is more complex, but they show that given the singular
+value decomposition
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i (X_i-\mu_X)(Y_i-\mu_Y)^T = U \Lambda V^T
+&lt;/script&gt;
+then
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+R = VSU^T
+&lt;/script&gt;
+where
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+S = \left\lbrace
+\begin{aligned}
+    &amp; I &amp; \mathrm{if} &amp; \det(U)\det(V) = 1 \\
+    &amp;\mathrm{diag}(1,1,\dots,1,-1) &amp; \mathrm{if} &amp; \det(U)\det(V) = -1
+\end{aligned}
+\right.
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;adding-scaling&#34;&gt;Adding Scaling&lt;/h2&gt;
+&lt;p&gt;A solution including isotropic scaling was published by Umeyama in
+1991.&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:3&#34; rel=&#34;footnote&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; However, I also gave a shot at my own derivation, and I will
+show that our results are the same.&lt;/p&gt;
+&lt;p&gt;Adding in a scale factor, the objective function becomes
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+f(X, Y; s, R, t) = \sum_i ||sRX_i +t - Y_i||^2
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;The solution for &lt;script type=&#34;math/tex&#34;&gt;t&lt;/script&gt; can be found by setting the partial derivative to
+zero
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\frac{\partial f}{\partial t} = 2\sum_i sRX_i + t - Y_i = 0
+&lt;/script&gt;
+hence
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+t = \frac{\sum_i Y_i - sRX_i}{N} = \mu_Y - sR\mu_X.
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;This is exactly the result mentioned above for &lt;script type=&#34;math/tex&#34;&gt;t&lt;/script&gt;, with the addition of
+the scale factor &lt;script type=&#34;math/tex&#34;&gt;s&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;We can solve for &lt;script type=&#34;math/tex&#34;&gt;s&lt;/script&gt; by taking a partial derivative, this time with
+respect to &lt;script type=&#34;math/tex&#34;&gt;s&lt;/script&gt;
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\frac{\partial f}{\partial s} = \sum_i 2(sRX_i + t - Y_i)^T RX_i = 0
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;It is a straightforward expnsion of the above to arrive at
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+0 = \sum_i sX_i^T X_i + t^T R X_i - Y_i^T R X_i
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;and expanding &lt;script type=&#34;math/tex&#34;&gt;t&lt;/script&gt; with the previous solution and rearranging yields
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i s(X_i - \mu_X)^T X_i = \sum_i Y_i^T RX_i - \mu_Y^T R X_i
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;Now note that &lt;script type=&#34;math/tex&#34;&gt;\sum_i (X_i - \mu_X) = 0&lt;/script&gt; and expand &lt;script type=&#34;math/tex&#34;&gt;X_i&lt;/script&gt; on the left
+hand side to &lt;script type=&#34;math/tex&#34;&gt;X_i - \mu_X + \mu_X&lt;/script&gt;:
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\begin{multline*}
+\sum_i s(X_i - \mu_X)^T X_i = \sum_i s(X_i - \mu_X)^T (X_i - \mu_X +
+\mu_X) = \\ \sum_i s(X_i - \mu_X)^T (X_i - \mu_X) + (X_i - \mu_X)^T\mu_X
+\end{multline*}
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;That last term is 0 and so
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i s(X_i - \mu_X)^T (X_i - \mu_X) = \sum_i Y_i^TRX_i - \mu_Y^T R X_i
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;That is
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+s = \frac{ \sum_i (Y_i^T R X_i) - N \mu_Y^T R \mu_X }{ \sum_j || X_j - \mu_X ||^2 }
+= \frac{\sum_i (Y_i- \mu_Y)^T R (X_i - \mu_X)}{\sum_j || X_j - \mu_X
+||^2}
+&lt;/script&gt;
+both of which are pretty nice.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: In my implementation I found that though the second form is more
+satisfying to me mathematically, the 1st form seemed to work better for
+computations. I don&#39;t have an explanation for this.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;comparing-with-umeyamas-solution&#34;&gt;Comparing with Umeyama&#39;s Solution&lt;/h2&gt;
+&lt;p&gt;Using the notation I have been using in this post, Umeyama showed that
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+s = \frac{\operatorname{Tr}(\Lambda S)}{\sum_j ||X_j - \mu_X||^2}
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;Already, we see our denominators match, so we want to show
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\operatorname{Tr}(\Lambda S) = \sum_i (Y_i- \mu_Y)^T R (X_i - \mu_X)
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;Somehow we have to get the trace in there, so we&#39;ll need two facts about
+trace:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The trace of the product of two matrices is related by
+    &lt;script type=&#34;math/tex&#34;&gt;\operatorname{Tr}(A^T B) =
+    \operatorname{Tr}(A B^T) =
+    \operatorname{Tr}(B A^T) =
+    \operatorname{Tr}(B^T A)&lt;/script&gt;.&lt;/li&gt;
+&lt;li&gt;For vectors &lt;script type=&#34;math/tex&#34;&gt;u&lt;/script&gt;and &lt;script type=&#34;math/tex&#34;&gt;v&lt;/script&gt;, the inner product and outer product are
+    related by &lt;script type=&#34;math/tex&#34;&gt;u^Tv = \operatorname{Tr}(vu^T)&lt;/script&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Based on the 2nd fact, and recalling that
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i (X_i - \mu_X)(Y_i - \mu_Y)^T = U\Lambda V^T
+&lt;/script&gt;
+we can write the numerator of our &lt;script type=&#34;math/tex&#34;&gt;s&lt;/script&gt; equation as
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(R \sum_i (X_i-\mu_X)(Y_i -
+\mu_Y)^T)
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;We can now immediately substitute in &lt;script type=&#34;math/tex&#34;&gt;R = VSU^T&lt;/script&gt; and
+&lt;script type=&#34;math/tex&#34;&gt;\sum_i (X_i - \mu_X)(Y_i - \mu_Y)^T = U\Lambda V^T&lt;/script&gt;
+giving
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(VSU^T U \Lambda V^T)
+&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;immediately the &lt;script type=&#34;math/tex&#34;&gt;U&lt;/script&gt;, and &lt;script type=&#34;math/tex&#34;&gt;U^T&lt;/script&gt; cancel leaving &lt;script type=&#34;math/tex&#34;&gt;VS \Lambda V^T&lt;/script&gt;.
+Transposing &lt;script type=&#34;math/tex&#34;&gt;VS&lt;/script&gt; and &lt;script type=&#34;math/tex&#34;&gt;\Lambda V^T&lt;/script&gt; (from the 1st fact) gives
+&lt;script type=&#34;math/tex; mode=display&#34;&gt;
+\sum_i (Y_i - \mu_Y)^T R (X_i - \mu_X) = \operatorname{Tr}(SV^T V
+\Lambda) = \operatorname{Tr}(S \Lambda) = \operatorname{Tr}(\Lambda S)
+&lt;/script&gt;
+as required.&lt;/p&gt;
+&lt;div class=&#34;footnote&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Besl, Paul J., and Neil D. McKay. &#34;Method for registration of 3-D shapes.&#34; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:1&#34; rev=&#34;footnote&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Arun, K. S.; Huang, T. S. &amp;amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:2&#34; rev=&#34;footnote&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:3&#34; rev=&#34;footnote&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>PATHMAN -- A Simple Path Manager for MATLAB</title>
+        <link>https://jpeoples.github.io/blog/2016/06/pathman.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2016/06/pathman.html</guid>
+        <pubDate>Tue, 28 Jun 2016 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;MATLAB finds functions/classes/packages by searching the current working
+directory, followed by the list of directories in its path variable.
+Directories can be added or removed from the path via the &lt;a href=&#34;http://www.mathworks.com/help/matlab/ref/addpath.html&#34;&gt;&lt;code&gt;addpath&lt;/code&gt;&lt;/a&gt;
+and &lt;a href=&#34;http://www.mathworks.com/help/matlab/ref/rmpath.html&#34;&gt;&lt;code&gt;rmpath&lt;/code&gt;&lt;/a&gt; functions.&lt;/p&gt;
+&lt;p&gt;Often, when using MATLAB for data analysis, I want to run algorithms or
+visualisation code that I have written myself, or retrieved from, for
+example, the &lt;a href=&#34;https://www.mathworks.com/matlabcentral/fileexchange/&#34;&gt;MathWorks File Exchange (FEX)&lt;/a&gt;.  In order to do this, I
+either need to add all the code-containing directories to my path, or
+write the analysis scripts in the code directory itself.&lt;/p&gt;
+&lt;p&gt;Doing the analysis in the same directory as the code is a poor option if
+its an algorithm you intend to reuse, but getting all the directories
+right to add the necessary path directories can be cumbersome as well.
+Finally, just adding all your code permanently to your path can result
+in name collisions.  This can be avoided by using smart naming schemes,
+and packages, but in the case of third-party code, you may not have that
+control.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/jpeoples/PATHMAN&#34;&gt;PATHMAN&lt;/a&gt; is a tool, implemented in MATLAB, to help with this
+situation.  In particular it allows you to give short names to packs of
+code, and add/remove them from the path using the commands&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman use shortname
+% and
+pathman unuse shortname
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It also allows you to list installed packs via&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman list [glob]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;where &lt;code&gt;glob&lt;/code&gt; can be used to narrow pack names, and update installed
+packs after editing their source directories via&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman update packname
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Such usage becomes particularly useful if you have many different code
+packs in different locations, or complex logic to add code directories
+to the path (see below).&lt;/p&gt;
+&lt;h2 id=&#34;usage&#34;&gt;USAGE&lt;/h2&gt;
+&lt;p&gt;Here I will discuss a sample use-case. (All subsequent commands are
+intended to be run on the MATLAB command line).&lt;/p&gt;
+&lt;p&gt;Suppose I&#39;ve got some algorithms developed during a recent research
+project located in &lt;code&gt;~/research/somealgs&lt;/code&gt; which I now want to add to
+PATHMAN with the name &#34;somealgs&#34;.  Suppose the source directory looks
+like&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;somealgs/
+    somesubalgs/
+        % functions
+    moresubalgs/
+        % functions
+    examples/
+        % example scripts
+    % more functions
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If I run&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman install ~/research/somealgs as somealgs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then this directory will be copied to a configurable PATHMAN root
+directory, and that copy directory, and all subdirectories can be added
+to path via&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman use somealgs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and removed via&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman unuse somealgs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Suppose I then realize the examples/ subdirectory should not be added to
+the path.&lt;/p&gt;
+&lt;p&gt;In my source directory, I can add the functions &lt;code&gt;addtopath&lt;/code&gt; and
+&lt;code&gt;rmfrompath&lt;/code&gt; to implement this addpath, rmpath logic.&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;% addtopath.m&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;addtopath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;% root will be passed by pathman, specifying the root of source&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% tree&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;addpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;addpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullfile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;somesubalgs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;addpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullfile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;moresubalgs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% rmfrompath.m&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;rmfrompath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rmpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;rmpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullfile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;somesubalgs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;rmpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullfile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;moresubalgs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, to tell PATHMAN about my updated source tree I call&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman update somealgs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now PATHMAN will use that logic when I call &lt;code&gt;use&lt;/code&gt; and &lt;code&gt;unuse&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Alternatively, I can tell PATHMAN to exclude that directory when copying
+and then just use the default use/unuse logic.  To do so, add the file
+&lt;code&gt;.pathmanignore&lt;/code&gt; to the source directory containing the single line&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;example
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will cause PATHMAN to delete the copied example subdirectory after
+copying the source tree. (Note that the lines of &lt;code&gt;.pathmanignore&lt;/code&gt; should
+be relative paths to subdirectories, or files only.  globs, etc, do not
+work).&lt;/p&gt;
+&lt;h3 id=&#34;installation-and-more-information&#34;&gt;Installation and More Information&lt;/h3&gt;
+&lt;p&gt;For install information and further usage guidelines see the &lt;a href=&#34;https://github.com/jpeoples/PATHMAN&#34;&gt;PATHMAN
+repository&lt;/a&gt; and the PATHMAN MATLAB help&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pathman help
+% or
+help(pathman)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;which lists and documents all the command-line options for pathman.&lt;/p&gt;
+&lt;p&gt;Feel free to ask any questions here or there as well.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>Running yst on Windows</title>
+        <link>https://jpeoples.github.io/blog/2015/11/yst_setup.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2015/11/yst_setup.html</guid>
+        <pubDate>Sun, 22 Nov 2015 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;&lt;a href=&#34;https://github.com/jgm/yst&#34;&gt;yst&lt;/a&gt; is a static site generator by John McFarlane, the originator of
+the most utilitarian &lt;a href=&#34;http://pandoc.org/&#34;&gt;Pandoc&lt;/a&gt;.  It is, as far as I can tell, very
+simple, and that simplicity is what drew me to consider switching the
+site over.  Even though I ultimately decided not to go with it, I did
+manage to get it set up and building the test site on my machine.  In
+that process I hit a few road-blocks, so I thought I&#39;d put the details
+here in one place in case anyone else is having similar problems.&lt;/p&gt;
+&lt;h2 id=&#34;installing&#34;&gt;Installing&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/jgm/yst&#34;&gt;readme&lt;/a&gt; on github makes it sound so easy:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cabal update
+cabal install yst
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I did not get the error detailed in the readme regarding
+template-haskell dependencies.&lt;/p&gt;
+&lt;p&gt;Instead, I had an error installing a dependency: hdbc-sqlite3.  It&#39;s a
+simple enough error -- you simply need to install sqlite3 on your system
+-- but for me at least, nothing is obvious when it comes to Windows.&lt;/p&gt;
+&lt;p&gt;After poking around on Google I found &lt;a href=&#34;http://xyz.mmizzi.com/stuff/2014/11/3/install-hdbc-sqlite3-on-windows&#34;&gt;this&lt;/a&gt; post that
+explained the correct sqlite3 files to download to get hdbc-sqlite3 to
+build.  No worries.  Problem solved, right? Wrong.&lt;/p&gt;
+&lt;p&gt;yst complains really fast if the sqlite3 dll is not on your path, so add
+it now.&lt;/p&gt;
+&lt;h2 id=&#34;first-run&#34;&gt;First Run&lt;/h2&gt;
+&lt;p&gt;After getting yst installed the next step in the read me is to generate
+the test site:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yst create mysite
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;generates the test site source, then&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd mysite
+yst
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and voilà! Under the &lt;code&gt;site&lt;/code&gt; subdirectory you have your static site.&lt;/p&gt;
+&lt;p&gt;Right?  Wrong.&lt;/p&gt;
+&lt;p&gt;Here&#39;s the output when I run yst:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Updating site\js\nav.js
+Updating site\css\screen.css
+Updating site\css\print.css
+Updating site\css\hk-pyg.css
+Updating site\april_events.tex
+yst: site\april_events.tex: commitBuffer: invalid argument (invalid
+character)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Invalid character?&lt;/p&gt;
+&lt;p&gt;The yst test site likes to show off it&#39;s unicode support, and this is
+the source of our issue.&lt;/p&gt;
+&lt;p&gt;As detailed by the &lt;a href=&#34;http://jaspervdj.be/hakyll/tutorials/faq.html&#34;&gt;hakyll FAQ&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you get any of the errors:&lt;/p&gt;
+&lt;p&gt;commitBuffer: invalid argument (invalid character) &lt;/p&gt;
+&lt;p&gt;or:&lt;/p&gt;
+&lt;p&gt;hGetContents: invalid argument (Invalid or incomplete multibyte or wide
+   character)&lt;/p&gt;
+&lt;p&gt;It means that your Hakyll executable couldn’t write to (in
+the former case) or read (in the latter) from an UTF-8 encoded file.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So for some reason yst can&#39;t write unicode to the output file.&lt;/p&gt;
+&lt;p&gt;I&#39;m not sure why, but the same FAQ page provides a solution for Windows
+just a short ways down the page.  Running&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chcp 65001
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;before running &lt;code&gt;yst&lt;/code&gt; solved the problem for me, and left me with a
+beautiful test site.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+        <title>A dead simple argument parser for MATLAB</title>
+        <link>https://jpeoples.github.io/blog/2015/06/ezparse.html</link>
+        <guid isPermalink="true">https://jpeoples.github.io/blog/2015/06/ezparse.html</guid>
+        <pubDate>Thu, 25 Jun 2015 00:00:00 EST</pubDate>
+        <description>
+&lt;p&gt;&lt;em&gt;Dear Readers&lt;/em&gt;,&lt;/p&gt;
+&lt;p&gt;First off, my name is Jacob, and I am a master&#39;s computer science
+student.  Nice to meet you.&lt;/p&gt;
+&lt;p&gt;A lot of my day-to-day work for my master&#39;s is done -- originally to my
+chagrin -- in MATLAB (I&#39;ll admit sometimes I kind of like it).  Since a
+lot of the code I write is for numerical computations, there are often a
+variety of parameters and what not that need to be set.  Often, for
+whatever I am doing there are reasonable default values to use.
+However, MATLAB does not support default values for parameters the way
+languages like Python do.  To get around this I have seen a couple of
+approaches.&lt;/p&gt;
+&lt;p&gt;One approach is to use an options struct.  For this  you would write
+your function as&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[outputargs] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;what, ever, args, options&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% Let&amp;#39;s imagine we want 3 optional parameters, foo, bar, baz, each&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% taking default values of 0.&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% set defaults&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% parse options parameter, iff it has been passed.&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nargin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isfield&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isfield&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isfield&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% get on with the code&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then for a user to use this function they can simply do something like&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;what&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ever&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and the function will run with &lt;code&gt;foo = 24&lt;/code&gt;, &lt;code&gt;bar = 0&lt;/code&gt; and &lt;code&gt;baz = 0&lt;/code&gt;.  If
+they want &lt;em&gt;all&lt;/em&gt; default parameters, they can either pass in an empty
+struct, or simply leave out the argument altogether.&lt;/p&gt;
+&lt;p&gt;Another very common approach, which I personally prefer, is to accept
+name-value pairs of arguments.  This uses a builtin MATLAB feature,
+&lt;code&gt;varargin&lt;/code&gt;, which allows you to collect all parameters beyond a certain
+number into a single cell array.&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[out] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;what, ever, varargin&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In this code, if I call&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;...&lt;/span&gt;
+    &lt;span class=&#34;s&#34;&gt;&amp;#39;everybody in the car so come on lets ride&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then the function will have &lt;code&gt;what = 1&lt;/code&gt;, &lt;code&gt;ever = 2&lt;/code&gt; and
+&lt;code&gt;varargin = {3, 4, 5, &#39;everybody in the car so come on lets ride&#39;}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Using this, we can implement optional arguments that follow the
+so-called name-value pair convention.  The user specifies a series of
+pairs, where the first item is a string -- the name -- referring to an
+optional parameter, and the second is the value to assign to the
+optional parameter.  Therefore, going back to the &lt;code&gt;foo&lt;/code&gt;, &lt;code&gt;bar&lt;/code&gt;, &lt;code&gt;baz&lt;/code&gt;
+example above, if I wanted to simply set &lt;code&gt;foo&lt;/code&gt; to 24 I would call the
+function as&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;what&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ever&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It is the function&#39;s job to parse this input, but MATLAB provides a tool
+for doing this, called the &lt;a href=&#34;http://www.mathworks.com/help/matlab/ref/inputparser-class.html&#34;&gt;input parser&lt;/a&gt;.  Though
+this tool provides a good deal of flexibility, it offers more options
+than I really need, and requires more work to use than I would really
+prefer.  For a while I found myself instead writing something along the
+following lines whenever I needed such optional arguments:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[out] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;what, ever, varargin&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% set defaults&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;na&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% ensure there are optional arguments supplied, and there should be&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;% an even number if they are name-value pairs&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;mod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;otherwise&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Argument %s not recognised.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;elseif&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% there are not an even number of arguments&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Every argument after &amp;#39;&amp;#39;ever&amp;#39;&amp;#39; must be a name-value pair.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This wasn&#39;t so bad, I could copy and paste the code between files
+whenever I needed name-value pair parsing, and simply modify the
+names.  However, copy-and-pasting code is always a good hint that you
+should just write a function, so I finally broke down and did exactly
+that.&lt;/p&gt;
+&lt;h2 id=&#34;ezparsem&#34;&gt;ezparse.m&lt;/h2&gt;
+&lt;p&gt;I had a couple of desired behaviours for this function in addition to
+parsing name-value pairs.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Optional arguments should be case insensitive so calling
+   &lt;code&gt;function(&#39;foo&#39;, 10)&lt;/code&gt; is equivalent to &lt;code&gt;function(&#39;FOO&#39;, 10)&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I wanted to also support flags -- names with no corresponding
+   value -- that simply toggle a certain behaviour on (e.g. &lt;code&gt;function(&#39;verbose&#39;)&lt;/code&gt;
+   to toggle verbose behaviour).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Setting up optional parameters and default values should take as
+   little coding as possible.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The function addresses point 3. by accepting a struct argument, whose
+field names define the names in the name-value pairs, and whose values
+define the values in the name-value pairs.  Moreover, a specific default
+value is used to indicate that the field should create a flag, instead
+of a name-value pair.&lt;/p&gt;
+&lt;p&gt;To clarify, recreating our foo, bar, baz example above, and adding a
+&#39;verbose&#39; flag would look like this:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[out] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;what, ever, args, varargin&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;verbose&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;%FLAG%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;unparsed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ezparse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;varargin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+    &lt;span class=&#34;c&#34;&gt;% rest of code here&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now &lt;code&gt;opt&lt;/code&gt; contains all user supplied values, and defaults where no user
+supplied value exists.  The verbose flag, if passed in by the user will
+be set to 1, otherwise it will be set to 0.&lt;/p&gt;
+&lt;p&gt;The second output of &lt;code&gt;ezparse&lt;/code&gt;, &lt;code&gt;unparsed&lt;/code&gt;, simply contains any
+remaining arguments that could not be parsed.  These would be any
+arguments not matched by a field in the &lt;code&gt;opt&lt;/code&gt; struct, trailing
+arguments not following the name-value pattern, repeated options, etc.
+Whether or not the existence of unparsed arguments should throw an
+error, or simply be ignored is up to the function author.&lt;/p&gt;
+&lt;p&gt;To give an example, if I passed in&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;what&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ever&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;...&lt;/span&gt;
+         &lt;span class=&#34;s&#34;&gt;&amp;#39;verbose&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then the resulting &lt;code&gt;opt&lt;/code&gt; struct would have&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;verbose&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;unparsed&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The resulting function is available &lt;a href=&#34;https://github.com/jpeoples/matlab-ezparse&#34;&gt;here&lt;/a&gt;, but for
+completeness here is the code listing.&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[ argstruct, unparsed ] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ezparse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; argstruct, argin &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%EZPARSE Fast and easy arg parser for &amp;#39;key&amp;#39;,val pair type optional args.&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   Pass in 2 parameters:&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%       ARGSTRUCT: a struct populated with default values for all optional&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%                  arguments.  Fields should be named corresponding to the&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%                  desired &amp;#39;key&amp;#39; in the key,value pairs.&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%       ARGIN:     The varargin cell array from your function&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   This also supports &amp;#39;flag&amp;#39; type arguments, where there is a string &amp;#39;key&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   with no value to be input, (for example&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%       func(blabh, blah, &amp;#39;optarg1&amp;#39;, 2, &amp;#39;verbose&amp;#39;)&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   where &amp;#39;verbose&amp;#39; is just a flag that gets toggled on.  These are&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   achieved by setting argstruct.flagname = &amp;#39;%FLAG%&amp;#39; in the default values&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   to signify a flag.&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   Note that all fields are case INsensitive&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   The returned &amp;#39;unparsed&amp;#39; is a cellarray of all args in argin that&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   couldn&amp;#39;t be parsed based on your input struct.  Most likely these are&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   simply arguments for which no corresponding field exists.  Handling&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   this is up to the user, for example it could simply be ignored, warned&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%   about, or throw an error, depending on the application.&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;%&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;argnames&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fieldnames&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;na&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;nf&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argnames&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nf&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argnames&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;arg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;strcmpi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;c&#34;&gt;% then we have matched a field&lt;/span&gt;
+            &lt;span class=&#34;c&#34;&gt;% check for flag&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;strcmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;%FLAG%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+                &lt;span class=&#34;c&#34;&gt;% arg is a flag&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[];&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;% delete field from argin&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;% no need to search for this fld anymore&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[];&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;%delete field from argin&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;na&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% set a field arg to false if not found in argin&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;strcmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;%FLAG%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;argstruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;% all remaining args could not be parsed!&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;unparsed&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So that&#39;s it.  It is only a few lines longer than the manual
+implementation of the name-value pair parsing I showed previously, and
+it&#39;s usage requires only one more line of code after simply setting all
+the defaults.&lt;/p&gt;
+</description>
+    </item>
+    
+</channel>
+</rss>
