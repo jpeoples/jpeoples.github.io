@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-    <title>Blog &amp;ndash; Jacob Peoples</title>
+    <title>Blog &#8211; Jacob Peoples</title>
     <link>{{base_url}}blog</link>
+    <atom:link href="{{base_url}}blog/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Blog of Jacob Peoples</description>
     {% for post in posts.all_posts() %}
     <item>
         <title>{{post.title | e}}</title>
         <link>{{post.fullhref}}</link>
-        <guid isPermalink="true">{{post.fullhref}}</guid>
+        <guid isPermaLink="true">{{post.fullhref}}</guid>
         <pubDate>{{post.date}}</pubDate>
         <description>{{post.content | e}}</description>
     </item>
