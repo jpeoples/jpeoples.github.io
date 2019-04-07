@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+    <title>Blog &amp;ndash; Jacob Peoples</title>
+    <link>{{base_url}}blog</link>
+    {% for post in posts.all_posts() %}
+    <item>
+        <title>{{post.title | e}}</title>
+        <link>{{post.fullhref}}</link>
+        <guid isPermalink="true">{{post.fullhref}}</guid>
+        <pubDate>{{post.date}}</pubDate>
+        <description>{{post.content | e}}</description>
+    </item>
+    {% endfor %}
+</channel>
+</rss>

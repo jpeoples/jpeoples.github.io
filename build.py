@@ -4,11 +4,11 @@ import shutil
 from dateutil.parser import parse as parse_date
 import pathlib
 import bisect
+import fnmatch
 
 import jinja2
 import markdown
 
-    
 def ensure_directory(path):
     try:
         path.parent.mkdir(parents=True)
@@ -88,6 +88,8 @@ class PostCollection:
             obj['posts'].append(post)
         yield obj
 
+    def all_posts(self):
+        return self.history(count=len(self.posts))
 
 def make_jinja_builder(template_load, prepare_dict):
     def build(inpath, outpath):
@@ -147,7 +149,13 @@ class BuildRules:
             ret = matcher(fn)
         except TypeError:
             # fallback is to match as glob string
-            ret = fn.match(matcher)
+            # NOTE: One would think we could just use fn.match(matcher)
+            # here, and indeed, that is what we used to do. However, for
+            # some reason this was often failing on Windows... So I have
+            # replaced it with the fnmatch version, which actually seems
+            # to work for now.
+            fpath = fn.as_posix()
+            ret = fnmatch.fnmatch(fpath, matcher)
         return ret
 
 
@@ -182,7 +190,7 @@ if __name__ == "__main__":
     build_dir = pathlib.Path("build")
     file_mapper = FileMapper(source_dir, build_dir)
     jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': format_date})
-    
+
     posts = PostCollection()
     jinja_render_env = {
             'css': "site.css",
@@ -198,11 +206,11 @@ if __name__ == "__main__":
 
     build_rules = BuildRules([
             ('*.swp', ignore_file),
-            ('./layouts*', ignore_file),
-            ('./index.jinja.html', ignore_file),
-            ('./blog/index.jinja.html', ignore_file),
+            ('layouts*', ignore_file),
+            ('index.jinja.html', ignore_file),
+            ('blog/index.jinja.html', ignore_file),
             ('*.draft.*', ignore_file),
-            ('./rss.jinja.xml', ignore_file),
+            ('blog/rss.jinja.xml', ignore_file),
             ('*.jinja.md', jinja_md),
             ('*.jinja.*', jinja_file),
             #('*conf.yaml', ignore_file,
@@ -214,3 +222,4 @@ if __name__ == "__main__":
     jinja_render_env['posts'] = posts
     jinja_file(pathlib.Path('index.jinja.html'))
     jinja_file(pathlib.Path('blog/index.jinja.html'))
+    jinja_file(pathlib.Path('blog/rss.jinja.xml'))
