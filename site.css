@@ -278,6 +278,8 @@ body {
 .s-link-no-visit a:visited { color: #1e7fBd; }
 .s-link-no-visit a:hover { color: #333;  }
 .s-pad-above { padding-top: 10px; }
+.s-pad-small { padding: 2px; }
+.s-float-right { float: right }
 
 a { color: #1e7fBd; }
 a:visited { color: #0e4f7d; }
