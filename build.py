@@ -43,6 +43,9 @@ class FileMapper:
     def remove_internal_extensions(self, fn):
         return self.indir / fn, self.outdir / path_replace_all_suffix(fn, fn.suffix)
 
+
+
+
 def copy_file(inpath, outpath):
     shutil.copy(str(inpath), str(outpath))
 
@@ -101,7 +104,8 @@ def make_jinja_builder(template_load, prepare_dict):
         rdct = prepare_dict(outpath)
 
         with outpath.open('w', encoding='utf-8') as f:
-            f.write(template.render(rdct))
+            s = template.render(rdct)
+            f.write(s)
     return build
 
 def make_template_loader(indir, load):
@@ -169,7 +173,6 @@ def mdfilter(x):
             'markdown.extensions.extra',
             'markdown.extensions.admonition',
             'markdown.extensions.toc',
-            'markdown.extensions.headerid',
             'markdown.extensions.codehilite',
             'mdx_math'
             ]
@@ -182,6 +185,7 @@ def setup_jinja(source_dir, filters):
     jinja_env = jinja2.Environment(loader=loader)
     jinja_env.filters.update(filters)
     return jinja_env
+
 
 
 if __name__ == "__main__":
