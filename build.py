@@ -17,7 +17,8 @@ if __name__ == "__main__":
             'css': "site.css",
             }
 
-    env = jssg.Environment(source_dir, build_dir, base_url, template_render_data=render_env)
+    env = jssg.Environment(source_dir, build_dir, base_url, template_render_data=render_env,
+            template_loader_dirs=(('layouts', 'layouts'),))
 
     # Build the blog, storing the posts in a PageCollection
     posts = jssg.PageCollection()
@@ -34,7 +35,7 @@ if __name__ == "__main__":
     # blog (which rely on posts)
     env.build_dir([
         (('blog/index.jinja.html', 'blog/rss.jinja.xml'), (jssg.remove_internal_extensions, jssg.jinja_file)),
-        (('blog/*', 'layouts/*', '*.swp'), jssg.ignore_file),
+        (('blog/*', '*.swp'), jssg.ignore_file),
         ('*.jinja.md', (jssg.to_html, jssg.jinja_file)),
         ('*.jinja.*', (jssg.remove_internal_extensions, jssg.jinja_file)),
         ('*', (jssg.mirror, jssg.copy_file))
