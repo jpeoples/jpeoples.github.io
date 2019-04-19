@@ -78,20 +78,6 @@ page, and then write a clearer presentation for your final answer.&lt;/p&gt;
 &#34;equals?&#34;, graders don&#39;t need to try and figure out what you mean at
 every &#34;=&#34;.  They just need to follow your calculations and decide if
 they are correct.&lt;/p&gt;
-&lt;div class=&#34;footnote&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;Besl, Paul J., and Neil D. McKay. &#34;Method for registration of 3-D shapes.&#34; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:1&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;Arun, K. S.; Huang, T. S. &amp;amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:2&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:3&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -243,20 +229,6 @@ sped up by creating a jump table before hand.
 Finally, the same loop structure could be used to implement a compiler
 converting a given brainfuck program into C code.
 I might look at some of these things in a future post.&lt;/p&gt;
-&lt;div class=&#34;footnote&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;Besl, Paul J., and Neil D. McKay. &#34;Method for registration of 3-D shapes.&#34; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:1&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;Arun, K. S.; Huang, T. S. &amp;amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:2&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:3&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -323,20 +295,6 @@ cat path/to/post | less
 
 &lt;p&gt;and it still shows up!&lt;/p&gt;
 &lt;p&gt;So what on earth was going on the first time I typed &lt;code&gt;cat&lt;/code&gt;?!&lt;/p&gt;
-&lt;div class=&#34;footnote&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;Besl, Paul J., and Neil D. McKay. &#34;Method for registration of 3-D shapes.&#34; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:1&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;Arun, K. S.; Huang, T. S. &amp;amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:2&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:3&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -648,20 +606,6 @@ help(pathman)
 
 &lt;p&gt;which lists and documents all the command-line options for pathman.&lt;/p&gt;
 &lt;p&gt;Feel free to ask any questions here or there as well.&lt;/p&gt;
-&lt;div class=&#34;footnote&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;Besl, Paul J., and Neil D. McKay. &#34;Method for registration of 3-D shapes.&#34; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:1&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;Arun, K. S.; Huang, T. S. &amp;amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:2&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;Umeyama, S. Least-squares estimation of transformation parameters between two point patterns IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1991, 13, 376-380&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:3&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
