@@ -1,9 +1,5 @@
 {% extends "layouts/base.html" %}
 
-    {% block nav %}
-      {{ super() }}
-      {% include "layouts/main_nav.html" %}
-    {% endblock %}
 
 
 
@@ -47,4 +43,4 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 {% endblock %}
 {# Push post onto list of posts #}
-{% set val = post_push(title, date, body_html, href) %}
+{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': body_html}) %}

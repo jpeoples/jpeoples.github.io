@@ -1,13 +1,7 @@
 import sys
-import os
-import shutil
-from dateutil.parser import parse as parse_date
-import pathlib
-import bisect
-import fnmatch
 
-import jinja2
-import markdown
+import jssg
+
 
 # Path utility functions
 def ensure_directory(path):
@@ -197,42 +191,55 @@ if __name__ == "__main__":
         print(base_url)
 
     # set up the objects
-    source_dir = pathlib.Path("src")
-    build_dir = pathlib.Path("build")
-    file_mapper = FileMapper(source_dir, build_dir)
-    jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': blog_date})
+    source_dir = 'src'
+    build_dir = 'build'
 
-    posts = PostCollection()
-    jinja_render_env = {
+    #file_mapper = FileMapper(source_dir, build_dir)
+    #jinja_env = setup_jinja(source_dir, {'markdown': mdfilter, 'format_date': blog_date})
+
+    posts = jssg.PageCollection()
+
+    render_env = {
             'css': "site.css",
-            'base_url': base_url
             }
 
-    jinja_build = make_jinja_builder(make_template_loader(source_dir, jinja_env.get_template),
-                                    make_render_dict(build_dir, jinja_render_env, base_url, posts))
+    env = jssg.Environment(source_dir, build_dir, base_url, template_render_data=render_env)
 
-    jinja_md = make_rule(file_mapper.to_html, jinja_build)
-    jinja_file = make_rule(file_mapper.remove_internal_extensions, jinja_build)
-    simple_copy = make_rule(file_mapper.mirror, copy_file)
+    env.build_dir([
+        # ignore drafts and index pages
+        (('*.draft.*', '*index.jinja.*', '*.xml', '*.swp'), jssg.ignore_file),
+        # process posts
+        (('*.jinja.md', '*.jinja.html'), (jssg.to_html, jssg.jinja_file)),
+        # copy everything else
+        ('*', (jssg.mirror, jssg.copy_file))
+        ], subdir='blog', page_collection=posts)
+
+    env.build_dir([
+        (('blog/index.jinja.html', 'blog/rss.jinja.xml'), (jssg.remove_internal_extensions, jssg.jinja_file)),
+        (('blog/*', 'layouts/*', '*.swp'), jssg.ignore_file),
+        ('*.jinja.md', (jssg.to_html, jssg.jinja_file)),
+        ('*.jinja.*', (jssg.remove_internal_extensions, jssg.jinja_file)),
+        ('*', (jssg.mirror, jssg.copy_file))
+        ], additional_template_render_data={'posts': posts})
 
     # NOTE: We avoid building the index files for the main page and blog
     # page in the first run since they require the post list which gets
     # automatically built up in this run
-    build_rules = BuildRules([
-            ('*.swp', ignore_file),
-            ('layouts*', ignore_file),
-            ('index.jinja.html', ignore_file),
-            ('blog/index.jinja.html', ignore_file),
-            ('*.draft.*', ignore_file),
-            ('blog/rss.jinja.xml', ignore_file),
-            ('*.jinja.md', jinja_md),
-            ('*.jinja.*', jinja_file),
-            ('*', simple_copy)
-           ])
+    #build_rules = BuildRules([
+    #        ('*.swp', ignore_file),
+    #        ('layouts*', ignore_file),
+    #        ('index.jinja.html', ignore_file),
+    #        ('blog/index.jinja.html', ignore_file),
+    #        ('*.draft.*', ignore_file),
+    #        ('blog/rss.jinja.xml', ignore_file),
+    #        ('*.jinja.md', jinja_md),
+    #        ('*.jinja.*', jinja_file),
+    #        ('*', simple_copy)
+    #       ])
 
 
-    build_all(source_dir, build_dir, build_rules.match)
-    jinja_render_env['posts'] = posts
-    jinja_file(pathlib.Path('index.jinja.html'))
-    jinja_file(pathlib.Path('blog/index.jinja.html'))
-    jinja_file(pathlib.Path('blog/rss.jinja.xml'))
+    #build_all(source_dir, build_dir, build_rules.match)
+    #jinja_render_env['posts'] = posts
+    #jinja_file(pathlib.Path('index.jinja.html'))
+    #jinja_file(pathlib.Path('blog/index.jinja.html'))
+    #jinja_file(pathlib.Path('blog/rss.jinja.xml'))
