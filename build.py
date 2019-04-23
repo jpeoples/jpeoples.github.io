@@ -9,35 +9,42 @@ if __name__ == "__main__":
         base_url = 'http://localhost:8080/'
         print(base_url)
 
+
+
     source_dir = 'src'
     build_dir = 'build'
+
+    rule_env = jssg.RuleEnv(source_dir, build_dir)
+    jenv = jssg.jinja_env(load_paths_with_prefix=(('layouts','layouts'),))
 
     # additional template render context
     render_env = {
             'css': "site.css",
+            'base_url': base_url
             }
 
-    env = jssg.Environment(source_dir, build_dir, base_url, template_render_data=render_env,
-            template_loader_dirs=(('layouts', 'layouts'),))
+    jinja_file_t = jssg.JinjaFile(jenv, base_url, build_dir, render_ctx=render_env)
 
     # Build the blog, storing the posts in a PageCollection
     posts = jssg.PageCollection()
-    env.build_dir([
+    jinja_file = jinja_file_t.override(page_collection=posts)
+    rule_env.build_dir([
         # ignore drafts and index pages
         (('*.draft.*', '*index.jinja.*', '*.xml', '*.swp'), jssg.ignore_file),
         # process posts
-        (('*.jinja.md', '*.jinja.html'), (jssg.to_html, jssg.jinja_file)),
+        (('*.jinja.md', '*.jinja.html'), (jssg.to_html, jinja_file)),
         # copy everything else
         ('*', (jssg.mirror, jssg.copy_file))
-        ], subdir='blog', page_collection=posts)
+        ], subdir='blog')
 
     # Build the rest of the site, including the rss and index for the
     # blog (which rely on posts)
-    env.build_dir([
-        (('blog/index.jinja.html', 'blog/rss.jinja.xml'), (jssg.remove_internal_extensions, jssg.jinja_file)),
+    jinja_file = jinja_file_t.override(additional_ctx={'posts': posts})
+    rule_env.build_dir([
+        (('blog/index.jinja.html', 'blog/rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file)),
         (('blog/*', '*.swp'), jssg.ignore_file),
-        ('*.jinja.md', (jssg.to_html, jssg.jinja_file)),
-        ('*.jinja.*', (jssg.remove_internal_extensions, jssg.jinja_file)),
+        ('*.jinja.md', (jssg.to_html, jinja_file)),
+        ('*.jinja.*', (jssg.remove_internal_extensions, jinja_file)),
         ('*', (jssg.mirror, jssg.copy_file))
-        ], additional_template_render_data={'posts': posts})
+        ])
 
