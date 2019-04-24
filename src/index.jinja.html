@@ -39,7 +39,7 @@ statistical analysis of 3D shapes.
 
 <h2>Recent Blog Posts</h2>
 <ul>
-{% for post in posts[-5:] | reverse %}
+{% for post in posts[:5] %}
 <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a></li>
 {%endfor %}
 </ul>
