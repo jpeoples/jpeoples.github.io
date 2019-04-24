@@ -3,7 +3,7 @@
 
 {% block content %}
 {{ super() }}
-{% for year in posts.by_year() %}
+{% for year in posts | pages_by_year %}
   <h2>{{year.year}}</h2>
   <ul>
       {% for post in year.posts %}

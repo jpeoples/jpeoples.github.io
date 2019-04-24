@@ -26,7 +26,7 @@ if __name__ == "__main__":
     jinja_file_t = jssg.JinjaFile(jenv, base_url, build_dir, render_ctx=render_env)
 
     # Build the blog, storing the posts in a PageCollection
-    posts = jssg.PageCollection()
+    posts = []
     jinja_file = jinja_file_t.override(page_collection=posts)
     rule_env.build_dir([
         # ignore drafts and index pages
@@ -36,6 +36,8 @@ if __name__ == "__main__":
         # copy everything else
         ('*', (jssg.mirror, jssg.copy_file))
         ], subdir='blog')
+
+    posts = jssg.sort_pages(posts)
 
     # Build the rest of the site, including the rss and index for the
     # blog (which rely on posts)
