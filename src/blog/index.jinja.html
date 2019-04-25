@@ -3,7 +3,7 @@
 
 {% block content %}
 {{ super() }}
-{% for year, items in posts | groupby('date.year') | reverse %} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
+{% for year, items in posts | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
   <h2>{{year}}</h2>
   <ul>
       {% for post in items %}
@@ -11,5 +11,4 @@
       {%endfor %}
     </ul>
 {% endfor %}
-
 {% endblock %}
