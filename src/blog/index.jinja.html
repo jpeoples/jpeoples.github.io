@@ -1,8 +1,11 @@
 {% extends "layouts/base.html" %}
-{% set title="Blog Archive" %}
+{% set title="Archive" %}
 
 {% block content %}
 {{ super() }}
+{% filter markdown %}
+You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
+{% endfilter %}
 {% for year, items in posts | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
   <h2>{{year}}</h2>
   <ul>

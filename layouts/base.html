@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     {% block head %}
-    <title>{{ title }} &ndash; Jacob Peoples</title>
+    <title>{% if title is defined %}{{ title }} | {% endif %} Jacob Peoples</title>
     <link rel="stylesheet" href="{{base_url}}{{css}}" />
     {% if has_math is defined and has_math %}
     <script type="text/javascript" async
@@ -53,13 +53,6 @@
 <main>
 {% block main %}
 {% block content_header %}
-<header class="s-center">
-<h1>{{title}}</h1>
-{% if date is defined %}
-<p id="date">{{date | format_date}}</p>
-{% endif %}
-</header>
-<hr />
 {% endblock %}
 {% block content %}
 {% endblock %}
