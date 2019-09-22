@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-jssg = {editable = true,path = "./jssg"}
+jssg = {path = "./jssg"}
 
 [requires]
 python_version = "3"
