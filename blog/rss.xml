@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-    <title>Blog &#8211; Jacob Peoples</title>
+    <title>Jacob Peoples' Blog</title>
     <link>https://jpeoples.github.io/blog</link>
     <atom:link href="https://jpeoples.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
     <description>Jacob Peoples' Web Log</description>
@@ -87,7 +87,7 @@ they are correct.&lt;/p&gt;
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/11/brainfuck.html</guid>
         <pubDate>Wed, 01 Nov 2017 00:00:00 -0000</pubDate>
         <description>
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bf &lt;span class=&#34;s2&#34;&gt;&amp;quot;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&amp;quot;&lt;/span&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bf &amp;quot;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&amp;quot;
 Hello World!
 &lt;/pre&gt;&lt;/div&gt;
 
