@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Jacob Peoples' Blog</title>
-    <link>http://localhost:8080/blog</link>
-    <atom:link href="http://localhost:8080/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://jpeoples.github.io/blog</link>
+    <atom:link href="https://jpeoples.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
     <description>Jacob Peoples' Web Log</description>
     
     <item>
         <title>Abuse of the Equals Sign</title>
-        <link>http://localhost:8080/blog/2018/02/equals.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2018/02/equals.html</guid>
+        <link>https://jpeoples.github.io/blog/2018/02/equals.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2018/02/equals.html</guid>
         <pubDate>Fri, 09 Feb 2018 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;The symbol &#34;=&#34; means &#34;equals&#34;. It is to be written only when the things
@@ -83,8 +83,8 @@ they are correct.&lt;/p&gt;
     
     <item>
         <title>A brainfuck interpreter in C</title>
-        <link>http://localhost:8080/blog/2017/11/brainfuck.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2017/11/brainfuck.html</guid>
+        <link>https://jpeoples.github.io/blog/2017/11/brainfuck.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/11/brainfuck.html</guid>
         <pubDate>Wed, 01 Nov 2017 00:00:00 -0000</pubDate>
         <description>
 &lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bf &amp;quot;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&amp;quot;
@@ -234,8 +234,8 @@ I might look at some of these things in a future post.&lt;/p&gt;
     
     <item>
         <title>Lying cat: Bizarre Filesystem Behaviour</title>
-        <link>http://localhost:8080/blog/2017/05/bizarre_fs.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2017/05/bizarre_fs.html</guid>
+        <link>https://jpeoples.github.io/blog/2017/05/bizarre_fs.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/05/bizarre_fs.html</guid>
         <pubDate>Fri, 05 May 2017 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;Just a short post on something odd that happened to me last night.&lt;/p&gt;
@@ -300,8 +300,8 @@ cat path/to/post | less
     
     <item>
         <title>Extending Arun&#39;s Method for Least Square Point Set Fitting with Isotropic Scaling</title>
-        <link>http://localhost:8080/blog/2016/06/extending_arun_method.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2016/06/extending_arun_method.html</guid>
+        <link>https://jpeoples.github.io/blog/2016/06/extending_arun_method.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/extending_arun_method.html</guid>
         <pubDate>Thu, 30 Jun 2016 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;I recently wanted to extend my implementation of the ICP algorithm to
@@ -478,8 +478,8 @@ as required.&lt;/p&gt;
     
     <item>
         <title>PATHMAN -- A Simple Path Manager for MATLAB</title>
-        <link>http://localhost:8080/blog/2016/06/pathman.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2016/06/pathman.html</guid>
+        <link>https://jpeoples.github.io/blog/2016/06/pathman.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/pathman.html</guid>
         <pubDate>Tue, 28 Jun 2016 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;MATLAB finds functions/classes/packages by searching the current working
@@ -611,8 +611,8 @@ help(pathman)
     
     <item>
         <title>Running yst on Windows</title>
-        <link>http://localhost:8080/blog/2015/11/yst_setup.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2015/11/yst_setup.html</guid>
+        <link>https://jpeoples.github.io/blog/2015/11/yst_setup.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/11/yst_setup.html</guid>
         <pubDate>Sun, 22 Nov 2015 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;&lt;a href=&#34;https://github.com/jgm/yst&#34;&gt;yst&lt;/a&gt; is a static site generator by John McFarlane, the originator of
@@ -692,8 +692,8 @@ beautiful test site.&lt;/p&gt;
     
     <item>
         <title>A dead simple argument parser for MATLAB</title>
-        <link>http://localhost:8080/blog/2015/06/ezparse.html</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2015/06/ezparse.html</guid>
+        <link>https://jpeoples.github.io/blog/2015/06/ezparse.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/06/ezparse.html</guid>
         <pubDate>Thu, 25 Jun 2015 00:00:00 -0000</pubDate>
         <description>
 &lt;p&gt;&lt;em&gt;Dear Readers&lt;/em&gt;,&lt;/p&gt;
