@@ -33,6 +33,47 @@ def add_push_to_collection(render_context, inpath, outpath, s, page_collection):
 
     return additional_ctx
 
+note_jinja_template="""
+{{% extends "layouts/note.html" %}}
+{{% set date = "{}" %}}
+{{% set description %}}
+{{% filter markdown %}}
+{}
+{{% endfilter %}}
+{{% endset %}}
+{{% set remainder %}}
+{{% filter markdown %}}
+{}
+{{% endfilter %}}
+{{% endset %}}
+{{%set body_html %}}
+{{{{description}}}}
+{{% if remainder.strip() != '' %}}
+{{{{remainder }}}}
+{{% endif %}}
+{{% endset %}}
+""".strip()
+
+def format_dt(date):
+    return jssg.jinja_utils.date_formatter('%B %d, %Y, %H:%M')(date)
+
+def note_jinja(jinja_file):
+    def full_render(fs, inf, outf):
+        s, add_ctx = jinja_file._get_immediate_context(fs, inf, outf)
+        items = s.split('%%%')
+        n = len(items)
+        if n > 1:
+            dstring = items[1]
+        if n > 2:
+            desc = items[2]
+            remainder = ''
+        if n > 3:
+            remainder = items[3]
+
+        outs = jinja_file.render(note_jinja_template.format(dstring,  desc, remainder), add_ctx)
+        fs.write(outf, outs)
+    return full_render
+
 
 if __name__ == "__main__":
     # set base url
@@ -46,7 +87,8 @@ if __name__ == "__main__":
             'markdown': jssg.jinja_utils.markdown_filter(include_mdx_math=True),
             'format_date': jssg.jinja_utils.date_formatter(),
             'rss_format_date': jssg.jinja_utils.rss_date,
-            'parse_date': jssg.jinja_utils.parse_date
+            'parse_date': jssg.jinja_utils.parse_date,
+            'format_datetime': format_dt
         }
 
     jenv = jssg.jinja_utils.jinja_env(prefix_paths=('layouts',), additional_loaders=(jssg.jinja_utils.rss_loader(),), filters=filters)
@@ -72,14 +114,33 @@ if __name__ == "__main__":
             ('*', (jssg.mirror_path, jssg.copy_file))
             ), blog_files)
 
+    notes = []
+    note_files = jssg.list_all_files('src/notes', rel_to='src')
+    jinja_notes = jinja_file.add_immediate_context(
+            lambda ctx, inf,outf,s: add_push_to_collection(ctx, inf, outf, s, notes))
+    note_map = note_jinja(jinja_notes)
+    env.build((
+            # ignore drafts, index page, rss feed, and swap files
+            (('*.draft.*', '*index*', '*.xml', '*.swp'), None),
+            # Process all posts
+            (('*.md', '*.txt'), (jssg.replace_extensions('.html'), note_map)),
+            # Copy any other files under the blog dir
+            ('*', (jssg.mirror_path, jssg.copy_file))
+            ), note_files)
+
+
     blog_entries = sort_pages(blog_entries)
-    jinja_file = jinja_file.add_render_context({'posts': blog_entries})
+    notes = sort_pages(notes)
+    full_archive = sort_pages(blog_entries + notes)
+    jinja_file = jinja_file.add_render_context({'posts': blog_entries, 'notes': notes, 'full_archive': full_archive})
+    print(notes[0])
 
     env.build((
         # now process the blog index and rss
-        (('blog/index.jinja.html', 'blog/rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),
+        (('blog/index.jinja.html', 'blog/rss.jinja.xml, notes/rss.jinja.xml', 'shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),
+        (('notes/index.jinja.html'), (jssg.remove_internal_extensions, jinja_file.full_render)),
         # but ignore the rest of the blog files
-        (('blog/*', '*.swp'), None),
+        (('blog/*', 'notes/*', '*.swp'), None),
         # and build any other jinja pages
         ('*.jinja.md', (jssg.replace_extensions('.html'), jinja_file.full_render)),
         ('*.jinja.*', (jssg.remove_internal_extensions, jinja_file.full_render)),

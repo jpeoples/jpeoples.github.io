@@ -50,6 +50,9 @@
     }
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% block do_push %}
+{% set content_val = body_html %}
+{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': content_val}) %}
+{% endblock do_push %}
 {% endblock %}
 {# Push post onto list of posts #}
-{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': body_html}) %}

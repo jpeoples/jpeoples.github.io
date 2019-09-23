@@ -1,0 +1,6 @@
+{% extends "builtin/rss_base.xml" %}
+{% set rss_title = "Jacob Peoples' Blog and Notes" %}
+{% set rss_home_page = base_url %}
+{% set rss_link = base_url + "shared_rss.xml" %}
+{% set rss_description = "Jacob Peoples' Web Log and Notes" %}
+{% set pages = full_archive %}

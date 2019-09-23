@@ -1,6 +1,10 @@
 <html lang="en">
 <head>
-    {% block head %}
+    {% block head scoped %}
+{% set ns = namespace(safe_description="Personal blog of Jacob Peoples") %}
+{% if description is defined %}
+{% set ns.safe_description = description | striptags | replace('\n', ' ')%}
+{%endif %}
     <title>{% if title is defined %}{{ title }} | {% endif %} Jacob Peoples</title>
     <link rel="stylesheet" href="{{base_url}}{{css}}" />
     {% if has_math is defined and has_math %}
@@ -35,7 +39,16 @@
       });
     </script>
     {% endif %}
-    <meta name="description" content="{% if description is defined %}{{description}}{% else %}Personal blog of Jacob Peoples{% endif %}" />
+    <meta name="description" content="{{ns.safe_description}}" />
+    <meta property="og:description" content="{{ns.safe_description}}" />
+    <meta property="og:url" content="{{fullhref}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{base_url}}me.png" />
+    <meta name="twitter:card" value="summary" />
+    <meta name="twitter:site" value="{{fullhref}}" />
+    <meta name="twitter:description" value="{{ns.safe_description}}" />
+    <meta name="twitter:image" value="{{base_url}}me.png" />
+    <meta name="twitter:title" value="{% if title is defined %}{{ title }} | {% endif %} Jacob Peoples" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     {% endblock %}

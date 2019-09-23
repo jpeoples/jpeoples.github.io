@@ -1,0 +1,26 @@
+{% extends "layouts/post.html" %}
+
+{% block content_header %}
+<header class="s-center">
+{% if date is defined %}
+<p id="date">From: {{date | format_datetime}}</p>
+{% endif %}
+</header>
+<hr />
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+{% endblock %}
+
+
+{% block do_push %}
+{% set pushed_description %}
+{{description}}
+{% if remainder.strip() != '' %}
+<p><a href="{{fullhref}}">Read More</a></p>
+{% endif %}
+{% endset %}
+{% set content_val = body_html %}
+{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': content_val, 'description': pushed_description}) %}
+{% endblock do_push %}
