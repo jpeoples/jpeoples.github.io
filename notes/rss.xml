@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Jacob Peoples' MicroBlog</title>
-    <link>https://jpeoples.github.io/notes</link>
-    <atom:link href="https://jpeoples.github.io/notes/rss.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:8080/notes</link>
+    <atom:link href="http://localhost:8080/notes/rss.xml" rel="self" type="application/rss+xml" />
     <description>Jacob Peoples' Micro Web Log</description>
     
     <item>
-        <title>Note: September 22, 2019, 20:56</title>
-        <link>https://jpeoples.github.io/notes/2019-09-22-1.html</link>
-        <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-09-22-1.html</guid>
+        
+        <link>http://localhost:8080/notes/2019-09-22-1.html</link>
+        <guid isPermaLink="true">http://localhost:8080/notes/2019-09-22-1.html</guid>
         <pubDate>Sun, 22 Sep 2019 20:56:49 -0000</pubDate>
         <description>
 
 
 
 &lt;p&gt;Support for short notes (like this) has been added to the blog.&lt;/p&gt;
-&lt;p&gt;To see all short notes, navigate to &lt;a href=&#34;https://jpeoples.github.io/notes&#34;&gt;Notes&lt;/a&gt;. To see just
-the posts go to &lt;a href=&#34;https://jpeoples.github.io/blog&#34;&gt;Posts&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To see all short notes, navigate to &lt;a href=&#34;http://localhost:8080/notes&#34;&gt;Notes&lt;/a&gt;. To see just
+the posts go to &lt;a href=&#34;http://localhost:8080/blog&#34;&gt;Posts&lt;/a&gt;.&lt;/p&gt;
 
 
 
