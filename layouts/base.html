@@ -2,13 +2,15 @@
 <head>
     {% set ns = namespace(safe_description="Personal blog of Jacob Peoples",
                           page_title = "Jacob Peoples",
+                          social_title = "Jacob Peoples",
                           social_image=base_url + "me.png") %}
 {% block metadata scoped %}
     {% if description is defined %}
         {% set ns.safe_description = description | striptags | replace('\n', ' ')%}
     {%endif %}
     {% if title is defined %}
-        {% set ns.page_title = title | striptags | replace('\n', ' ') + " | Jacob Peoples" %}
+        {% set ns.social_title = title | striptags | replace('\n', ' ') %}
+        {% set ns.page_title = ns.social_title + " | Jacob Peoples" %}
     {% endif %}
     {% if social_image is defined %}
         {% set ns.social_image = base_url + social_image %}
@@ -51,7 +53,7 @@
     {% endif %}
     <meta name="description" content="{{ns.safe_description}}" />
     <meta property="og:description" content="{{ns.safe_description}}" />
-    <meta property="og:title" content="{{ns.page_title}}" />
+    <meta property="og:title" content="{{ns.social_title}}" />
     <meta property="og:url" content="{{fullhref}}" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ns.social_image}}" />
@@ -59,7 +61,7 @@
     <meta name="twitter:site" value="@JacobJPeoples" />
     <meta name="twitter:description" value="{{ns.safe_description}}" />
     <meta name="twitter:image" value="{{ns.social_image}}" />
-    <meta name="twitter:title" value="{{ ns.page_title }}" />
+    <meta name="twitter:title" value="{{ ns.social_title }}" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     {% endblock %}
