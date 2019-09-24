@@ -276,6 +276,7 @@ body {
 
 
 .s-center { text-align:center; }
+.s-gray { color:#555; }
 .s-link-no-visit a:visited { color: #1e7fBd; }
 .s-link-no-visit a:hover { color: #333;  }
 .s-pad-above { padding-top: 10px; }

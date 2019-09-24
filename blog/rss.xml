@@ -12,6 +12,13 @@
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2018/02/equals.html</guid>
         <pubDate>Fri, 09 Feb 2018 00:00:00 -0000</pubDate>
         <description>
+
+&lt;p&gt;I have noticed a certain pattern of misuse of the equals sign amongst my
+students that, beyond being formally incorrect, makes it harder for the graders
+to determine if the student is demonstrating understanding or not. In
+the following post I will try and explain the problem and how to avoid
+it.&lt;/p&gt;
+
 &lt;p&gt;The symbol &#34;=&#34; means &#34;equals&#34;. It is to be written only when the things
 on either side are known to be equal, or if we are saying some meta
 statement like, &#34;we want to show that X = Y&#34;.&lt;/p&gt;
@@ -78,6 +85,7 @@ page, and then write a clearer presentation for your final answer.&lt;/p&gt;
 &#34;equals?&#34;, graders don&#39;t need to try and figure out what you mean at
 every &#34;=&#34;.  They just need to follow your calculations and decide if
 they are correct.&lt;/p&gt;
+
 </description>
     </item>
     
@@ -87,6 +95,8 @@ they are correct.&lt;/p&gt;
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/11/brainfuck.html</guid>
         <pubDate>Wed, 01 Nov 2017 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bf &amp;quot;++++++++[&amp;gt;++++[&amp;gt;++&amp;gt;+++&amp;gt;+++&amp;gt;+&amp;lt;&amp;lt;&amp;lt;&amp;lt;-]&amp;gt;+&amp;gt;+&amp;gt;-&amp;gt;&amp;gt;+[&amp;lt;]&amp;lt;-]&amp;gt;&amp;gt;.&amp;gt;---.+++++++..+++.&amp;gt;&amp;gt;.&amp;lt;-.&amp;lt;.+++.------.--------.&amp;gt;&amp;gt;+.&amp;gt;++.&amp;quot;
 Hello World!
 &lt;/pre&gt;&lt;/div&gt;
@@ -229,6 +239,8 @@ sped up by creating a jump table before hand.
 Finally, the same loop structure could be used to implement a compiler
 converting a given brainfuck program into C code.
 I might look at some of these things in a future post.&lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -238,6 +250,8 @@ I might look at some of these things in a future post.&lt;/p&gt;
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/05/bizarre_fs.html</guid>
         <pubDate>Fri, 05 May 2017 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;p&gt;Just a short post on something odd that happened to me last night.&lt;/p&gt;
 &lt;p&gt;I was working on the Jinja template to generate the posts on this
 website. I had a local server launched in the build directory of the
@@ -295,6 +309,8 @@ cat path/to/post | less
 
 &lt;p&gt;and it still shows up!&lt;/p&gt;
 &lt;p&gt;So what on earth was going on the first time I typed &lt;code&gt;cat&lt;/code&gt;?!&lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -304,6 +320,8 @@ cat path/to/post | less
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/extending_arun_method.html</guid>
         <pubDate>Thu, 30 Jun 2016 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;p&gt;I recently wanted to extend my implementation of the ICP algorithm to
 include isotropic scaling.  Internally, ICP alternates between finding
 the closest points in the target shape to those in the source shape --
@@ -473,6 +491,8 @@ as required.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
+
+
 </description>
     </item>
     
@@ -482,6 +502,8 @@ as required.&lt;/p&gt;
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/pathman.html</guid>
         <pubDate>Tue, 28 Jun 2016 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;p&gt;MATLAB finds functions/classes/packages by searching the current working
 directory, followed by the list of directories in its path variable.
 Directories can be added or removed from the path via the &lt;a href=&#34;http://www.mathworks.com/help/matlab/ref/addpath.html&#34;&gt;&lt;code&gt;addpath&lt;/code&gt;&lt;/a&gt;
@@ -606,6 +628,8 @@ help(pathman)
 
 &lt;p&gt;which lists and documents all the command-line options for pathman.&lt;/p&gt;
 &lt;p&gt;Feel free to ask any questions here or there as well.&lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -615,6 +639,8 @@ help(pathman)
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/11/yst_setup.html</guid>
         <pubDate>Sun, 22 Nov 2015 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;p&gt;&lt;a href=&#34;https://github.com/jgm/yst&#34;&gt;yst&lt;/a&gt; is a static site generator by John McFarlane, the originator of
 the most utilitarian &lt;a href=&#34;http://pandoc.org/&#34;&gt;Pandoc&lt;/a&gt;.  It is, as far as I can tell, very
 simple, and that simplicity is what drew me to consider switching the
@@ -687,6 +713,8 @@ just a short ways down the page.  Running&lt;/p&gt;
 
 &lt;p&gt;before running &lt;code&gt;yst&lt;/code&gt; solved the problem for me, and left me with a
 beautiful test site.&lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -696,6 +724,8 @@ beautiful test site.&lt;/p&gt;
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/06/ezparse.html</guid>
         <pubDate>Thu, 25 Jun 2015 00:00:00 -0000</pubDate>
         <description>
+
+
 &lt;p&gt;&lt;em&gt;Dear Readers&lt;/em&gt;,&lt;/p&gt;
 &lt;p&gt;First off, my name is Jacob, and I am a master&#39;s computer science
 student.  Nice to meet you.&lt;/p&gt;
@@ -953,6 +983,8 @@ completeness here is the code listing.&lt;/p&gt;
 implementation of the name-value pair parsing I showed previously, and
 it&#39;s usage requires only one more line of code after simply setting all
 the defaults.&lt;/p&gt;
+
+
 </description>
     </item>
     
