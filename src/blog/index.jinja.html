@@ -10,8 +10,8 @@ You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
   <h2>{{year}}</h2>
   <ul>
       {% for post in items %}
-      <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a></li>
-      {%endfor %}
+      <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a> </li>
+      {% endfor %}
     </ul>
 {% endfor %}
 {% endblock %}

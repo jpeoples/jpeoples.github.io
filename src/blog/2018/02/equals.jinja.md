@@ -3,8 +3,16 @@
 {% set date = "February 9, 2018" %}
 {% set has_math = True %}
 
-{% set body_html %}
-{% filter markdown %}
+{% set description | markdown %}
+I have noticed a certain pattern of misuse of the equals sign amongst my
+students that, beyond being formally incorrect, makes it harder for the graders
+to determine if the student is demonstrating understanding or not. In
+the following post I will try and explain the problem and how to avoid
+it.
+{% endset %}
+
+{% set body_html | markdown %}
+{{description}}
 
 The symbol "=" means "equals". It is to be written only when the things
 on either side are known to be equal, or if we are saying some meta
@@ -81,5 +89,4 @@ In any case, by consistently using "=" to mean "equals" and never
 every "=".  They just need to follow your calculations and decide if
 they are correct.
 
-{% endfilter %}
 {% endset %}

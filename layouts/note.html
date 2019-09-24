@@ -1,26 +1,16 @@
 {% extends "layouts/post.html" %}
+{% set title = "Note: " + date | format_datetime %}
+{% block metadata %}
+{{ super()  }}
+{% set _ = ns.push_dict.update({'description_is_full': remainder.strip() == '', 'is_note': True}) %}
+{% endblock %}
 
 {% block content_header %}
-<header class="s-center">
+<header>
 {% if date is defined %}
-<p id="date">From: {{date | format_datetime}}</p>
+<p id="date", class="s-gray">From: {{date | format_datetime}}</p>
 {% endif %}
 </header>
 <hr />
 {% endblock %}
 
-{% block content %}
-{{ super() }}
-{% endblock %}
-
-
-{% block do_push %}
-{% set pushed_description %}
-{{description}}
-{% if remainder.strip() != '' %}
-<p><a href="{{fullhref}}">Read More</a></p>
-{% endif %}
-{% endset %}
-{% set content_val = body_html %}
-{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': content_val, 'description': pushed_description}) %}
-{% endblock do_push %}

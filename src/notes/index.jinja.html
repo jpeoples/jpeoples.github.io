@@ -10,8 +10,15 @@ You can subscribe via the [RSS feed]({{base_url}}notes/rss.xml).
   <h2>{{year}}</h2>
   <ul>
     {% for post in items %}
-    <li><a href="{{post.fullhref}}">{% if post.title is defined %}{{post.date | format_date}} &ndash; {{post.title}}{% else %}{{post.date | format_datetime}}{% endif %}</a>
-    {% if post.description is defined and post.description.strip() != '' %} <blockquote>{{post.description}}</blockquote>{% endif %}
+    <li><a href="{{post.fullhref}}">{{post.date | format_datetime}}</a>
+    {% if post.description is defined %}
+        <blockquote>
+            {{post.description}}
+            {% if not post.description_is_full %}
+                <p><a href="{{post.fullhref}}">Read More</a></p>
+            {% endif%}
+        </blockquote>
+    {% endif %}
     </li>
     {%endfor %}
 </ul>

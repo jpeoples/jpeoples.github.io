@@ -47,7 +47,7 @@ note_jinja_template="""
 {{% endfilter %}}
 {{% endset %}}
 {{%set body_html %}}
-{{{{description}}}}
+{{{{ description }}}}
 {{% if remainder.strip() != '' %}}
 {{{{remainder }}}}
 {{% endif %}}
@@ -135,6 +135,8 @@ if __name__ == "__main__":
     jinja_file = jinja_file.add_render_context({'posts': blog_entries, 'notes': notes, 'full_archive': full_archive})
     print(notes[0])
 
+    # TODO Come up with a way around the fnmatch issue so that I don't
+    # need to indclude src/ everywhere!
     env.build((
         # now process the blog index and rss
         (('*blog/index.jinja.html', '*blog/rss.jinja.xml', '*notes/rss.jinja.xml', '*shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),

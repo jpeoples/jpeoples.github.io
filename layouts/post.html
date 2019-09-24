@@ -1,11 +1,18 @@
 {% extends "layouts/base.html" %}
 
+{% block metadata scoped %}
+    {{super()}}
+    {% set ns.push_dict = {'title': title, 'date': date | parse_date, 'content': all_content} %}
+    {% if description is defined %}
+        {% set _ = ns.push_dict.update({'description': description, 'description_is_full': False}) %}
+    {% endif %}
+{% endblock %}
 
 {% block content_header %}
 <header class="s-center">
 <h1>{{title}}</h1>
 {% if date is defined %}
-<p id="date">{{date | format_date}}</p>
+<p id="date", class="s-gray">{{date | format_date}}</p>
 {% endif %}
 </header>
 <hr />
@@ -17,11 +24,11 @@
 {{ super() }}
 </article>
 {% endblock %}
+{% set all_content %}
 {% block content %}
-<!--<div class="article-body"> -->
 {{ body_html }}
-<!-- </div> -->
 {% endblock %}
+{% endset %}
 
 {% block footer_scripts %}
 {{super() }}
@@ -51,8 +58,7 @@
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 {% block do_push %}
-{% set content_val = body_html %}
-{% set val = push_to_collection({'title': title, 'date': date | parse_date, 'content': content_val}) %}
+{% set _ = push_to_collection(ns.push_dict) %}
 {% endblock do_push %}
 {% endblock %}
 {# Push post onto list of posts #}
