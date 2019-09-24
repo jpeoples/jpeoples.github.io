@@ -3,6 +3,8 @@
 {% block metadata %}
 {{ super()  }}
 {% set _ = ns.push_dict.update({'description_is_full': remainder.strip() == '', 'is_note': True}) %}
+{# On the python side, a note should be considered to have no title! #}
+{% set _ = ns.push_dict.pop('title') %}
 {% endblock %}
 
 {% block content_header %}

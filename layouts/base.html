@@ -1,14 +1,14 @@
 <html lang="en">
 <head>
     {% set ns = namespace(safe_description="Personal blog of Jacob Peoples",
-                          page_title="Jacob Peoples",
+                          page_title = "Jacob Peoples",
                           social_image=base_url + "me.png") %}
 {% block metadata scoped %}
     {% if description is defined %}
         {% set ns.safe_description = description | striptags | replace('\n', ' ')%}
     {%endif %}
     {% if title is defined %}
-        {% set ns.page_title = title | striptags | replace('\n', ' ') %}
+        {% set ns.page_title = title | striptags | replace('\n', ' ') + " | Jacob Peoples" %}
     {% endif %}
     {% if social_image is defined %}
         {% set ns.social_image = base_url + social_image %}
