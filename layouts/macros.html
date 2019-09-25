@@ -1,0 +1,6 @@
+{% macro figure(src, txt, caption="") -%}
+    <figure class="s-center">
+        <img alt="{{txt}}" src="{{src}}" />
+        {% if caption != "" %}<figcaption class="s-gray">{{caption}}</figcaption>{% endif %}
+    </figure>
+{%- endmacro %}
