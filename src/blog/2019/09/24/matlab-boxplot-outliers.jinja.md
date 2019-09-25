@@ -1,7 +1,7 @@
 {% extends "layouts/post.html" %}
 {% set title = "MATLAB: <code>boxplot</code> and <code>isoutlier</code> disagree about outliers" %}
 {% set date = "2019-09-24" %}
-{% set social_image = "boxplot_wrong_wtf.png" %}
+{% set social_image = "blog/2019/09/24/boxplot_wrong_wtf.png" %}
 
 {% import "layouts/macros.html" as macros %}
 
