@@ -7,6 +7,90 @@
     <description>Jacob Peoples' Web Log and Notes</description>
     
     <item>
+        <title>MATLAB: &lt;code&gt;boxplot&lt;/code&gt; and &lt;code&gt;isoutlier&lt;/code&gt; disagree about outliers</title>
+        <link>https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers.html</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers.html</guid>
+        <pubDate>Tue, 24 Sep 2019 00:00:00 -0000</pubDate>
+        <description>
+
+&lt;p&gt;&lt;em&gt;TL;DR: &lt;a href=&#34;https://www.mathworks.com/help/matlab/ref/isoutlier.html&#34;&gt;&lt;code&gt;isoutlier&lt;/code&gt;&lt;/a&gt; classifies outliers based on scaled mean absolute
+deviations, while &lt;a href=&#34;https://www.mathworks.com/help/stats/boxplot.html&#34;&gt;&lt;code&gt;boxplot&lt;/code&gt;&lt;/a&gt; is based on interquartile range.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Suppose I have some data in an &lt;code&gt;N&lt;/code&gt; by 10 array and pass it to matlab&#39;s
+&lt;code&gt;boxplot&lt;/code&gt;. By default, I get&lt;/p&gt;
+&lt;figure class=&#34;s-center&#34;&gt;
+        &lt;img alt=&#34;default boxplot&#34; src=&#34;boxplot.png&#34; /&gt;
+
+    &lt;/figure&gt;
+
+&lt;p&gt;Suppose I want to extract the statistics that MATLAB uses to generate the
+plot. According to the &lt;a href=&#34;https://www.mathworks.com/help/stats/boxplot.html&#34;&gt;documentation&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the central mark indicates the median, and the bottom and top edges of
+the box indicate the 25th and 75th percentiles, respectively. The
+whiskers extend to the most extreme data points not considered
+outliers, and the outliers are plotted individually using the &#39;+&#39;
+symbol.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using simple MATLAB built-ins I might then write&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;[q1,q2,q3,w0,w1,outliers] &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;boxplot_statistics&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;data&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;
+
+&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;% quantile(data,3) will return the 25th, 50th, and 75th percentile&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% for each column&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;quants&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quantile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;q1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quants&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,:);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;q2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quants&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,:);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;q3&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quants&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,:);&lt;/span&gt;
+
+    &lt;span class=&#34;c&#34;&gt;% outliers will return a logical array where true indicates outliers&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% (outlier are computed per column)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;outliers&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isoutlier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+    &lt;span class=&#34;c&#34;&gt;% To compute the whiskers, take max and min (per column). Setting&lt;/span&gt;
+    &lt;span class=&#34;c&#34;&gt;% outlier values to NaN causes them to be ignored.&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outliers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NaN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;w0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;min&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,[],&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;w1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,[],&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But here is the result.&lt;/p&gt;
+&lt;figure class=&#34;s-center&#34;&gt;
+        &lt;img alt=&#34;incorrect boxplot_statistics results&#34; src=&#34;boxplot_wrong.png&#34; /&gt;
+
+    &lt;/figure&gt;
+
+&lt;p&gt;I&#39;ve plotted the predicted tops and bottoms of the boxes in blue, the
+medians in red, the whiskers in green, and the outliers in cyan. Notice
+how the predicted outliers (cyan) drop below the actual whisker in
+several places (and as a result the predicted upper whisker (green) is
+also too low).&lt;/p&gt;
+&lt;p&gt;What gives?&lt;/p&gt;
+&lt;p&gt;Digging deeper into the &lt;code&gt;boxplot&lt;/code&gt; documentation, there is a parameter
+&#39;Whisker&#39; with default value 1.5:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Maximum whisker length, specified as the comma-separated pair consisting of &#39;Whisker&#39; and a positive numeric value.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;boxplot&lt;/code&gt; draws points as outliers if they are greater than &lt;code&gt;q3 + w × (q3 – q1)&lt;/code&gt; or less than &lt;code&gt;q1 – w × (q3 – q1)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hence, &lt;code&gt;boxplot&lt;/code&gt; classifies outliers as those values that are &lt;code&gt;w&lt;/code&gt;
+quartile ranges above the upper quartile or below the lower quartile.&lt;/p&gt;
+&lt;p&gt;On the other hand, &lt;a href=&#34;https://www.mathworks.com/help/matlab/ref/isoutlier.html&#34;&gt;&lt;code&gt;isoutlier&lt;/code&gt; classifies points as outliers if they are
+more than 3 scaled median absolute deviations from the median.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that if &lt;code&gt;w = 1.5&lt;/code&gt; we can achieve the same outlier
+classification with &lt;code&gt;isoutlier(data, &#39;quartile&#39;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;However, if we choose a custom value for the &lt;code&gt;Whisker&lt;/code&gt; parameter, we&#39;d
+like to be able to handle that too. Hence the final answer is:&lt;/p&gt;
+&lt;script src=&#34;https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js&#34;&gt;&lt;/script&gt;
+
+&lt;figure class=&#34;s-center&#34;&gt;
+        &lt;img alt=&#34;correct boxplot_statistics results&#34; src=&#34;boxplot_right.png&#34; /&gt;
+
+    &lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
         
         <link>https://jpeoples.github.io/notes/2019-09-22-1.html</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-09-22-1.html</guid>
