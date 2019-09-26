@@ -6,7 +6,9 @@ import pathlib
 import jinja2
 
 def compute_href(render_context, build_dir, inpath, outpath, s, rel_name="href", full_name="fullhref"):
-    href = pathlib.Path(outpath).relative_to(build_dir).as_posix()
+    if outpath.endswith("index.html"):
+        outpath = pathlib.Path(outpath).parent.as_posix()
+    href = pathlib.Path(outpath).relative_to(build_dir).as_posix() + "/"
     additional_ctx = {
         rel_name: href,
         full_name: render_context['base_url'] + href
@@ -55,12 +57,12 @@ note_jinja_template="""
 {{% endset %}}
 """.strip()
 
-def format_dt(date):
-    return jssg.jinja_utils.date_formatter('%B %d, %Y, %H:%M')(date)
+format_dt = jssg.jinja_utils.date_formatter('%B %d, %Y, %H:%M')
 
 def note_jinja(jinja_file):
     def full_render(fs, inf, outf):
-        s, add_ctx = jinja_file._get_immediate_context(fs, inf, outf)
+        s = fs.read(inf)
+        add_ctx = jinja_file.get_immediate_context(fs, inf, outf, s)
         items = s.split('%%%')
         n = len(items)
         if n > 1:
@@ -75,10 +77,15 @@ def note_jinja(jinja_file):
         fs.write(outf, outs)
     return full_render
 
+def nice_url(fn):
+    return pathlib.Path(jssg.remove_extensions(fn), "index.html").as_posix()
+
 @jinja2.contextfilter
 def ensure_fullhref(ctx, val):
     base_url = ctx['base_url']
     fullhref = ctx['fullhref']
+    if fullhref.endswith("/"):
+        fullhref = fullhref[:-1]
     if val.startswith(base_url):
         return val
     elif val.startswith("/"):
@@ -88,6 +95,8 @@ def ensure_fullhref(ctx, val):
         assert(out.startswith(base_url))
         return out
 
+
+
 if __name__ == "__main__":
     # set base url
     base_url = 'https://jpeoples.github.io/'
@@ -95,41 +104,31 @@ if __name__ == "__main__":
         base_url = 'http://localhost:8080/'
         print(base_url)
 
-    rss_loader = jssg.jinja_utils.rss_loader()
-    filters = {
-            'markdown': jssg.jinja_utils.markdown_filter(include_mdx_math=True),
-            'format_date': jssg.jinja_utils.date_formatter(),
-            'rss_format_date': jssg.jinja_utils.rss_date,
-            'parse_date': jssg.jinja_utils.parse_date,
+    env = jssg.Environment.default("src", "build")
+    env.jinja_filters.update({
             'format_datetime': format_dt,
             'ensure_fullhref': ensure_fullhref
-        }
+        })
 
-    jenv = jssg.jinja_utils.jinja_env(prefix_paths=('layouts',), additional_loaders=(jssg.jinja_utils.rss_loader(),), filters=filters)
-    ctx = {'css': 'site.css', 'base_url': base_url}
-
-    jinja_file = jssg.jinja_utils.JinjaFile(jenv, ctx, immediate_context=[
-        lambda cx, inf,outf,s: compute_href(cx, 'build', inf, outf, s)
-        ])
+    jinja_file = env.jinja.add_render_context(
+            {"css": "site.css", "base_url": base_url}).add_immediate_context(
+                    lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
+                    )
 
     blog_entries = []
     jinja_blog = jinja_file.add_immediate_context(
             lambda ctx, inf,outf,s: add_push_to_collection(ctx, inf, outf, s, blog_entries))
 
-    env = jssg.BuildEnv.default('src', 'build')
-
-    blog_files = jssg.list_all_files('src/blog', rel_to='src')
     env.build((
             # ignore drafts, index page, rss feed, and swap files
-            (('*.draft.*', '*index*', '*.xml', '*.swp'), None),
+            (('*.draft.*', '*index*', '*.xml', '*.swp'), env.ignore_file),
             # Process all posts
-            (('*.jinja.md', '*.jinja.html'), (jssg.replace_extensions('.html'), jinja_blog.full_render)),
+            (('*.jinja.md', '*.jinja.html'), (nice_url, jinja_blog.full_render)),
             # Copy any other files under the blog dir
-            ('*', (jssg.mirror_path, jssg.copy_file))
-            ), blog_files)
+            ('*', env.mirror_file),
+            ), "blog")
 
     notes = []
-    note_files = jssg.list_all_files('src/notes', rel_to='src')
     jinja_notes = jinja_file.add_immediate_context(
             lambda ctx, inf,outf,s: add_push_to_collection(ctx, inf, outf, s, notes))
     note_map = note_jinja(jinja_notes)
@@ -137,10 +136,10 @@ if __name__ == "__main__":
             # ignore drafts, index page, rss feed, and swap files
             (('*.draft.*', '*index*', '*.xml', '*.swp'), None),
             # Process all posts
-            (('*.md', '*.txt'), (jssg.replace_extensions('.html'), note_map)),
+            (('*.md', '*.txt'), (nice_url, note_map)),
             # Copy any other files under the blog dir
-            ('*', (jssg.mirror_path, jssg.copy_file))
-            ), note_files)
+            ('*', env.mirror_file)
+            ), "notes")
 
 
     blog_entries = sort_pages(blog_entries)
@@ -149,17 +148,15 @@ if __name__ == "__main__":
     jinja_file = jinja_file.add_render_context({'posts': blog_entries, 'notes': notes, 'full_archive': full_archive})
     print(notes[0])
 
-    # TODO Come up with a way around the fnmatch issue so that I don't
-    # need to indclude src/ everywhere!
     env.build((
-        # now process the blog index and rss
-        (('*blog/index.jinja.html', '*blog/rss.jinja.xml', '*notes/rss.jinja.xml', '*shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),
-        (('*notes/index.jinja.html'), (jssg.remove_internal_extensions, jinja_file.full_render)),
+        # now process index pages and rss
+        (('blog/rss.jinja.xml', 'notes/rss.jinja.xml', 'shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),
+        (('*index.jinja.*'), (jssg.remove_internal_extensions, jinja_file.full_render)),
         # but ignore the rest of the blog files
         (('blog/*', 'notes/*', '*.swp'), None),
         # and build any other jinja pages
-        ('*.jinja.md', (jssg.replace_extensions('.html'), jinja_file.full_render)),
-        ('*.jinja.*', (jssg.remove_internal_extensions, jinja_file.full_render)),
+        ('*.jinja.md', (nice_url, jinja_file.full_render)),
+        ('*.jinja.*', (nice_url, jinja_file.full_render)),
         # and copy any _other_ files
-        ('*', (jssg.mirror_path, jssg.copy_file))
-        ), jssg.list_all_files('src'))
+        ('*', env.mirror_file)
+        ))
