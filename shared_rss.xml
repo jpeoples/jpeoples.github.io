@@ -18,9 +18,8 @@ deviations, while &lt;a href=&#34;https://www.mathworks.com/help/stats/boxplot.h
 &lt;p&gt;Suppose I have some data in an &lt;code&gt;N&lt;/code&gt; by 10 array and pass it to matlab&#39;s
 &lt;code&gt;boxplot&lt;/code&gt;. By default, I get&lt;/p&gt;
 &lt;figure class=&#34;s-center&#34;&gt;
-        &lt;img alt=&#34;default boxplot&#34; src=&#34;boxplot.png&#34; /&gt;
-
-    &lt;/figure&gt;
+    &lt;img alt=&#34;default boxplot&#34; src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot.png&#34; /&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;Suppose I want to extract the statistics that MATLAB uses to generate the
 plot. According to the &lt;a href=&#34;https://www.mathworks.com/help/stats/boxplot.html&#34;&gt;documentation&lt;/a&gt;&lt;/p&gt;
@@ -56,9 +55,8 @@ symbol.&lt;/p&gt;
 
 &lt;p&gt;But here is the result.&lt;/p&gt;
 &lt;figure class=&#34;s-center&#34;&gt;
-        &lt;img alt=&#34;incorrect boxplot_statistics results&#34; src=&#34;boxplot_wrong.png&#34; /&gt;
-
-    &lt;/figure&gt;
+    &lt;img alt=&#34;incorrect boxplot_statistics results&#34; src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong.png&#34; /&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;I&#39;ve plotted the predicted tops and bottoms of the boxes in blue, the
 medians in red, the whiskers in green, and the outliers in cyan. Notice
@@ -83,9 +81,8 @@ like to be able to handle that too. Hence the final answer is:&lt;/p&gt;
 &lt;script src=&#34;https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js&#34;&gt;&lt;/script&gt;
 
 &lt;figure class=&#34;s-center&#34;&gt;
-        &lt;img alt=&#34;correct boxplot_statistics results&#34; src=&#34;boxplot_right.png&#34; /&gt;
-
-    &lt;/figure&gt;
+    &lt;img alt=&#34;correct boxplot_statistics results&#34; src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot_right.png&#34; /&gt;
+&lt;/figure&gt;
 
 </description>
     </item>
