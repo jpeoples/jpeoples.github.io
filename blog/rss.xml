@@ -7,7 +7,7 @@
     <description>Jacob Peoples' Web Log</description>
     
     <item>
-        <title>MATLAB: &lt;code&gt;boxplot&lt;/code&gt; and &lt;code&gt;isoutlier&lt;/code&gt; disagree about outliers</title>
+        <title>MATLAB: boxplot and isoutlier disagree about outliers</title>
         <link>https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers.html</link>
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers.html</guid>
         <pubDate>Tue, 24 Sep 2019 00:00:00 -0000</pubDate>
