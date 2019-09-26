@@ -1,26 +1,21 @@
 {% extends "layouts/base.html" %}
 {% set title="Notes" %}
+{% import "layouts/macros.html" as macros %}
 
 {% block content %}
 {{ super() }}
 {% filter markdown %}
 You can subscribe via the [RSS feed]({{base_url}}notes/rss.xml).
 {% endfilter %}
-{% for year, items in notes | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
-  <h2>{{year}}</h2>
-  <ul>
-    {% for post in items %}
-    <li><a href="{{post.fullhref}}">{{post.date | format_datetime}}</a>
+{% call(post) macros.grouped_page_list(notes) %}
+    <a href="{{post.fullhref}}">{{post.date | format_datetime}}</a>
     {% if post.description is defined %}
-        <blockquote>
+        <blockquote class="s-no-margin-horizontal s-no-margin-vertical">
             {{post.description}}
             {% if not post.description_is_full %}
                 <p><a href="{{post.fullhref}}">Read More</a></p>
             {% endif%}
         </blockquote>
     {% endif %}
-    </li>
-    {%endfor %}
-</ul>
-{% endfor %}
+{% endcall %}
 {% endblock %}

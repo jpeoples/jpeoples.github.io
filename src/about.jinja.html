@@ -1,11 +1,13 @@
 {% extends "layouts/base.html" %}
 {% set title = "About" %}
 
+{% import "layouts/macros.html" as macros %}
 
 {% block content %}
 {{ super() }}
 
-<div class="s-float-right s-pad-small"><img src="{{base_url}}me.png" width="150" height="150" alt="Photo of Jacob Peoples"></div>
+
+{{ macros.figure(base_url+"me.png", "Photo of Jacob Peoples", class="s-float-right s-no-margin-vertical", imwidth=150, imheight=150) }}
 {% filter markdown %}
 
 I am a computer science PhD student studying probabilistic deformable

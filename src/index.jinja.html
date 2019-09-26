@@ -1,25 +1,22 @@
 {% extends "layouts/base.html" %}
+{% import "layouts/macros.html" as macros %}
+
 
 {% block content %}
 {{ super() }}
 {% filter markdown %}
 You can subscribe via the [RSS feed]({{base_url}}shared_rss.xml).
 {% endfilter %}
-{% for year, items in full_archive | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
-  <h2>{{year}}</h2>
-  <ul>
-    {% for post in items %}
-    <li><a href="{{post.fullhref}}">{% if post.is_note is defined and post.is_note %}{{post.date | format_datetime}}{% else %}{{post.date | format_date}} &ndash; {{post.title}}{% endif %}</a>
-    {% if post.is_note is defined and post.is_note and post.description is defined %}
-        <blockquote>
+
+{% call(post) macros.grouped_page_list(full_archive) %}
+<a href="{{post.fullhref}}">{% if post.is_note is defined and post.is_note %}{{post.date | format_datetime}}{% else %}{{post.date | format_date}} &ndash; {{post.title}}{% endif %}</a>
+    {% if post.description is defined %}
+        <blockquote class="s-no-margin-horizontal s-no-margin-vertical">
             {{post.description}}
             {% if not post.description_is_full %}
                 <p><a href="{{post.fullhref}}">Read More</a></p>
             {% endif%}
         </blockquote>
     {% endif %}
-    </li>
-    {%endfor %}
-    </ul>
-{% endfor %}
+{% endcall %}
 {% endblock %}

@@ -1,17 +1,14 @@
 {% extends "layouts/base.html" %}
-{% set title="Archive" %}
+{% set title="Posts" %}
+
+{% import "layouts/macros.html" as macros %}
 
 {% block content %}
 {{ super() }}
 {% filter markdown %}
 You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
 {% endfilter %}
-{% for year, items in posts | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
-  <h2>{{year}}</h2>
-  <ul>
-      {% for post in items %}
-      <li><a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a> </li>
-      {% endfor %}
-    </ul>
-{% endfor %}
+{% call(post) macros.grouped_page_list(posts) %}
+      <a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a>
+{% endcall %}
 {% endblock %}
