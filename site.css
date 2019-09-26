@@ -282,6 +282,13 @@ body {
 .s-pad-above { padding-top: 10px; }
 .s-pad-small { padding: 2px; }
 .s-float-right { float: right }
+.s-no-style-list { list-style-type: none; padding-left: 0; padding-right: 0;}
+.s-no-margin-horizontal { margin-left: 0; margin-right: 0;}
+.s-no-margin-vertical {margin-top: 0rem; margin-bottom: 0rem;}
+.s-no-margin-bottom {margin-bottom: 0rem;}
+.s-no-margin-top {margin-top: 0rem;}
+.s-pad-medium-vertical {padding-top: 0.5rem; padding-bottom: 0.5rem;}
+.s-border {border: 1px solid black; }
 
 a { color: #1e7fBd; }
 a:visited { color: #0e4f7d; }
