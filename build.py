@@ -3,6 +3,7 @@ import sys
 #import jssg
 import jssg
 import pathlib
+import jinja2
 
 def compute_href(render_context, build_dir, inpath, outpath, s, rel_name="href", full_name="fullhref"):
     href = pathlib.Path(outpath).relative_to(build_dir).as_posix()
@@ -74,6 +75,18 @@ def note_jinja(jinja_file):
         fs.write(outf, outs)
     return full_render
 
+@jinja2.contextfilter
+def ensure_fullhref(ctx, val):
+    base_url = ctx['base_url']
+    fullhref = ctx['fullhref']
+    if val.startswith(base_url):
+        return val
+    elif val.startswith("/"):
+        return base_url + val[1:]
+    else:
+        out = "/".join(fullhref.split("/")[:-1] + [val])
+        assert(out.startswith(base_url))
+        return out
 
 if __name__ == "__main__":
     # set base url
@@ -88,7 +101,8 @@ if __name__ == "__main__":
             'format_date': jssg.jinja_utils.date_formatter(),
             'rss_format_date': jssg.jinja_utils.rss_date,
             'parse_date': jssg.jinja_utils.parse_date,
-            'format_datetime': format_dt
+            'format_datetime': format_dt,
+            'ensure_fullhref': ensure_fullhref
         }
 
     jenv = jssg.jinja_utils.jinja_env(prefix_paths=('layouts',), additional_loaders=(jssg.jinja_utils.rss_loader(),), filters=filters)

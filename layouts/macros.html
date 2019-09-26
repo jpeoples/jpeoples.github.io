@@ -1,12 +1,6 @@
-{% macro figure(src, txt, caption="", fullhref="", class="", imwidth=none, imheight=none, imclass="") -%}
-{%- if fullhref == "" %}
-    {% set full_src = src %}
-{% else %}
-    {% set full_src = (fullhref.split('/')[:-1]+[src]) | join('/') %}
-{% endif %}
-
+{% macro figure(src, txt, caption="", class="", imwidth=none, imheight=none, imclass="") -%}
 <figure {% if class != "" %}class="{{class}}"{% else %}class="s-center"{% endif %}>
-    <img alt="{{txt}}" title="{{txt}}"  src="{{full_src}}" {% if imwidth %} width="{{imwidth}}" {% endif %} {%if imheight %} height="{{imheight}}" {% endif %} {% if imclass !="" %} class="{{imclass}}" {%endif%}/>
+    <img alt="{{txt}}" title="{{txt}}"  src="{{src}}" {% if imwidth %} width="{{imwidth}}" {% endif %} {%if imheight %} height="{{imheight}}" {% endif %} {% if imclass !="" %} class="{{imclass}}" {%endif%}/>
     {%- if caption != "" %}<figcaption class="s-gray">{{caption}}</figcaption>{% endif %}
 </figure>
 {%- endmacro %}

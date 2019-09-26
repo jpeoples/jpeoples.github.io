@@ -13,7 +13,8 @@
         {% set ns.page_title = ns.social_title + " | Jacob Peoples" %}
     {% endif %}
     {% if social_image is defined %}
-        {% set ns.social_image = base_url + social_image %}
+        {% set ns.social_image = social_image | ensure_fullhref %}
+        {# set ns.social_image = base_url + social_image #}
     {% endif %}
 {% endblock metadata %}
     {% block head %}

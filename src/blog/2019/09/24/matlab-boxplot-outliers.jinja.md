@@ -1,7 +1,7 @@
 {% extends "layouts/post.html" %}
 {% set title = "MATLAB: <code>boxplot</code> and <code>isoutlier</code> disagree about outliers" %}
 {% set date = "2019-09-24" %}
-{% set social_image = "blog/2019/09/24/boxplot_wrong_wtf.png" %}
+{% set social_image = "boxplot_wrong_wtf.png" %}
 
 {% import "layouts/macros.html" as macros %}
 
@@ -18,7 +18,7 @@ deviations, while [`boxplot`](https://www.mathworks.com/help/stats/boxplot.html)
 Suppose I have some data in an `N` by 10 array and pass it to matlab's
 `boxplot`. By default, I get
 
-{{ macros.figure("boxplot.png", "default boxplot", fullhref=fullhref) }}
+{{ macros.figure("boxplot.png" | ensure_fullhref, "default boxplot") }} {#, fullhref=fullhref) }} #}
 
 Suppose I want to extract the statistics that MATLAB uses to generate the
 plot. According to the [documentation](https://www.mathworks.com/help/stats/boxplot.html)
@@ -55,7 +55,7 @@ end
 
 But here is the result.
 
-{{ macros.figure("boxplot_wrong.png", "incorrect boxplot_statistics results", fullhref=fullhref) }}
+{{ macros.figure("boxplot_wrong.png" | ensure_fullhref , "incorrect boxplot_statistics results") }}
 
 I've plotted the predicted tops and bottoms of the boxes in blue, the
 medians in red, the whiskers in green, and the outliers in cyan. Notice
@@ -86,7 +86,7 @@ like to be able to handle that too. Hence the final answer is:
 
 <script src="https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js"></script>
 
-{{ macros.figure("boxplot_right.png", "correct boxplot_statistics results", fullhref=fullhref) }}
+{{ macros.figure("boxplot_right.png" | ensure_fullhref, "correct boxplot_statistics results") }}
 
 
 {% endset %}

@@ -7,7 +7,7 @@
 {{ super() }}
 
 
-{{ macros.figure(base_url+"me.png", "Photo of Jacob Peoples", class="s-float-right s-no-margin-vertical", imwidth=150, imheight=150) }}
+{{ macros.figure("me.png" | ensure_fullhref, "Photo of Jacob Peoples", class="s-float-right s-no-margin-vertical", imwidth=150, imheight=150) }}
 {% filter markdown %}
 
 I am a computer science PhD student studying probabilistic deformable
