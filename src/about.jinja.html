@@ -1,10 +1,9 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/web_cv.html" %}
 {% set title = "About" %}
 
 {% import "layouts/macros.html" as macros %}
 
 {% block content %}
-{{ super() }}
 
 
 {{ macros.figure("me.png" | ensure_fullhref, "Photo of Jacob Peoples", class="s-float-right s-no-margin-vertical", imwidth=150, imheight=150) }}
@@ -24,30 +23,10 @@ You can **subscribe** to this blog by RSS:
 *   [Long posts]({{base_url}}blog/rss.xml)
 *   [Short notes]({{base_url}}notes/rss.xml)
 
+See my academic CV below, or in [pdf]({{ "web_cv.pdf" | ensure_fullhref }})
 
-
-
-## Academic Publications
-### Journal Articles
-*   **Peoples JJ**, Bisleri G, Ellis RE: Deformable multi-modal
-    registration for navigation in beating-heart cardiac surgery.
-    International Journal of Computer Assisted Surgery, 14(6):955-966, 2019.
-    [doi:10.1007/s11548-019-01932-2](https://doi.org/10.1007/s11548-019-01932-2).
-
-### Refereed Abstracts
-*   Hefny MS, **Peoples JJ**, Zec ML, Pichora DR, Ellis RE: Topologically
-    consistent triangulation for computer assisted surgery planning.
-    International Journal of Computer Assisted Surgery, 11(Suppl
-    1):S109-S111, 2016.
-
-*   Hefny MS, **Peoples JJ**, Zec ML, Pichora DR, Ellis RE: Atlas-based
-    scaphoid fixation planning. Proceedings of Computer Assisted
-    Orthopedic Surgery (CAOS International), 16:470-472, 2016.
-
-### Preprints
-
-*   Cannon K, Hanna C, **Peoples J**: Likelihood-ratio ranking statistic
-    for compact binary coalescence candidates with rate estimation.
-    arXiv:1504.04632 [astro-ph.IM], 2015.
 {% endfilter %}
+
+{{ super() }}
+
 {%endblock%}

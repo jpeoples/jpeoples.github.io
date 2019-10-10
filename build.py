@@ -99,8 +99,10 @@ def ensure_fullhref(ctx, val):
 
 if __name__ == "__main__":
     # set base url
+    ctx = {"production_mode": True}
     base_url = 'https://jpeoples.github.io/'
     if len(sys.argv) > 1 and sys.argv[1] == 'local':
+        ctx['production_mode'] = False
         base_url = 'http://localhost:8080/'
         print(base_url)
 
@@ -113,7 +115,7 @@ if __name__ == "__main__":
     jinja_file = env.jinja.add_render_context(
             {"css": "site.css", "base_url": base_url}).add_immediate_context(
                     lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
-                    )
+                    ).add_render_context(ctx)
 
     blog_entries = []
     jinja_blog = jinja_file.add_immediate_context(
