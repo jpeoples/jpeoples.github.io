@@ -8,6 +8,38 @@
     
     <item>
         
+        <link>https://jpeoples.github.io/notes/2019-10-17/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-10-17/</guid>
+        <pubDate>Thu, 17 Oct 2019 18:03:38 -0000</pubDate>
+        <description>
+
+
+
+&lt;p&gt;This is a trick I&#39;ve been using in LaTeX recently when laying out grids of figures.&lt;/p&gt;
+
+
+
+&lt;p&gt;If I want to layout columns with specific width in LaTeX I can use &lt;code&gt;m{width}&lt;/code&gt; or &lt;code&gt;p{width}&lt;/code&gt; or &lt;code&gt;b{width}&lt;/code&gt; as the column specifiers (rather than the typical &lt;code&gt;l&lt;/code&gt; &lt;code&gt;c&lt;/code&gt; or &lt;code&gt;r&lt;/code&gt;). &lt;code&gt;m&lt;/code&gt; creates vertically centered entries, where as &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; align to the top or bottom respectively.&lt;/p&gt;
+&lt;p&gt;However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of &lt;code&gt;m{0.5\linewidth}&lt;/code&gt; (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an &#34;overfull hbox&#34;. To fix this, we can use an additional specifier &lt;code&gt;@{}&lt;/code&gt; on either side of the column spec which removes the padding.&lt;/p&gt;
+&lt;p&gt;Finally, if we want our content centered within the cell, as I often find prefereable for grid figure layouts, we can also add &lt;code&gt;&amp;gt;{\centering}&lt;/code&gt;, which adds &lt;code&gt;\centering&lt;/code&gt; to the beginning of the contents of each cell. Alternatively, you could use &lt;code&gt;\raggedleft&lt;/code&gt;/&lt;code&gt;\hfill&lt;/code&gt; for right alignment. This part requires the &lt;code&gt;array&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;An example with two columns:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;\begin&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;tabular&lt;span class=&#34;nb&#34;&gt;}{&lt;/span&gt;
+        @&lt;span class=&#34;nb&#34;&gt;{}&lt;/span&gt;&amp;gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;\centering&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;m&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;0.5&lt;span class=&#34;k&#34;&gt;\linewidth&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;@&lt;span class=&#34;nb&#34;&gt;{}&lt;/span&gt;
+        @&lt;span class=&#34;nb&#34;&gt;{}&lt;/span&gt;&amp;gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;\centering&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;m&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;0.5&lt;span class=&#34;k&#34;&gt;\linewidth&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;@&lt;span class=&#34;nb&#34;&gt;{}&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\tabularnewline&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;\end&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;tabular&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+</description>
+    </item>
+    
+    <item>
+        
         <link>https://jpeoples.github.io/notes/2019-09-22-1/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-09-22-1/</guid>
         <pubDate>Sun, 22 Sep 2019 20:56:49 -0000</pubDate>
