@@ -19,7 +19,7 @@ ga('send', 'pageview');
                           social_image=base_url + "me.png") %}
 {% block metadata scoped %}
     {% if description is defined %}
-        {% set ns.safe_description = description | striptags | replace('\n', ' ')%}
+        {% set ns.safe_description = description | striptags | replace('\n', ' ') | replace('"', "'")%}
     {%endif %}
     {% if title is defined %}
         {% set ns.social_title = title | striptags | replace('\n', ' ') %}
