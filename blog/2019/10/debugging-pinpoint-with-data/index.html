@@ -1,0 +1,213 @@
+<html lang="en">
+<head>
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149472152-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+
+    
+    
+        
+    
+    
+        
+        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+
+    
+    <title>Pinpoint Bugs Based on Data, Not Intuition | Jacob Peoples</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
+    
+    <meta name="description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta property="og:description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta property="og:title" content="Pinpoint Bugs Based on Data, Not Intuition" />
+    <meta property="og:url" content="https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://jpeoples.github.io/blog/2019/10/debugging.png" />
+    <meta name="twitter:card" value="summary" />
+    <meta name="twitter:site" value="@__jpeoples" />
+    <meta name="twitter:description" value="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta name="twitter:image" value="https://jpeoples.github.io/blog/2019/10/debugging.png" />
+    <meta name="twitter:title" value="Pinpoint Bugs Based on Data, Not Intuition" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+
+<header class="s-center s-pad-above">
+    <nav class="s-link-no-visit">
+    
+          <ul>
+        <li><a href="https://jpeoples.github.io/">Home</a></li>
+        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+    </ul>
+    
+    </nav>
+</header>
+<hr />
+<main>
+
+<article>
+
+
+<header class="s-center">
+<h1>Pinpoint Bugs Based on Data, Not Intuition</h1>
+
+<p id="date", class="s-gray">October 23, 2019</p>
+
+</header>
+<hr />
+
+
+<p>Often when debugging a problem, our brains have a strong intuition as to
+exactly where the bug "must" be. We may even have seemingly valid
+rational arguments as to why the bugs "must" be located in this
+particular part of the code. <em>Whenever possible, I think it is best to
+ignore these impulses and pinpoint bugs based on hard data</em>.</p>
+
+<p>While knowledge of the code structure can help you narrow down the
+source of the problem to a particular area within a larger program,
+beyond that it may be most effective to ask what assumptions the program
+makes, and to find where exactly those assumptions break. This is a
+matter than can be addressed by hard facts, rather than an intuition.</p>
+<p>As a concrete example, yesterday I was debugging an algorithm I have
+been developing as part of my research. The faulty behaviour was
+occurring only when running it on a particular data set. And since this
+algorithm is a bit complicated in implementation, and this particular
+data set leading to the algorithm executing a less-commonly-used code
+path, I reasoned, the bug must be a mistake in the logic of that
+less-commonly-used code path. Knowing that the correct logic was a bit
+complicated even in theory, I was confident that this would prove to be
+the problem.</p>
+<p>So I reread the code, which was written more than a year ago now, and
+gradually reloaded all the necessary context into my brain to understand
+how it works. Stepping through, both mentally and literally in the
+debugger, I simply could not see any problem.</p>
+<p>I even racked my brain to come up with two alternative inputs, which
+theoretically, in a correct implementation, should have produced
+identical results. In actuality, one hit the bug, and the other didn't.
+Bingo!</p>
+<p>At each stage of the algorithm, I plotted the output to try and pinpoint
+exactly <em>when</em> along the way the error occured. It told me nothing I
+didn't already suspect: the bug was in that aforementioned
+less-commonly-used code path just like I knew it had to be.</p>
+<p>The only problem was, staring at the code, I could still find no error.</p>
+<p>Finally, I realized there was theoretically an invariant that should be
+maintained across several of the steps taken in the relevant code path.
+<em>Computing this invariant quantity after each line affecting the
+relevant variables provided a hard data-based test.</em> If ever the
+invariant was broken, the bug -- or at least <em>a</em> bug -- was found.</p>
+<p>This was exactly what solved it: it turned out that the error was in
+a particular method, being called only in that less-commonly-used code
+path, that was so simple in intent that my intuition would
+never have taken me there. I quickly fixed it, and proceeded to find a
+couple other bugs, similar in nature, that simply hadn't bitten me yet.</p>
+<p>What I observed from this is that while my intuition and reasoning got
+me to the right area of the code right away, it proceeded to lead me
+astray. I was sure the bug was an error in the complicated logic of the
+algorithm, when in fact it was a simple oversight in a simple method
+being called in the process of executing that complicated logic. Only by
+using data in the form of a broken invariant to prove the bug <em>had to
+occur within that method</em> did it occur to me to even look there.</p>
+<p>I think this gets back at the fact that as programmers we often can't
+reason that accurately about the complexity of our programs.  Conceptual
+complexity and complexity of implementation are not the same.  But worse
+is that even the simplest implementations are subject to the complexity
+of evolution over time.  The problematic method in my case was
+conceptually trivial. It's implementation was clear and concise.  But in
+the course of the evolution of the code a few new options had been added
+to the class somewhere along the way which were not properly being taken
+into account in this particular method. And because this method was only
+called in what was a largely neglected code path, the bug remained
+hidden in plain sight for a long time. In contrast, the big, complicated
+block of logic implementing the algorithm -- a seemingly ideal habitat
+for all kinds of nasty bugs -- where my intuition immediately led me,
+having me step through code with my eyes glazed over for over an hour,
+was, at the end of it all, just fine.</p>
+<p>And so, I conclude, when investigating a bug, try to ground your
+investigation in hard data as quickly as possible. Avoid just blindly
+stepping around the code except as a last resort. And ignore that
+intuition that tells you the problem just has to be in this nasty bit of
+logic here, because sometimes its the rosy patches that are the thorn
+in your side.</p>
+
+
+</article>
+
+</main>
+<hr />
+<footer class="s-center">
+    <nav class="s-link-no-visit">
+            <ul>
+        <li><a href="https://jpeoples.github.io/">Home</a></li>
+        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+    </ul>
+    </nav>
+</footer>
+
+
+
+
+<div>
+    <h2 class="s-center">Comments</h2>
+</div>
+<div class="s-center" id="disqus_thread"><a onclick="load_comments();">Load comments</a></div>
+<script>
+    function load_comments() {
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        var disqus_config = function () {
+            this.page.url = 'https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+
+            s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+</body>
+
+</html>
