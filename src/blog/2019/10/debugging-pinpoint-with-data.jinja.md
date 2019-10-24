@@ -20,7 +20,7 @@ source of the problem to a particular area within a larger program,
 beyond that it may be most effective to ask what assumptions the program
 makes, and to find where exactly those assumptions break. This is a
 matter than can be addressed by hard facts, rather than an intuition.
-
+https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/
 As a concrete example, yesterday I was debugging an algorithm I have
 been developing as part of my research. The faulty behaviour was
 occurring only when running it on a particular data set. And since this
@@ -88,7 +88,7 @@ And so, I conclude, when investigating a bug, try to ground your
 investigation in hard data as quickly as possible. Avoid just blindly
 stepping around the code except as a last resort. And ignore that
 intuition that tells you the problem just has to be in this nasty bit of
-logic here, because sometimes its the rosy patches that are the thorn
+logic here, because sometimes it's the rosy patches that are the thorn
 in your side.
 
 {% endset %}
