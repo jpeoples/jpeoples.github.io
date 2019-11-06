@@ -7,6 +7,291 @@
     <description>Jacob Peoples' Web Log</description>
     
     <item>
+        <title>What if this Web Service Dies? Connecting &#34;Service Anxiety&#34; and Information Overload</title>
+        <link>https://jpeoples.github.io/blog/2019/11/service-anxiety-information-overload/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/11/service-anxiety-information-overload/</guid>
+        <pubDate>Wed, 06 Nov 2019 17:26:56 -0000</pubDate>
+        <description>
+
+&lt;p&gt;I&#39;ve spent a lot of time thinking about organization and note-taking as
+a way to try and keep on top of all the various things I encounter that
+seem particularly interesting or useful.
+Along the way, I&#39;ve experimented with a lot of different productivity
+and note-taking apps and services. A great thing about these is that
+they mostly make it easy to access our notes or task-lists, or whatever
+else, at any time, and from any place we might find ourselves, any
+device we may use.  And while many of them seem promising, there is
+always this nagging fear in the back of my mind, a fear that seems to
+return whenever I think too much about any of the many web services I
+depend on: if I pour too much of myself into this thing — this black
+box of features over which I have no real control — what will I do if
+it&#39;s suddenly gone?&lt;/p&gt;
+&lt;p&gt;After all, &lt;a href=&#34;https://killedbygoogle.com/&#34;&gt;it&#39;s not as if web-based software services live forever&lt;/a&gt;.
+What if the company goes out of business?
+Or if I decide to fork out the cash for a premium service, what if money
+gets tight and I need to cut costs?&lt;/p&gt;
+&lt;p&gt;As a convenient shorthand, I&#39;ll refer to this fear as &#34;service
+anxiety&#34; for the remainder of this post.&lt;/p&gt;
+&lt;h1 id=&#34;understanding-service-anxiety&#34;&gt;Understanding Service Anxiety&lt;/h1&gt;
+&lt;p&gt;As pointed out by Simon Pitt in
+&lt;a href=&#34;https://onezero.medium.com/the-death-of-the-computer-file-doc-43cb028c0506&#34;&gt;Computer Files are Going Extinct&lt;/a&gt;, with these services
+we no longer need to concern ourselves with maintaining information
+stored as files on our hard drive.
+Instead, through the magic of technology, all of our data can be accessed
+anytime, on any device, through &#34;bespoke, proprietary interfaces&#34;.
+Indeed, the easy access afforded by these kinds of services can be seen as part
+of a general trend — identified by Alex Danco as
+&lt;a href=&#34;https://alexdanco.com/2015/02/02/the-rise-of-the-access-economy/&#34;&gt;the rise of the access economy&lt;/a&gt; —
+of technologies that allow cheap and easy access to the things we want
+or need, all the while freeing us from the messy details and maintenance
+work of ownership.
+But this liberation from ownership is also a removal of agency. In
+&lt;a href=&#34;https://alexdanco.com/2019/10/26/everything-is-amazing-but-nothing-is-ours/&#34;&gt;&lt;em&gt;Everything is Amazing but Nothing is Ours&lt;/em&gt;&lt;/a&gt;,
+&lt;a href=&#34;https://alexdanco.com/2019/10/26/everything-is-amazing-but-nothing-is-ours/&#34;&gt;Danco points out&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Worlds of scarcity are made out of things. Worlds of abundance are
+made out of dependencies. That’s the software playbook: find a system
+made of costly, redundant objects; and rearrange it into a fast,
+frictionless system made of logical dependencies. The delta in
+performance is irresistible, and dependencies are a compelling
+building block: they seem like just a piece of logic, with no cost and
+no friction. But they absolutely have a cost: the cost is complexity,
+outsourced agency, and brittleness. The cost of ownership is up front
+and visible; the cost of access is back-dated and hidden.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In dependence, we inherit the fragilities of that on which we
+depend, a lesson learned in the Node.js/npm ecosystem when the removal
+of the tiny, independently maintained &#34;left-pad&#34; package
+&lt;a href=&#34;https://arstechnica.com/information-technology/2016/03/rage-quit-coder-unpublished-17-lines-of-javascript-and-broke-the-internet/&#34;&gt;&#34;broke the internet&#34;&lt;/a&gt;.
+&lt;a href=&#34;https://onezero.medium.com/the-death-of-the-computer-file-doc-43cb028c0506&#34;&gt;Pitt has a story of his own on this note&lt;/a&gt;, comparing a
+website he had built in the &#39;90s to one from just a year and a half ago:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The other day, I came across a website I’d written over two decades
+ago. I double-clicked the file, and it opened and ran perfectly. Then
+I tried to run a website I’d written 18 months ago and found I
+couldn’t run it without firing up a web server, and when I ran NPM
+install, one or two of those 65,000 files had issues that meant node
+failed to install them and the website didn’t run. When I did get it
+working, it needed a database. And then it relied on some third-party
+APIs and there was an issue with CORS because I hadn’t whitelisted
+localhost.&lt;/p&gt;
+&lt;p&gt;My website made of files carried on, chugging along.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But this fragility goes beyond the potential brittleness of software
+dependencies: the web services we use to power our lives — to manage our
+data, to create, to access music, to read and to think — these are all
+dependencies upon which we build our lives.
+The price for all this ease and convenience is not only brittleness, but
+more generally, our subjugation to the whims of the companies that are
+building these services, defining the data structures that we can
+create, where those data live, and how they can be interacted with and
+used.&lt;/p&gt;
+&lt;p&gt;Services come and their stewards encourage us to integrate them into the
+foundations of our lives. But these building blocks don&#39;t make much of a
+foundation at all. They shift, and break, and disappear, and
+change shape beneath the structures we&#39;ve tried to build above, and we
+must constantly adapt to maintain some semblance of stability lest it
+all come crashing down.&lt;/p&gt;
+&lt;h1 id=&#34;information-overload&#34;&gt;Information Overload&lt;/h1&gt;
+&lt;p&gt;In some sense this all is just another facet of the general experience of
+anxious ephemerality that I think characterizes much of our
+interaction with the internet.
+The news cycle churns faster than ever.
+Scandals come and go in the blink of an eye.
+All we ever hear or see is what&#39;s new.
+&lt;a href=&#34;https://onezero.medium.com/the-death-of-the-computer-file-doc-43cb028c0506&#34;&gt;Pitt says:&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I don’t like this shift from timeless content to what is newest. Now,
+when I visit websites, they promote to me the latest thing. Why should
+the content that is the newest be the most important? It seems so
+unlikely that something that was just created would happen to be
+better than everything created throughout all time. What are the odds
+that every time I arrive at the site, the pinnacle of human
+achievement has just been breached? But we don’t seem to have a way of
+sorting by quality. Only by recency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The internet — that genie&#39;s lamp of access to information —
+facilitates all of this. You can&#39;t have constant access through the
+cloud, or automatically download thousands of dependencies you built
+your software from, or provide an incessant stream of new information to
+millions of users, without the &lt;a href=&#34;https://en.wikipedia.org/wiki/Series_of_tubes&#34;&gt;series of
+tubes&lt;/a&gt;&lt;sup id=&#34;fnref:series-of-tubes&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:series-of-tubes&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; to move all that data about.
+And for all the good the internet has done, all the convenience and
+access to information it provides, it seems that more and more it&#39;s
+gotten to be &lt;a href=&#34;https://en.wikipedia.org/wiki/Information_overload&#34;&gt;too much of a good thing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A common response to this are calls to simply unplug from it all and do
+some long, slow, deep work — something Venkatesh Rao has called
+&lt;em&gt;Waldenponding&lt;/em&gt;.
+In &lt;a href=&#34;https://mailchi.mp/ribbonfarm/against-waldenponding&#34;&gt;Against Waldenponding&lt;/a&gt; Rao argues that such a
+retreat is its own kind of hijacking of attention:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;25/ LONG before the digital media companies tried to pwn your attention
+ by overloading it at difficult latency ranges, religious institutions
+ tried to pwn you by suckering you into checking out of &#34;temporal&#34;
+ matters by labeling them sinful/profane or whatever. This is utter
+ bs.&lt;/p&gt;
+&lt;p&gt;26/ That is in fact the original attention hack: powerful
+ religious leaders telling smart people to check out and unplug from
+ information flows. That way, they get the power.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Tim Wu&#39;s &lt;a href=&#34;https://www.amazon.ca/Attention-Merchants-Scramble-Inside-Heads/dp/0804170045/&#34;&gt;&lt;em&gt;The Attention Merchants&lt;/em&gt;&lt;/a&gt;, a book examining
+the history of the selling of attention, makes a similar point: &#34;With
+its combination of moral injunctions as well as daily and weekly
+rituals, organized religion had long taken human attention as its
+essential substrate,&#34; (p. 26). Wu further notes that &#34;[m]any of the most
+talented copywriters [...] came from families steeped in organized
+religion,&#34; (p. 71).&lt;/p&gt;
+&lt;p&gt;Rather than disconnecting, Rao advocates that we embrace our
+part in the &#34;Global Social Computer in the Cloud (GSCITC)&#34;, arguing that
+while retreating for short periods can surely be healthy, long-term
+unplugging is driven primarily by the &#34;Fear of Being Ordinary (FOBO)&#34; —
+fear of being just another node in the GSCITC.  To best do our part, he
+says we should strive to consume and respond to information at all
+latencies — from the micro-moments of Twitter, to the most timeless
+works from history — maintaining that a balance too far to either end
+of the latency spectrum is a disadvantage.&lt;/p&gt;
+&lt;p&gt;This contrary argument, that keeping plugged in is Good Actually, if
+only you can manage it, is echoed by Tiago Forte. His &lt;a href=&#34;https://www.buildingasecondbrain.com/&#34;&gt;Building a Second
+Brain&lt;/a&gt; course is based on, among other things, reaping the rewards
+of plugging in to the relentless stream of information by processing it
+and offloading the storage to a carefully curated collection of digital
+information — a second brain.&lt;sup id=&#34;fnref:basb&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:basb&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;3/ So much of the success narrative today is still based on the old
+model: get smart, know a lot, do one thing at a time, as early as
+possible&lt;/p&gt;
+&lt;p&gt;[...]&lt;/p&gt;
+&lt;p&gt;14/ This is the fundamental problem with what I call First Brainism
+(incl. spaced repetition, memory palaces, deep work, digital
+waldenponding, speed-reading, essentialism, paper notes
+fundamentalists, and trad’l education): it tells you to get really
+good at the old model&lt;/p&gt;
+&lt;p&gt;15/ Obviously we need both, but prioritizing the biological brian as
+the repository of knowledge is now the surest way to not only fall
+behind, but to be more and more overwhelmed and stressed out as you do
+so&lt;/p&gt;
+&lt;p&gt;16/ We are in the early stages of the Second Brain era, when your
+biological and cognitive deficiencies turn into superpowers, as along
+as you are willing to give up some control and learn the new way&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/fortelabs/status/1148027264790958080&#34;&gt;Thread&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Something else that both Forte and Rao seem to agree on is a certain key
+role of serendipity within how we manage ourselves in relation to this
+new era of information access.
+In a &lt;a href=&#34;https://evernote.com/blog/podcast-tiago-forte-on-productivity/&#34;&gt;podcast on the Evernote blog&lt;/a&gt;,
+describing his progressive summarization method, Forte describes a
+heuristic to triage the process of progressively improving notes
+based on when they naturally come up in the process of doing
+something else:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I’ll take notes on a source, whether it’s a conversation, an article,
+a book, a podcast, audiobook, whatever. And then I just put it in my
+system. Just the raw notes. The next time I see that, the next time I
+serendipitously come across it — or it might be that I’m looking for a
+project or looking for a resource that I want to use this note for — I
+summarize it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Rao argues that in a world of higher complexity — complexity often
+beyond our grasp — things can look random and unpredictable. Such a
+world makes personal growth in the traditional sense harder to pursue.
+Instead, he favours a kind of progressive intensification, or &lt;a href=&#34;https://mailchi.mp/ribbonfarm/life-spirit-distillation&#34;&gt;life
+spirit distillation:&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Reactionary retreat to deterministic personal growth actively defends
+a ghostly state. Stochastic personal growth is like trying to beat the
+&#34;market&#34; of life possibilities without factoring in your own capacity
+for unplanned change.&lt;/p&gt;
+&lt;p&gt;What does lead to progressive intensification is recognizing the
+growing serendipity in the environment, and rapidly increasing
+potential for more imaginative solutions to life challenges, with more
+intense and unexpected rebirths, all around.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That both call to embrace serendipity in the way we interact with the
+world is, I think, no accident. Indeed, a certain amount of faith that
+the important things will come up again can help relieve the anxiety of
+getting lost in a barrage of new information.  It is by learning to
+methodically relinquish the need for control that we can come to reap
+the rewards of the new world of information, while still maintaining
+some base level of coherency.&lt;/p&gt;
+&lt;h1 id=&#34;alleviating-service-anxiety&#34;&gt;Alleviating Service Anxiety&lt;/h1&gt;
+&lt;p&gt;In a time of increasing complexity, our interactions with the external
+world themselves come to be characterized by ephemerality — fleeting
+glimpses of reality that feel increasingly disjoint and stochastic.  And
+it is atop this drifting reality we are tasked to build our lives.&lt;/p&gt;
+&lt;p&gt;This is the parallel between the previous discussions of service anxiety
+and information overload: in both cases it is the rapid distribution of
+information — facilitated by the internet — that begets the ephemeral
+nature of the worlds we interact with, resulting in a loss of agency and
+a spike of anxiety.&lt;/p&gt;
+&lt;p&gt;So to alleviate service anxiety, can we again methodically relinquish
+the need for control and embrace serendipity? As far as note-taking
+services go,
+&lt;a href=&#34;https://twitter.com/fortelabs/status/1161515095463256066&#34;&gt;Tiago Forte seems to have anticipated this question&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you wouldn’t be happy to see all your notes permanently erased,
+you’re doing it wrong. Destroying your notes through creative
+destruction is the goal, not meticulously hoarding them and treating
+them as sacred objects worthy of veneration. Your notes should be
+disposable&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In light of the lack of control we have over the services we use,
+perhaps the answer is to use them to our benefit while we can, without
+becoming too attached, because always, they may go.&lt;sup id=&#34;fnref:backup&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:backup&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; Why do you
+take notes, if not to learn, and ultimately to do?&lt;sup id=&#34;fnref:davies&#34;&gt;&lt;a class=&#34;footnote-ref&#34; href=&#34;#fn:davies&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; Why use any
+of these services if not as tools to achieve some goal defined on your
+own terms? Does the carpenter fret that his hammer may break and be
+rendered unusable, or does he rest easy knowing that if it did there
+would be other hammers?&lt;/p&gt;
+&lt;p&gt;To survive — perhaps even to thrive — in this ephemeral new world, is
+to embrace its drifting nature and to develop processes with that drift
+in mind.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/context_ing/status/1160734161948168193&#34;&gt;There is no need for trust in information when there is faith in
+process.&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;footnote&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:series-of-tubes&#34;&gt;
+&lt;p&gt;Hear Johnathan Blow humourously extend this term to
+your CPU &lt;a href=&#34;https://youtu.be/YGTZr6bmNmk?t=1576&#34;&gt;here&lt;/a&gt;.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:series-of-tubes&#34; title=&#34;Jump back to footnote 1 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:basb&#34;&gt;
+&lt;p&gt;Reader beware, this is based on my understanding of the course,
+having not taken it.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:basb&#34; title=&#34;Jump back to footnote 2 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:backup&#34;&gt;
+&lt;p&gt;Obviously not all contexts really allow one to embrace
+ephemerality.  We really would prefer not to lose our tax records. But
+these storage problems are not really new. The point is that with most
+web-services we relinquish control of our data, and so we cannot back it
+up in any meaningful sense.&amp;#160;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:backup&#34; title=&#34;Jump back to footnote 3 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:davies&#34;&gt;
+&lt;p&gt;There is in fact at least one other great reason to learn:
+your own amusement.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I knew I was going to like Prof. the Rev. Darcourt. He seemed to think
+that learning could be amusing, and that heavy people needed stirring
+up. Like Rabelais, of whom even educated people like Parlabane had
+such a stupid opinion. Rabelais was gloriously learned because
+learning amused him, and so far as I am concerned that is learning&#39;s
+best justification.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Maria Theotoky in Robertson Davies&#39; &lt;a href=&#34;https://www.amazon.ca/Rebel-Angels-Robertson-Davies/dp/0143196987&#34;&gt;&lt;em&gt;The Rebel Angels&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;footnote-backref&#34; href=&#34;#fnref:davies&#34; title=&#34;Jump back to footnote 4 in the text&#34;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
         <title>Pinpoint Bugs Based on Data, Not Intuition</title>
         <link>https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/</guid>
