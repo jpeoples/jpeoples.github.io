@@ -8,6 +8,7 @@ https://jpeoples.github.io/blog/2017/11/brainfuck/
 https://jpeoples.github.io/blog/2018/02/equals/
 https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/
 https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/
+https://jpeoples.github.io/blog/2019/11/service-anxiety-information-overload/
 https://jpeoples.github.io/blog/
 https://jpeoples.github.io/
 https://jpeoples.github.io/notes/2019-09-22-1/
