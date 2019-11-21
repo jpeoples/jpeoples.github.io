@@ -138,7 +138,7 @@ skill to navigate toward that region of the space successfully. Instead,
 we set out in our best guess of the right direction, but quickly get
 lost.
 
-{{ macros.figure("false-start.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=400) }}
+{{ macros.figure("false-start.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=300) }}
 
 The nearly-finish experience manifests as having a vision for what our
 destination is (whether it came from inspiration or exploration) but
@@ -148,7 +148,7 @@ much closer, are able to make our way there with relative ease. That
 said, we may, if we don't yet have enough experience to realize our
 vision, still not be able to get unstuck.
 
-{{ macros.figure("nfcl.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=400) }}
+{{ macros.figure("nfcl.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=300) }}
 
 Finally, inspired creativity looks a lot like the complete-later phase
 of the previous case. The only difference is the journey from start to
@@ -156,7 +156,7 @@ vague vision is longer. But if the vision is within our grasp at our
 current experience level, we are able to navigate into the general
 region fairly easily.
 
-{{ macros.figure("inspired-creativity.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=400) }}
+{{ macros.figure("inspired-creativity.jpg" | ensure_fullhref, "Illustration of a false start", imwidth=300) }}
 
 In the cases where we successfully make it to the region of the space
 evoking the creative vision (marked "vague vision" in the diagrams), the
