@@ -132,7 +132,7 @@ And for all the good the internet has done, all the convenience and
 access to information it provides, it seems that more and more it's
 gotten to be [too much of a good thing][wiki-info-overload].
 
-[^series-of-tubes]: Hear Johnathan Blow humourously extend this term to
+[^series-of-tubes]: Hear Jonathan Blow humourously extend this term to
 your CPU [here](https://youtu.be/YGTZr6bmNmk?t=1576).
 
 
