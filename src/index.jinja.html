@@ -1,6 +1,9 @@
 {% extends "layouts/base.html" %}
 {% import "layouts/macros.html" as macros %}
 
+{% block content_header %}
+{{macros.header("Jacob J. Peoples","News and Updates")}}
+{% endblock %}
 
 {% block content %}
 {{ super() }}
