@@ -16,7 +16,7 @@ ga('send', 'pageview');
     {% set ns = namespace(safe_description="Personal blog of Jacob Peoples",
                           page_title = "Jacob Peoples",
                           social_title = "Jacob Peoples",
-                          social_image=base_url + "me.png") %}
+                          social_image=base_url + "my_name.png") %}
 {% block metadata scoped %}
     {% if description is defined %}
         {% set ns.safe_description = description | striptags | replace('\n', ' ') | replace('"', "'")%}

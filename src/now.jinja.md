@@ -1,5 +1,6 @@
 {% extends "layouts/base.html" %}
 {% set title = "Now" %}
+{% set social_image = "now.png" | ensure_fullhref %}
 
 {% import "layouts/macros.html" as macros %}
 
