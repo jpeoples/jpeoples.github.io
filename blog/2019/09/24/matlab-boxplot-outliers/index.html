@@ -56,40 +56,41 @@ ga('send', 'pageview');
     <meta charset="UTF-8" />
     
 </head>
-<body>
-
-<header class="s-center s-pad-above">
-    <nav class="s-link-no-visit">
+<body class="container-full-width bg-blue-dark text-white green-link text-body-sans">
+    <!--<header class="s-center s-pad-above">-->
+<header class="">
+    <nav class="no-visit nodecorate container-full-width text-center" >
     
-          <ul>
-        <li><a href="https://jpeoples.github.io/">Home</a></li>
-        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+          <ul class="list-no-bullet pad-none margin-v-none">
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
     </ul>
     
     </nav>
 </header>
-<hr />
-<main>
+<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
 
-<article>
+<article class="post">
 
 
-<header class="s-center">
+
+<header class="text-center text-body-sans">
 <h1>MATLAB: <code>boxplot</code> and <code>isoutlier</code> disagree about outliers</h1>
 
-<p id="date", class="s-gray">September 24, 2019</p>
+<p id=date class=, class="">September 24, 2019</p>
 
 </header>
 <hr />
+
 
 
 <p><em>TL;DR: <a href="https://www.mathworks.com/help/matlab/ref/isoutlier.html"><code>isoutlier</code></a> classifies outliers based on scaled mean absolute
 deviations, while <a href="https://www.mathworks.com/help/stats/boxplot.html"><code>boxplot</code></a> is based on interquartile range.</em></p>
 <p>Suppose I have some data in an <code>N</code> by 10 array and pass it to matlab's
 <code>boxplot</code>. By default, I get</p>
-<figure class="s-center">
+<figure class="text-center">
     <img alt="default boxplot" title="default boxplot"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot.png"   />
 </figure>
 
@@ -126,7 +127,7 @@ symbol.</p>
 
 
 <p>But here is the result.</p>
-<figure class="s-center">
+<figure class="text-center">
     <img alt="incorrect boxplot_statistics results" title="incorrect boxplot_statistics results"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong.png"   />
 </figure>
 
@@ -152,7 +153,7 @@ classification with <code>isoutlier(data, 'quartile')</code>.</p>
 like to be able to handle that too. Hence the final answer is:</p>
 <script src="https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js"></script>
 
-<figure class="s-center">
+<figure class="text-center">
     <img alt="correct boxplot_statistics results" title="correct boxplot_statistics results"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot_right.png"   />
 </figure>
 
@@ -160,14 +161,13 @@ like to be able to handle that too. Hence the final answer is:</p>
 </article>
 
 </main>
-<hr />
-<footer class="s-center">
-    <nav class="s-link-no-visit">
-            <ul>
-        <li><a href="https://jpeoples.github.io/">Home</a></li>
-        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+<footer>
+    <nav class="no-visit nodecorate container-full-width text-center">
+            <ul class="list-no-bullet pad-none margin-v-none">
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
     </ul>
     </nav>
 </footer>
@@ -200,7 +200,6 @@ like to be able to handle that too. Hence the final answer is:</p>
     }
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
 
 
 

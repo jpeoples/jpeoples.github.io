@@ -59,44 +59,45 @@ ga('send', 'pageview');
     <meta charset="UTF-8" />
     
 <style>
-dl { display: grid; grid-template-columns: max-content 1fr; }
-dd { margin-left: 1em;}
-dt { text-align: right; }
-dl dd div.s-float-right { display: block; float: right; text-align: right; }
-ul { list-style-position: inside; padding-left: 0; margin-top: 0.1em; margin-bottom: 0.1em;}
+.cv dl { display: grid; grid-template-columns: max-content 1fr; }
+.cv dd { margin-left: 1em;}
+.cv dt { text-align: right; }
+.cv dl dd div.s-float-right { display: block; float: right; text-align: right; }
+.cv ul { list-style-position: inside; padding-left: 0; margin-top: 0.1em; margin-bottom: 0.1em;}
 </style>
 
 </head>
-<body>
-
-<header class="s-center s-pad-above">
-    <nav class="s-link-no-visit">
+<body class="container-full-width bg-blue-dark text-white green-link text-body-sans">
+    <!--<header class="s-center s-pad-above">-->
+<header class="">
+    <nav class="no-visit nodecorate container-full-width text-center" >
     
-          <ul>
-        <li><a href="https://jpeoples.github.io/">Home</a></li>
-        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+          <ul class="list-no-bullet pad-none margin-v-none">
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
     </ul>
     
     </nav>
 </header>
-<hr />
-<main>
+<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
 
 
-<header class="s-center">
-<h1>
-Jacob J. Peoples
-</h1>
-<p class="s-gray">PhD Candidate, Queen's University</p>
+
+<header class="text-center text-body-sans">
+<h1>Jacob J. Peoples</h1>
+
+<p id= class=, class="">PhD Candidate, Queen's University</p>
+
 </header>
+<hr />
 
 
 
 
 
-<figure class="s-float-right s-no-margin-vertical">
+<figure class="margin-none float-right">
     <img alt="Photo of Jacob Peoples" title="Photo of Jacob Peoples"  src="https://jpeoples.github.io/me.png"  width="150"   height="150"  />
 </figure>
 <p>I am a computer science PhD student studying probabilistic deformable
@@ -111,9 +112,10 @@ preprocessing and statistical analysis of 3D shapes.</p>
 <li><a href="https://jpeoples.github.io/blog/rss.xml">Long posts</a></li>
 <li><a href="https://jpeoples.github.io/notes/rss.xml">Short notes</a></li>
 </ul>
-<p>See my academic CV below, or in <a href="https://jpeoples.github.io/web_cv.pdf">pdf</a></p>
+<p>See my academic CV below, or in <a href="https://jpeoples.github.io/web_cv.pdf">pdf</a> format.</p>
 
 
+<div class="cv">
 <hr />
 <h2>Education</h2>
 
@@ -367,24 +369,23 @@ preprocessing and statistical analysis of 3D shapes.</p>
 </dd>
 </dl>
 
+</div>
 
 
 
 
 
 </main>
-<hr />
-<footer class="s-center">
-    <nav class="s-link-no-visit">
-            <ul>
-        <li><a href="https://jpeoples.github.io/">Home</a></li>
-        <li><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li><a href="https://jpeoples.github.io/about/">About</a></li>
+<footer>
+    <nav class="no-visit nodecorate container-full-width text-center">
+            <ul class="list-no-bullet pad-none margin-v-none">
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
     </ul>
     </nav>
 </footer>
-
 
 
 
