@@ -15,7 +15,10 @@ ga('send', 'pageview');
 
     
 
+
     
+    
+        
     
     
         
@@ -25,26 +28,32 @@ ga('send', 'pageview');
 
     
     
+        
+    
+
+
+
+
 
     
-    <title>Running yst on Windows | Jacob Peoples</title>
+    <title>Note: December 06, 2019, 13:58 | Jacob Peoples</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
     
-    <meta name="description" content="Personal blog of Jacob Peoples" />
-    <meta property="og:description" content="Personal blog of Jacob Peoples" />
-    <meta property="og:title" content="Running yst on Windows" />
-    <meta property="og:url" content="https://jpeoples.github.io/blog/2015/11/yst_setup/" />
+    <meta name="description" content="I have added a now page: see here, or on the nav bar." />
+    <meta property="og:description" content="I have added a now page: see here, or on the nav bar." />
+    <meta property="og:title" content="Note: December 06, 2019, 13:58" />
+    <meta property="og:url" content="https://jpeoples.github.io/notes/2019-12-06-1/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://jpeoples.github.io/me.png" />
     <meta name="twitter:card" value="summary" />
     <meta name="twitter:site" value="@__jpeoples" />
-    <meta name="twitter:description" value="Personal blog of Jacob Peoples" />
+    <meta name="twitter:description" value="I have added a now page: see here, or on the nav bar." />
     <meta name="twitter:image" value="https://jpeoples.github.io/me.png" />
-    <meta name="twitter:title" value="Running yst on Windows" />
+    <meta name="twitter:title" value="Note: December 06, 2019, 13:58" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     
@@ -69,11 +78,9 @@ ga('send', 'pageview');
 <article class="post">
 
 
+<header>
 
-<header class="text-center text-body-sans">
-<h1>Running yst on Windows</h1>
-
-<p id="date" class="">November 22, 2015</p>
+<p id="date">From: December 06, 2019, 13:58</p>
 
 </header>
 <hr />
@@ -81,78 +88,10 @@ ga('send', 'pageview');
 
 
 
-<p><a href="https://github.com/jgm/yst">yst</a> is a static site generator by John McFarlane, the originator of
-the most utilitarian <a href="http://pandoc.org/">Pandoc</a>.  It is, as far as I can tell, very
-simple, and that simplicity is what drew me to consider switching the
-site over.  Even though I ultimately decided not to go with it, I did
-manage to get it set up and building the test site on my machine.  In
-that process I hit a few road-blocks, so I thought I'd put the details
-here in one place in case anyone else is having similar problems.</p>
-<h2 id="installing">Installing</h2>
-<p>The <a href="https://github.com/jgm/yst">readme</a> on github makes it sound so easy:</p>
-<div class="codehilite"><pre><span></span>cabal update
-cabal install yst
-</pre></div>
+<p>I have added a <a href="https://nownownow.com">now page</a>: see
+<a href="https://jpeoples.github.io/now/">here</a>, or on the nav bar.</p>
 
 
-<p>I did not get the error detailed in the readme regarding
-template-haskell dependencies.</p>
-<p>Instead, I had an error installing a dependency: hdbc-sqlite3.  It's a
-simple enough error -- you simply need to install sqlite3 on your system
--- but for me at least, nothing is obvious when it comes to Windows.</p>
-<p>After poking around on Google I found <a href="http://xyz.mmizzi.com/stuff/2014/11/3/install-hdbc-sqlite3-on-windows">this</a> post that
-explained the correct sqlite3 files to download to get hdbc-sqlite3 to
-build.  No worries.  Problem solved, right? Wrong.</p>
-<p>yst complains really fast if the sqlite3 dll is not on your path, so add
-it now.</p>
-<h2 id="first-run">First Run</h2>
-<p>After getting yst installed the next step in the read me is to generate
-the test site:</p>
-<div class="codehilite"><pre><span></span>yst create mysite
-</pre></div>
-
-
-<p>generates the test site source, then</p>
-<div class="codehilite"><pre><span></span>cd mysite
-yst
-</pre></div>
-
-
-<p>and voilà! Under the <code>site</code> subdirectory you have your static site.</p>
-<p>Right?  Wrong.</p>
-<p>Here's the output when I run yst:</p>
-<div class="codehilite"><pre><span></span>Updating site\js\nav.js
-Updating site\css\screen.css
-Updating site\css\print.css
-Updating site\css\hk-pyg.css
-Updating site\april_events.tex
-yst: site\april_events.tex: commitBuffer: invalid argument (invalid
-character)
-</pre></div>
-
-
-<p>Invalid character?</p>
-<p>The yst test site likes to show off it's unicode support, and this is
-the source of our issue.</p>
-<p>As detailed by the <a href="http://jaspervdj.be/hakyll/tutorials/faq.html">hakyll FAQ</a></p>
-<blockquote>
-<p>If you get any of the errors:</p>
-<p>commitBuffer: invalid argument (invalid character) </p>
-<p>or:</p>
-<p>hGetContents: invalid argument (Invalid or incomplete multibyte or wide
-   character)</p>
-<p>It means that your Hakyll executable couldn’t write to (in
-the former case) or read (in the latter) from an UTF-8 encoded file.</p>
-</blockquote>
-<p>So for some reason yst can't write unicode to the output file.</p>
-<p>I'm not sure why, but the same FAQ page provides a solution for Windows
-just a short ways down the page.  Running</p>
-<div class="codehilite"><pre><span></span>chcp 65001
-</pre></div>
-
-
-<p>before running <code>yst</code> solved the problem for me, and left me with a
-beautiful test site.</p>
 
 
 
@@ -185,8 +124,8 @@ beautiful test site.</p>
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
         var disqus_config = function () {
-            this.page.url = 'https://jpeoples.github.io/blog/2015/11/yst_setup/';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'https://jpeoples.github.io/blog/2015/11/yst_setup/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'https://jpeoples.github.io/notes/2019-12-06-1/';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'https://jpeoples.github.io/notes/2019-12-06-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
             var d = document, s = d.createElement('script');
