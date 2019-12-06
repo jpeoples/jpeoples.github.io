@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Jacob Peoples' Blog</title>
-    <link>http://localhost:8080/blog</link>
-    <atom:link href="http://localhost:8080/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://jpeoples.github.io/blog</link>
+    <atom:link href="https://jpeoples.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
     <description>Jacob Peoples' Web Log</description>
     
     <item>
         <title>Ephemerality and the Bus Ticket Theory of Genius</title>
-        <link>http://localhost:8080/blog/2019/12/ephemerality-bus-ticket-theory-of-genius/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2019/12/ephemerality-bus-ticket-theory-of-genius/</guid>
+        <link>https://jpeoples.github.io/blog/2019/12/ephemerality-bus-ticket-theory-of-genius/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/12/ephemerality-bus-ticket-theory-of-genius/</guid>
         <pubDate>Mon, 02 Dec 2019 21:01:56 -0000</pubDate>
         <description>
 
@@ -113,8 +113,8 @@ new connections, and the gradual emergence of a body of work.&lt;/p&gt;
     
     <item>
         <title>Creativity as a Search Problem: A Speculative Mental Model</title>
-        <link>http://localhost:8080/blog/2019/11/creativity-space/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2019/11/creativity-space/</guid>
+        <link>https://jpeoples.github.io/blog/2019/11/creativity-space/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/11/creativity-space/</guid>
         <pubDate>Thu, 21 Nov 2019 17:38:20 -0000</pubDate>
         <description>
 
@@ -232,7 +232,7 @@ skill to navigate toward that region of the space successfully. Instead,
 we set out in our best guess of the right direction, but quickly get
 lost.&lt;/p&gt;
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;http://localhost:8080/blog/2019/11/false-start.jpg&#34;  width=&#34;500&#34;   /&gt;
+    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;https://jpeoples.github.io/blog/2019/11/false-start.jpg&#34;  width=&#34;500&#34;   /&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;The nearly-finish experience manifests as having a vision for what our
@@ -243,7 +243,7 @@ much closer, are able to make our way there with relative ease. That
 said, we may, if we don&#39;t yet have enough experience to realize our
 vision, still not be able to get unstuck.&lt;/p&gt;
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;http://localhost:8080/blog/2019/11/nfcl.jpg&#34;  width=&#34;500&#34;   /&gt;
+    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;https://jpeoples.github.io/blog/2019/11/nfcl.jpg&#34;  width=&#34;500&#34;   /&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Finally, inspired creativity looks a lot like the complete-later phase
@@ -252,7 +252,7 @@ vague vision is longer. But if the vision is within our grasp at our
 current experience level, we are able to navigate into the general
 region fairly easily.&lt;/p&gt;
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;http://localhost:8080/blog/2019/11/inspired-creativity.jpg&#34;  width=&#34;500&#34;   /&gt;
+    &lt;img alt=&#34;Illustration of a false start&#34; title=&#34;Illustration of a false start&#34;  src=&#34;https://jpeoples.github.io/blog/2019/11/inspired-creativity.jpg&#34;  width=&#34;500&#34;   /&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;In the cases where we successfully make it to the region of the space
@@ -389,8 +389,8 @@ when doing is the best way to get better.&lt;/p&gt;
     
     <item>
         <title>What if this Web Service Dies? Connecting &#34;Service Anxiety&#34; and Information Overload</title>
-        <link>http://localhost:8080/blog/2019/11/service-anxiety-information-overload/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2019/11/service-anxiety-information-overload/</guid>
+        <link>https://jpeoples.github.io/blog/2019/11/service-anxiety-information-overload/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/11/service-anxiety-information-overload/</guid>
         <pubDate>Wed, 06 Nov 2019 17:26:56 -0000</pubDate>
         <description>
 
@@ -674,8 +674,8 @@ best justification.&lt;/p&gt;
     
     <item>
         <title>Pinpoint Bugs Based on Data, Not Intuition</title>
-        <link>http://localhost:8080/blog/2019/10/debugging-pinpoint-with-data/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2019/10/debugging-pinpoint-with-data/</guid>
+        <link>https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/</guid>
         <pubDate>Wed, 23 Oct 2019 22:43:01 -0000</pubDate>
         <description>
 
@@ -757,8 +757,8 @@ in your side.&lt;/p&gt;
     
     <item>
         <title>MATLAB: boxplot and isoutlier disagree about outliers</title>
-        <link>http://localhost:8080/blog/2019/09/24/matlab-boxplot-outliers/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2019/09/24/matlab-boxplot-outliers/</guid>
+        <link>https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/</guid>
         <pubDate>Tue, 24 Sep 2019 00:00:00 -0000</pubDate>
         <description>
 
@@ -767,7 +767,7 @@ deviations, while &lt;a href=&#34;https://www.mathworks.com/help/stats/boxplot.h
 &lt;p&gt;Suppose I have some data in an &lt;code&gt;N&lt;/code&gt; by 10 array and pass it to matlab&#39;s
 &lt;code&gt;boxplot&lt;/code&gt;. By default, I get&lt;/p&gt;
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;default boxplot&#34; title=&#34;default boxplot&#34;  src=&#34;http://localhost:8080/blog/2019/09/24/boxplot.png&#34;   /&gt;
+    &lt;img alt=&#34;default boxplot&#34; title=&#34;default boxplot&#34;  src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot.png&#34;   /&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Suppose I want to extract the statistics that MATLAB uses to generate the
@@ -804,7 +804,7 @@ symbol.&lt;/p&gt;
 
 &lt;p&gt;But here is the result.&lt;/p&gt;
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;incorrect boxplot_statistics results&#34; title=&#34;incorrect boxplot_statistics results&#34;  src=&#34;http://localhost:8080/blog/2019/09/24/boxplot_wrong.png&#34;   /&gt;
+    &lt;img alt=&#34;incorrect boxplot_statistics results&#34; title=&#34;incorrect boxplot_statistics results&#34;  src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong.png&#34;   /&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;I&#39;ve plotted the predicted tops and bottoms of the boxes in blue, the
@@ -830,7 +830,7 @@ like to be able to handle that too. Hence the final answer is:&lt;/p&gt;
 &lt;script src=&#34;https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js&#34;&gt;&lt;/script&gt;
 
 &lt;figure class=&#34;text-center&#34;&gt;
-    &lt;img alt=&#34;correct boxplot_statistics results&#34; title=&#34;correct boxplot_statistics results&#34;  src=&#34;http://localhost:8080/blog/2019/09/24/boxplot_right.png&#34;   /&gt;
+    &lt;img alt=&#34;correct boxplot_statistics results&#34; title=&#34;correct boxplot_statistics results&#34;  src=&#34;https://jpeoples.github.io/blog/2019/09/24/boxplot_right.png&#34;   /&gt;
 &lt;/figure&gt;
 
 </description>
@@ -838,8 +838,8 @@ like to be able to handle that too. Hence the final answer is:&lt;/p&gt;
     
     <item>
         <title>Abuse of the Equals Sign</title>
-        <link>http://localhost:8080/blog/2018/02/equals/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2018/02/equals/</guid>
+        <link>https://jpeoples.github.io/blog/2018/02/equals/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2018/02/equals/</guid>
         <pubDate>Fri, 09 Feb 2018 00:00:00 -0000</pubDate>
         <description>
 
@@ -921,8 +921,8 @@ they are correct.&lt;/p&gt;
     
     <item>
         <title>A brainfuck interpreter in C</title>
-        <link>http://localhost:8080/blog/2017/11/brainfuck/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2017/11/brainfuck/</guid>
+        <link>https://jpeoples.github.io/blog/2017/11/brainfuck/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/11/brainfuck/</guid>
         <pubDate>Wed, 01 Nov 2017 00:00:00 -0000</pubDate>
         <description>
 
@@ -1076,8 +1076,8 @@ I might look at some of these things in a future post.&lt;/p&gt;
     
     <item>
         <title>Lying cat: Bizarre Filesystem Behaviour</title>
-        <link>http://localhost:8080/blog/2017/05/bizarre_fs/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2017/05/bizarre_fs/</guid>
+        <link>https://jpeoples.github.io/blog/2017/05/bizarre_fs/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2017/05/bizarre_fs/</guid>
         <pubDate>Fri, 05 May 2017 00:00:00 -0000</pubDate>
         <description>
 
@@ -1146,8 +1146,8 @@ cat path/to/post | less
     
     <item>
         <title>Extending Arun&#39;s Method for Least Square Point Set Fitting with Isotropic Scaling</title>
-        <link>http://localhost:8080/blog/2016/06/extending_arun_method/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2016/06/extending_arun_method/</guid>
+        <link>https://jpeoples.github.io/blog/2016/06/extending_arun_method/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/extending_arun_method/</guid>
         <pubDate>Thu, 30 Jun 2016 00:00:00 -0000</pubDate>
         <description>
 
@@ -1328,8 +1328,8 @@ as required.&lt;/p&gt;
     
     <item>
         <title>PATHMAN -- A Simple Path Manager for MATLAB</title>
-        <link>http://localhost:8080/blog/2016/06/pathman/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2016/06/pathman/</guid>
+        <link>https://jpeoples.github.io/blog/2016/06/pathman/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2016/06/pathman/</guid>
         <pubDate>Tue, 28 Jun 2016 00:00:00 -0000</pubDate>
         <description>
 
@@ -1465,8 +1465,8 @@ help(pathman)
     
     <item>
         <title>Running yst on Windows</title>
-        <link>http://localhost:8080/blog/2015/11/yst_setup/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2015/11/yst_setup/</guid>
+        <link>https://jpeoples.github.io/blog/2015/11/yst_setup/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/11/yst_setup/</guid>
         <pubDate>Sun, 22 Nov 2015 00:00:00 -0000</pubDate>
         <description>
 
@@ -1550,8 +1550,8 @@ beautiful test site.&lt;/p&gt;
     
     <item>
         <title>A dead simple argument parser for MATLAB</title>
-        <link>http://localhost:8080/blog/2015/06/ezparse/</link>
-        <guid isPermaLink="true">http://localhost:8080/blog/2015/06/ezparse/</guid>
+        <link>https://jpeoples.github.io/blog/2015/06/ezparse/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/blog/2015/06/ezparse/</guid>
         <pubDate>Thu, 25 Jun 2015 00:00:00 -0000</pubDate>
         <description>
 

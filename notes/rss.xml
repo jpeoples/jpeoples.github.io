@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>Jacob Peoples' MicroBlog</title>
-    <link>http://localhost:8080/notes</link>
-    <atom:link href="http://localhost:8080/notes/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://jpeoples.github.io/notes</link>
+    <atom:link href="https://jpeoples.github.io/notes/rss.xml" rel="self" type="application/rss+xml" />
     <description>Jacob Peoples' Micro Web Log</description>
     
     <item>
         
-        <link>http://localhost:8080/notes/2019-12-06-1/</link>
-        <guid isPermaLink="true">http://localhost:8080/notes/2019-12-06-1/</guid>
+        <link>https://jpeoples.github.io/notes/2019-12-06-1/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-12-06-1/</guid>
         <pubDate>Fri, 06 Dec 2019 13:58:42 -0000</pubDate>
         <description>
 
 
 
 &lt;p&gt;I have added a &lt;a href=&#34;https://nownownow.com&#34;&gt;now page&lt;/a&gt;: see
-&lt;a href=&#34;http://localhost:8080/now/&#34;&gt;here&lt;/a&gt;, or on the nav bar.&lt;/p&gt;
+&lt;a href=&#34;https://jpeoples.github.io/now/&#34;&gt;here&lt;/a&gt;, or on the nav bar.&lt;/p&gt;
 
 
 
@@ -26,8 +26,8 @@
     
     <item>
         
-        <link>http://localhost:8080/notes/2019-10-17/</link>
-        <guid isPermaLink="true">http://localhost:8080/notes/2019-10-17/</guid>
+        <link>https://jpeoples.github.io/notes/2019-10-17/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-10-17/</guid>
         <pubDate>Thu, 17 Oct 2019 18:03:38 -0000</pubDate>
         <description>
 
@@ -58,16 +58,16 @@
     
     <item>
         
-        <link>http://localhost:8080/notes/2019-09-22-1/</link>
-        <guid isPermaLink="true">http://localhost:8080/notes/2019-09-22-1/</guid>
+        <link>https://jpeoples.github.io/notes/2019-09-22-1/</link>
+        <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-09-22-1/</guid>
         <pubDate>Sun, 22 Sep 2019 20:56:49 -0000</pubDate>
         <description>
 
 
 
 &lt;p&gt;Support for short notes (like this) has been added to the blog.&lt;/p&gt;
-&lt;p&gt;To see all short notes, navigate to &lt;a href=&#34;http://localhost:8080/notes&#34;&gt;Notes&lt;/a&gt;. To see just
-the posts go to &lt;a href=&#34;http://localhost:8080/blog&#34;&gt;Posts&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To see all short notes, navigate to &lt;a href=&#34;https://jpeoples.github.io/notes&#34;&gt;Notes&lt;/a&gt;. To see just
+the posts go to &lt;a href=&#34;https://jpeoples.github.io/blog&#34;&gt;Posts&lt;/a&gt;.&lt;/p&gt;
 
 
 
