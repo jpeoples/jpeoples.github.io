@@ -153,6 +153,7 @@ if __name__ == "__main__":
     env.build((
         # now process index pages and rss
         (('blog/rss.jinja.xml', 'notes/rss.jinja.xml', 'shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.full_render)),
+        (('*.swp',), None),
         (('*index.jinja.*'), (jssg.remove_internal_extensions, jinja_file.full_render)),
         # but ignore the rest of the blog files
         (('blog/*', 'notes/*', '*.swp'), None),

@@ -8,9 +8,9 @@
 You can subscribe via the [RSS feed]({{base_url}}notes/rss.xml).
 {% endfilter %}
 {% call(post) macros.grouped_page_list(notes) %}
-    <a href="{{post.fullhref}}">{{post.date | format_datetime}}</a>
+{{post.date | format_date}}, <a href="{{post.fullhref}}">{{ (post.date | format_datetime).split()[3]}}</a>
     {% if post.description is defined %}
-        <blockquote class="s-no-margin-horizontal s-no-margin-vertical">
+        <blockquote>
             {{post.description}}
             {% if not post.description_is_full %}
                 <p><a href="{{post.fullhref}}">Read More</a></p>

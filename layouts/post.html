@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% import "layouts/macros.html" as macros %}
 
 {% block metadata scoped %}
     {{super()}}
@@ -9,18 +10,12 @@
 {% endblock %}
 
 {% block content_header %}
-<header class="s-center">
-<h1>{{title}}</h1>
-{% if date is defined %}
-<p id="date", class="s-gray">{{date | format_date}}</p>
-{% endif %}
-</header>
-<hr />
+{{ macros.header(title, date | format_date, "date") }}
 {% endblock %}
 
 
 {% block main %}
-<article>
+<article class="post">
 {{ super() }}
 </article>
 {% endblock %}

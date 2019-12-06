@@ -9,6 +9,6 @@
 You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
 {% endfilter %}
 {% call(post) macros.grouped_page_list(posts) %}
-      <a href="{{post.fullhref}}">{{post.date | format_date}} &ndash; {{post.title}}</a>
+      {{post.date | format_date}} &ndash; <a href="{{post.fullhref}}">{{post.title}}</a>
 {% endcall %}
 {% endblock %}

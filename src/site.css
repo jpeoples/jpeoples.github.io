@@ -244,6 +244,9 @@ svg:not(:root) {
 
 html { font-size: 62.5%; }
 
+body { font-size: 1.7rem; }
+
+/*
 body {
     max-width: 960px;
     font-size: 1.7rem;
@@ -257,7 +260,108 @@ body {
     padding-left: 0;
     padding-right: 0;
 }
+*/
+/*
+ * Arranged from lightest to darkest!
+ * Blue
+ *
+BLUE
+.color-primary-1 { color: #C5CDE0 }
+.color-primary-2 { color: #A1AECB }
+.color-primary-0 { color: #7C8DB3 }
+.color-primary-3 { color: #5D719E }
+.color-primary-4 { color: #42588B }
 
+PURPLE
+.color-secondary-1-1 { color: #CDC7E1 }
+.color-secondary-1-2 { color: #AEA4CE }
+.color-secondary-1-0 { color: #8D80B7 }
+.color-secondary-1-3 { color: #7060A3 }
+.color-secondary-1-4 { color: #56458E }
+
+GREEN
+.color-secondary-2-1 { color: #BCD9D9 }
+.color-secondary-2-2 { color: #93C0C0 }
+.color-secondary-2-0 { color: #6BA3A3 }
+.color-secondary-2-3 { color: #4D8E8E }
+.color-secondary-2-4 { color: #347C7C }
+*/
+
+.text-h-sans h1,
+.text-h-sans h2,
+.text-h-sans h3,
+.text-h-sans h4,
+.text-h-sans h5,
+.text-body-sans
+{ font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.text-h-serif h1,
+.text-h-serif h2,
+.text-h-serif h3,
+.text-h-serif h4,
+.text-h-serif h5,
+.text-body-serif
+{ font-family:  "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif; }
+.text-h-tt h1,
+.text-h-tt h2,
+.text-h-tt h3,
+.text-h-tt h4,
+.text-h-tt h5,
+.text-body-tt
+{ font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace; }
+
+
+.text-black { color: #000; }
+.text-white { color: #fff; }
+
+.text-blue-lightest { color: #C5CDE0 }
+.text-blue-light    { color: #A1AECB }
+.text-blue-mid      { color: #7C8DB3 }
+.text-blue-dark     { color: #5D719E }
+.text-blue-darkest  { color: #42588B }
+
+
+.text-linespace-small { line-height: 1; }
+.text-linespace-mid   { line-height: 1.5; }
+
+.text-center { text-align:center; }
+
+.bg-blue-lightest { background: #C5CDE0 }
+.bg-blue-light    { background: #A1AECB }
+.bg-blue-mid      { background: #7C8DB3 }
+.bg-blue-dark     { background: #5D719E }
+.bg-blue-darkest  { background: #42588B }
+
+.container-full-width { width: 95%; max-width: 800px; margin: 0 auto; padding-left: 0; padding-right: 0; }
+.border-thin { border-width: 0.25px; }
+.border-top-bot { border-top: 0.5px solid white; border-bottom: 0.5px solid white; }
+
+
+.float-right { float: right }
+
+.list-no-bullet { list-style: none; }
+.display-inline-block { display: inline-block; }
+
+.margin-v-none { margin-top: 0rem; margin-bottom: 0rem; }
+.margin-none { margin: 0rem; }
+
+.pad-mid { padding: 1rem; }
+.pad-h-mid { padding-left: 1rem; padding-right: 1rem; }
+.pad-v-less { padding-top: 0.5rem; padding-top: 0.5rem; }
+
+.pad-none { padding: 0rem; }
+
+.green-link a { color: #BCD9D9; }
+.green-link a:visited { color: #93C0C0; }
+.green-link a:hover { color: #fff;  }
+.green-link .novisit a:visited { color: #BCD9D9; }
+.green-link .nodecorate a { text-decoration: none; }
+
+.post blockquote ul:last-of-type {
+    list-style:none; padding-left: none; padding-top: 0rem; margin-top: 0rem; text-align: right;
+}
+
+.post blockquote ul:last-of-type li::before { content: "—"; }
+.post img { max-width: 100%; }
 
 /* Larger than mobile */
 @media (min-width: 400px) {}
@@ -275,54 +379,16 @@ body {
 @media (min-width: 1200px) {}
 
 
-.s-center { text-align:center; }
-.s-gray { color:#555; }
-.s-link-no-visit a:visited { color: #1e7fBd; }
-.s-link-no-visit a:hover { color: #333;  }
-.s-pad-above { padding-top: 10px; }
-.s-pad-small { padding: 2px; }
-.s-float-right { float: right }
-.s-no-style-list { list-style-type: none; padding-left: 0; padding-right: 0;}
-.s-no-margin-horizontal { margin-left: 0; margin-right: 0;}
-.s-no-margin-vertical {margin-top: 0rem; margin-bottom: 0rem;}
-.s-no-margin-bottom {margin-bottom: 0rem;}
-.s-no-margin-top {margin-top: 0rem;}
-.s-pad-medium-vertical {padding-top: 0.5rem; padding-bottom: 0.5rem;}
-.s-border {border: 1px solid black; }
-
-a { color: #1e7fBd; }
-a:visited { color: #0e4f7d; }
-a:hover { color: #333;  }
-
-nav { margin-left: auto; margin-right: auto; text-align: center; line-height: 1em;}
-nav ul { padding-left: 0; margin-top: 10px; list-style: none; display: inline-block; }
-nav ul li { display: inline-block; padding-right: 10px; padding-left:10px; }
-
-
-nav a{ text-decoration: none; }
-
 pre { overflow: auto; padding-left: 5px; padding-right: 5px; }
-blockquote {
-    overflow: auto;
-    padding: 0.0rem 1rem;
-    margin-left:  2rem;
-    margin-right: 0rem;
-    white-space: wrap;
-    background: #F8F8F8;
-    border-left: 7px solid #ccc;
-    border-radius: 4px;
-}
-blockquote p:first-child { padding-top: 0rem; margin-top: 0.1rem; }
-blockquote p:last-child { padding-bottom: 0rem; margin-bottom: 0.1rem; }
 
-hr {
-    border-width: 0;
-    border-top: 1px solid #DDD;
+code {
+  font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
 }
 
-code, .codehilite {
+.codehilite pre {
   font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
   font-size: 90%;
+  color: #000;
   }
 
 
@@ -396,3 +462,5 @@ code, .codehilite {
 .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
 .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
 .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+

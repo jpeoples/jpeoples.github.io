@@ -84,17 +84,16 @@ ga('send', 'pageview');
     <meta charset="UTF-8" />
     {% endblock %}
 </head>
-<body>
-{#<div class="container"> #}
-<header class="s-center s-pad-above">
-    <nav class="s-link-no-visit">
+<body class="container-full-width bg-blue-dark text-white green-link text-body-sans">
+    <!--<header class="s-center s-pad-above">-->
+<header class="">
+    <nav class="no-visit nodecorate container-full-width text-center" >
     {% block nav %}
       {% include "layouts/main_nav.html" %}
     {% endblock %}
     </nav>
 </header>
-<hr />
-<main>
+<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
 {% block main %}
 {% block content_header %}
 {% endblock %}
@@ -102,9 +101,8 @@ ga('send', 'pageview');
 {% endblock %}
 {% endblock %}
 </main>
-<hr />
-<footer class="s-center">
-    <nav class="s-link-no-visit">
+<footer>
+    <nav class="no-visit nodecorate container-full-width text-center">
         {% include "layouts/main_nav.html" %}
     </nav>
 </footer>
@@ -112,7 +110,6 @@ ga('send', 'pageview');
 {% block footer_scripts %}
 {% endblock %}
 
-{#</div> #}
 
 </body>
 

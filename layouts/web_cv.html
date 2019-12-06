@@ -12,30 +12,26 @@
 
 
 {% extends "layouts/base.html" %}
+{% import "layouts/macros.html" as macros %}
 
 {%block head %}
 {{ super()  }}
 <style>
-dl { display: grid; grid-template-columns: max-content 1fr; }
-dd { margin-left: 1em;}
-dt { text-align: right; }
-dl dd div.s-float-right { display: block; float: right; text-align: right; }
-ul { list-style-position: inside; padding-left: 0; margin-top: 0.1em; margin-bottom: 0.1em;}
+.cv dl { display: grid; grid-template-columns: max-content 1fr; }
+.cv dd { margin-left: 1em;}
+.cv dt { text-align: right; }
+.cv dl dd div.s-float-right { display: block; float: right; text-align: right; }
+.cv ul { list-style-position: inside; padding-left: 0; margin-top: 0.1em; margin-bottom: 0.1em;}
 </style>
 {% endblock %}
 
 
 {% block content_header %}
-<header class="s-center">
-<h1>
-Jacob J. Peoples
-</h1>
-<p class="s-gray">PhD Candidate, Queen's University</p>
-</header>
-
+{{ macros.header("Jacob J. Peoples","PhD Candidate, Queen's University") }}
 {% endblock %}
 
 {% block content %}
+<div class="cv">
 <hr />
 <h2>Education</h2>
 
@@ -289,5 +285,6 @@ Jacob J. Peoples
 </dd>
 </dl>
 
+</div>
 
 {% endblock %}
