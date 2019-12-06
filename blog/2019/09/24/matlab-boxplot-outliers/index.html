@@ -1,18 +1,6 @@
 <html lang="en">
 <head>
 
-<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-149472152-1', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
-
     
 
     
@@ -39,34 +27,34 @@ ga('send', 'pageview');
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
+    <link rel="stylesheet" href="http://localhost:8080/site.css" />
     
     <meta name="description" content="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
     <meta property="og:description" content="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
     <meta property="og:title" content="MATLAB: boxplot and isoutlier disagree about outliers" />
-    <meta property="og:url" content="https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/" />
+    <meta property="og:url" content="http://localhost:8080/blog/2019/09/24/matlab-boxplot-outliers/" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong_wtf.png" />
+    <meta property="og:image" content="http://localhost:8080/blog/2019/09/24/boxplot_wrong_wtf.png" />
     <meta name="twitter:card" value="summary" />
     <meta name="twitter:site" value="@__jpeoples" />
     <meta name="twitter:description" value="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
-    <meta name="twitter:image" value="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong_wtf.png" />
+    <meta name="twitter:image" value="http://localhost:8080/blog/2019/09/24/boxplot_wrong_wtf.png" />
     <meta name="twitter:title" value="MATLAB: boxplot and isoutlier disagree about outliers" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     
 </head>
-<body class="container-full-width bg-blue-dark text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-dark text-white green-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
-<header class="">
-    <nav class="no-visit nodecorate container-full-width text-center" >
+<header>
+    <nav class="no-visit nodecorate container-full-width text-center pad-none" >
     
-          <ul class="list-no-bullet pad-none margin-v-none">
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/now/">Now</a></li>
+          <ul class="list-no-bullet pad-none margin-none">
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/about/">About</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/now/">Now</a></li>
     </ul>
     
     </nav>
@@ -92,7 +80,7 @@ deviations, while <a href="https://www.mathworks.com/help/stats/boxplot.html"><c
 <p>Suppose I have some data in an <code>N</code> by 10 array and pass it to matlab's
 <code>boxplot</code>. By default, I get</p>
 <figure class="text-center">
-    <img alt="default boxplot" title="default boxplot"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot.png"   />
+    <img alt="default boxplot" title="default boxplot"  src="http://localhost:8080/blog/2019/09/24/boxplot.png"   />
 </figure>
 
 <p>Suppose I want to extract the statistics that MATLAB uses to generate the
@@ -129,7 +117,7 @@ symbol.</p>
 
 <p>But here is the result.</p>
 <figure class="text-center">
-    <img alt="incorrect boxplot_statistics results" title="incorrect boxplot_statistics results"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong.png"   />
+    <img alt="incorrect boxplot_statistics results" title="incorrect boxplot_statistics results"  src="http://localhost:8080/blog/2019/09/24/boxplot_wrong.png"   />
 </figure>
 
 <p>I've plotted the predicted tops and bottoms of the boxes in blue, the
@@ -155,7 +143,7 @@ like to be able to handle that too. Hence the final answer is:</p>
 <script src="https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js"></script>
 
 <figure class="text-center">
-    <img alt="correct boxplot_statistics results" title="correct boxplot_statistics results"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot_right.png"   />
+    <img alt="correct boxplot_statistics results" title="correct boxplot_statistics results"  src="http://localhost:8080/blog/2019/09/24/boxplot_right.png"   />
 </figure>
 
 
@@ -163,13 +151,13 @@ like to be able to handle that too. Hence the final answer is:</p>
 
 </main>
 <footer>
-    <nav class="no-visit nodecorate container-full-width text-center">
-            <ul class="list-no-bullet pad-none margin-v-none">
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/">Home</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/blog/">Posts</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/notes/">Notes</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/about/">About</a></li>
-        <li class="display-inline-block pad-mid"><a href="https://jpeoples.github.io/now/">Now</a></li>
+    <nav class="no-visit nodecorate container-full-width text-center pad-none">
+            <ul class="list-no-bullet pad-none margin-none">
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/">Home</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/blog/">Posts</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/notes/">Notes</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/about/">About</a></li>
+        <li class="display-inline-block pad-mid"><a href="http://localhost:8080/now/">Now</a></li>
     </ul>
     </nav>
 </footer>
@@ -188,8 +176,8 @@ like to be able to handle that too. Hence the final answer is:</p>
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
         var disqus_config = function () {
-            this.page.url = 'https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'http://localhost:8080/blog/2019/09/24/matlab-boxplot-outliers/';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = 'http://localhost:8080/blog/2019/09/24/matlab-boxplot-outliers/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
             var d = document, s = d.createElement('script');
