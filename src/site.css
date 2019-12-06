@@ -356,6 +356,7 @@ GREEN
 .green-link a:visited { color: #93C0C0; }
 .green-link a:hover { color: #fff;  }
 .green-link .novisit a:visited { color: #BCD9D9; }
+.green-link .novisit a:hover { color: #fff;  }
 .green-link .nodecorate a { text-decoration: none; }
 
 .post blockquote ul:last-of-type {
