@@ -8,14 +8,14 @@
 You can subscribe via the [RSS feed]({{base_url}}notes/rss.xml).
 {% endfilter %}
 {% call(post) macros.grouped_page_list(notes) %}
-{{post.date | format_date}}, <a href="{{post.fullhref}}">{{ (post.date | format_datetime).split()[3]}}</a>
-    {% if post.description is defined %}
-        <blockquote>
-            {{post.description}}
-            {% if not post.description_is_full %}
-                <p><a href="{{post.fullhref}}">Read More</a></p>
-            {% endif%}
-        </blockquote>
-    {% endif %}
+<details open>
+    <summary>{{post.date | format_date}}, <a href="{{post.fullhref}}">{{ (post.date | format_datetime).split()[3]}}</a></summary>
+    <blockquote>
+        {{post.description}}
+        {% if not post.description_is_full %}
+            <p><a href="{{post.fullhref}}">Read More</a></p>
+        {% endif%}
+    </blockquote>
+</details>
 {% endcall %}
 {% endblock %}
