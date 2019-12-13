@@ -5,7 +5,7 @@
 {% import "layouts/macros.html" as macros %}
 
 {% block content_header %}
-{{macros.header("What I'm Doing Now", "Last updated: 2019-12-06")}}
+{{macros.header("What I'm Doing Now", "Last updated: 2019-12-13")}}
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,8 @@ I am currently writing my PhD thesis in computer science at Queen's
 University, with an expectation to graduate in the summer of 2020.
 
 **I am actively looking for work opportunities, ideally to start in
-August or September 2020.**
+August or September 2020.** I am located in Ontario, Canada, but am
+**open to relocation, especially within North America**.
 
 If you are interested, please contact me on [LinkedIn][my_linkedin],
 [Twitter][my_twitter], or email me at `jacobjpeoples` at gmail.
@@ -39,7 +40,8 @@ In addition to technical skills, my PhD has required me to develop
 * Project management;
 * Time management;
 * Writing and communication;
-* Public speaking; and
+* Public speaking;
+* Moving from idea to implementation to application; and
 * Execution in the face of considerable uncertainty.
 
 I have **presented my research at an international conference** ([IPCAI
