@@ -325,11 +325,13 @@ GREEN
 
 .text-center { text-align:center; }
 
+.bg-white { background: #fff; }
 .bg-blue-lightest { background: #C5CDE0 }
 .bg-blue-light    { background: #A1AECB }
 .bg-blue-mid      { background: #7C8DB3 }
 .bg-blue-dark     { background: #5D719E }
-.bg-blue-darkest  { background: #42588B }
+.bg-blue-darker  { background: #42588B }
+.bg-blue-darkest { background: #0A3448; }
 
 .width-95p { width: 95%; }
 .container-full-width { max-width: 800px; margin: 0 auto; padding-left: 0; padding-right: 0; }
