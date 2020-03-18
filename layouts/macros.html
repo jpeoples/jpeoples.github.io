@@ -18,7 +18,7 @@
 {% macro grouped_page_list(pages) %}
 {% for year, items in pages | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
   <h2 class="">{{year}}</h2>
-  <ul class="list-no-bullet pad-none nodecorate">
+  <ul class="list-no-bullet pad-none">
     {% for post in items %}
     <li class="">
         {{caller(post)}}
