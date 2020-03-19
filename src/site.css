@@ -312,6 +312,7 @@ GREEN
 
 .text-black { color: #000; }
 .text-white { color: #fff; }
+.text-gray { color: #8998a6; }
 
 .text-blue-lightest { color: #C5CDE0 }
 .text-blue-light    { color: #A1AECB }
@@ -332,6 +333,7 @@ GREEN
 .bg-blue-dark     { background: #5D719E }
 .bg-blue-darker  { background: #42588B }
 .bg-blue-darkest { background: #0A3448; }
+.bg-blue-darkest { background: #16202b; }
 
 .width-95p { width: 95%; }
 .container-full-width { max-width: 800px; margin: 0 auto; padding-left: 0; padding-right: 0; }
@@ -361,12 +363,21 @@ GREEN
 .green-link .novisit a:hover { color: #fff;  }
 .green-link .nodecorate a { text-decoration: none; }
 
+.purple-link a { color: #7f45c4; }
+.purple-link a:visited { color: #8968b1;}
+.purple-link a:hover { color: #fff;  }
+.purple-link .novisit a:visited { color: #7f45c4; }
+.purple-link .novisit a:hover { color: #fff;  }
+.purple-link .nodecorate a { text-decoration: none; }
+
 .post blockquote ul:last-of-type {
     list-style:none; padding-left: none; padding-top: 0rem; margin-top: 0rem; text-align: right;
 }
 
 .post blockquote ul:last-of-type li::before { content: "—"; }
 .post img { max-width: 100%; }
+
+.post .headerlink { display: inline-block; float: right;}
 
 /* Larger than mobile */
 @media (min-width: 400px) {}

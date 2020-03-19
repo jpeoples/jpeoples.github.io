@@ -2,6 +2,7 @@ import sys
 
 #import jssg
 import jssg
+from jssg.jinja_utils import markdown_filter
 import pathlib
 import jinja2
 
@@ -111,6 +112,26 @@ if __name__ == "__main__":
             'format_datetime': format_dt,
             'ensure_fullhref': ensure_fullhref
         })
+
+    md_extensions = [
+        'markdown.extensions.extra',
+        'markdown.extensions.admonition',
+        'markdown.extensions.toc',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.smarty',
+        'mdx_math'
+    ]
+    md_extension_configs = {
+            'markdown.extensions.codehilite': {'guess_lang': False},
+            'markdown.extensions.toc': {
+                "permalink": True,
+                "baselevel": 2
+                },
+            'mdx_math': {'enable_dollar_delimiter': True}
+    }
+
+    mdfilter = markdown_filter(extensions=md_extensions, extension_configs=md_extension_configs)
+    env.jinja_filters['markdown'] = mdfilter
 
     jinja_file = env.jinja.add_render_context(
             {"css": "site.css", "base_url": base_url}).add_immediate_context(
