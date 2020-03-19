@@ -41,22 +41,22 @@ ga('send', 'pageview');
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
     
-    <meta name="description" content="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
-    <meta property="og:description" content="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
+    <meta name="description" content="MATLAB’s boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
+    <meta property="og:description" content="MATLAB’s boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
     <meta property="og:title" content="MATLAB: boxplot and isoutlier disagree about outliers" />
     <meta property="og:url" content="https://jpeoples.github.io/blog/2019/09/24/matlab-boxplot-outliers/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong_wtf.png" />
     <meta name="twitter:card" value="summary" />
     <meta name="twitter:site" value="@__jpeoples" />
-    <meta name="twitter:description" value="MATLAB's boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
+    <meta name="twitter:description" value="MATLAB’s boxplot function will explicitly show outliers by default. These outliers are chosen differently than the default isoutlier behaviour." />
     <meta name="twitter:image" value="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong_wtf.png" />
     <meta name="twitter:title" value="MATLAB: boxplot and isoutlier disagree about outliers" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     
 </head>
-<body class="width-95p container-full-width bg-blue-darkest text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-darkest text-white purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
@@ -71,7 +71,7 @@ ga('send', 'pageview');
     
     </nav>
 </header>
-<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
+<main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 
 <article class="post">
 
@@ -80,7 +80,7 @@ ga('send', 'pageview');
 <header class="text-center text-body-sans">
 <h1>MATLAB: <code>boxplot</code> and <code>isoutlier</code> disagree about outliers</h1>
 
-<p id="date" class="">September 24, 2019</p>
+<p id="date" class="text-gray ">September 24, 2019</p>
 
 </header>
 <hr />
@@ -89,7 +89,7 @@ ga('send', 'pageview');
 
 <p><em>TL;DR: <a href="https://www.mathworks.com/help/matlab/ref/isoutlier.html"><code>isoutlier</code></a> classifies outliers based on scaled mean absolute
 deviations, while <a href="https://www.mathworks.com/help/stats/boxplot.html"><code>boxplot</code></a> is based on interquartile range.</em></p>
-<p>Suppose I have some data in an <code>N</code> by 10 array and pass it to matlab's
+<p>Suppose I have some data in an <code>N</code> by 10 array and pass it to matlab&rsquo;s
 <code>boxplot</code>. By default, I get</p>
 <figure class="text-center">
     <img alt="default boxplot" title="default boxplot"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot.png"   />
@@ -101,11 +101,11 @@ plot. According to the <a href="https://www.mathworks.com/help/stats/boxplot.htm
 <p>the central mark indicates the median, and the bottom and top edges of
 the box indicate the 25th and 75th percentiles, respectively. The
 whiskers extend to the most extreme data points not considered
-outliers, and the outliers are plotted individually using the '+'
+outliers, and the outliers are plotted individually using the &lsquo;+&rsquo;
 symbol.</p>
 </blockquote>
 <p>Using simple MATLAB built-ins I might then write</p>
-<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[q1,q2,q3,w0,w1,outliers] <span class="p">=</span><span class="w"> </span><span class="nf">boxplot_statistics</span><span class="p">(</span>data<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[q1,q2,q3,w0,w1,outliers] <span class="p">=</span><span class="w"> </span><span class="nf">boxplot_statistics</span><span class="p">(</span>data<span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="c">% quantile(data,3) will return the 25th, 50th, and 75th percentile</span>
     <span class="c">% for each column</span>
@@ -123,8 +123,8 @@ symbol.</p>
     <span class="n">data</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span> <span class="p">=</span> <span class="n">NaN</span><span class="p">;</span>
     <span class="n">w0</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,[],</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">w1</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,[],</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">end</span>
-</pre></div>
+<span class="n">end</span>
+</code></pre></div>
 
 
 <p>But here is the result.</p>
@@ -132,16 +132,16 @@ symbol.</p>
     <img alt="incorrect boxplot_statistics results" title="incorrect boxplot_statistics results"  src="https://jpeoples.github.io/blog/2019/09/24/boxplot_wrong.png"   />
 </figure>
 
-<p>I've plotted the predicted tops and bottoms of the boxes in blue, the
+<p>I&rsquo;ve plotted the predicted tops and bottoms of the boxes in blue, the
 medians in red, the whiskers in green, and the outliers in cyan. Notice
 how the predicted outliers (cyan) drop below the actual whisker in
 several places (and as a result the predicted upper whisker (green) is
 also too low).</p>
 <p>What gives?</p>
 <p>Digging deeper into the <code>boxplot</code> documentation, there is a parameter
-'Whisker' with default value 1.5:</p>
+&lsquo;Whisker&rsquo; with default value 1.5:</p>
 <blockquote>
-<p>Maximum whisker length, specified as the comma-separated pair consisting of 'Whisker' and a positive numeric value.</p>
+<p>Maximum whisker length, specified as the comma-separated pair consisting of &lsquo;Whisker&rsquo; and a positive numeric value.</p>
 <p><code>boxplot</code> draws points as outliers if they are greater than <code>q3 + w × (q3 – q1)</code> or less than <code>q1 – w × (q3 – q1)</code></p>
 </blockquote>
 <p>Hence, <code>boxplot</code> classifies outliers as those values that are <code>w</code>
@@ -150,7 +150,7 @@ quartile ranges above the upper quartile or below the lower quartile.</p>
 more than 3 scaled median absolute deviations from the median.</a></p>
 <p>It turns out that if <code>w = 1.5</code> we can achieve the same outlier
 classification with <code>isoutlier(data, 'quartile')</code>.</p>
-<p>However, if we choose a custom value for the <code>Whisker</code> parameter, we'd
+<p>However, if we choose a custom value for the <code>Whisker</code> parameter, we&rsquo;d
 like to be able to handle that too. Hence the final answer is:</p>
 <script src="https://gist.github.com/jpeoples/c25f9cba36519b2c223349904961df57.js"></script>
 

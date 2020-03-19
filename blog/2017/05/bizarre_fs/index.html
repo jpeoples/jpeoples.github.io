@@ -49,7 +49,7 @@ ga('send', 'pageview');
     <meta charset="UTF-8" />
     
 </head>
-<body class="width-95p container-full-width bg-blue-darkest text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-darkest text-white purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
@@ -64,7 +64,7 @@ ga('send', 'pageview');
     
     </nav>
 </header>
-<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
+<main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 
 <article class="post">
 
@@ -73,7 +73,7 @@ ga('send', 'pageview');
 <header class="text-center text-body-sans">
 <h1>Lying cat: Bizarre Filesystem Behaviour</h1>
 
-<p id="date" class="">May 05, 2017</p>
+<p id="date" class="text-gray ">May 05, 2017</p>
 
 </header>
 <hr />
@@ -90,50 +90,50 @@ The usual.</p>
 <p>However, I noticed that the dates I wanted to appear underneath the
 title of blog posts were not showing up. I double checked the template,
 which seemed to be correct. It is a snippet like so:</p>
-<div class="codehilite"><pre><span></span>{% if formatted_date is defined %}
+<div class="codehilite"><pre><span></span><code>{% if formatted_date is defined %}
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;</span>{{formatted_date}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 {% endif %}
-</pre></div>
+</code></pre></div>
 
 
 <p>The odd thing was that in the rendered templates I was viewing in the
 browser, the actual result was:</p>
-<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
 
 
 <p>So somehow the <code>formated_date</code> variable was being defined, but was
-empty...</p>
-<p>Except it wasn't.</p>
+empty&hellip;</p>
+<p>Except it wasn&rsquo;t.</p>
 <p>I printed out the variable in the context dictionary just before
 rendering and saw the correct dates displayed for each post.</p>
-<h1 id="the-weird-part">The Weird Part</h1>
-<p>So far this is just a typical annoying bug story. Here's the weird part:</p>
+<h2 id="the-weird-part">The Weird Part<a class="headerlink" href="#the-weird-part" title="Permanent link">&para;</a></h2>
+<p>So far this is just a typical annoying bug story. Here&rsquo;s the weird part:</p>
 <p>I opened the file directly by double clicking it in the build directory
 and the page showed up in the browser, <em>with the date</em>, even though it
-wouldn't show up when browsing from the local server, which should have
+wouldn&rsquo;t show up when browsing from the local server, which should have
 been the same file. Even this I would have been happy to attribute to
 some weird browser behaviour, or some weird behaviour of the python http
-server. I don't know that much about web stuff in general so I can
+server. I don&rsquo;t know that much about web stuff in general so I can
 believe anything.</p>
-<p>But here's the thing. I closed the server and reopened it. Still the
-date didn't show up. Weird. So then I literally typed:</p>
-<div class="codehilite"><pre><span></span>cat path/to/post | less
-</pre></div>
+<p>But here&rsquo;s the thing. I closed the server and reopened it. Still the
+date didn&rsquo;t show up. Weird. So then I literally typed:</p>
+<div class="codehilite"><pre><span></span><code>cat path/to/post | less
+</code></pre></div>
 
 
-<p>and scrolled down to where the date should be. It still wasn't there.
+<p>and scrolled down to where the date should be. It still wasn&rsquo;t there.
 Meanwhile, I have the very same file open in the browser and it <em>is</em>.</p>
 <p>Then I go:</p>
-<div class="codehilite"><pre><span></span>pushd path/to/
+<div class="codehilite"><pre><span></span><code>pushd path/to/
 cat post | less
-</pre></div>
+</code></pre></div>
 
 
 <p>and sure enough, <em>the date shows up!</em>. Then:</p>
-<div class="codehilite"><pre><span></span>popd
+<div class="codehilite"><pre><span></span><code>popd
 cat path/to/post | less
-</pre></div>
+</code></pre></div>
 
 
 <p>and it still shows up!</p>

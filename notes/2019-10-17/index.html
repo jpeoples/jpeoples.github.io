@@ -43,22 +43,22 @@ ga('send', 'pageview');
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
     
-    <meta name="description" content="This is a trick I've been using in LaTeX recently when laying out grids of figures." />
-    <meta property="og:description" content="This is a trick I've been using in LaTeX recently when laying out grids of figures." />
+    <meta name="description" content="This is a trick I’ve been using in LaTeX recently when laying out grids of figures." />
+    <meta property="og:description" content="This is a trick I’ve been using in LaTeX recently when laying out grids of figures." />
     <meta property="og:title" content="Note: October 17, 2019, 18:03" />
     <meta property="og:url" content="https://jpeoples.github.io/notes/2019-10-17/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://jpeoples.github.io/my_name.png" />
     <meta name="twitter:card" value="summary" />
     <meta name="twitter:site" value="@__jpeoples" />
-    <meta name="twitter:description" value="This is a trick I've been using in LaTeX recently when laying out grids of figures." />
+    <meta name="twitter:description" value="This is a trick I’ve been using in LaTeX recently when laying out grids of figures." />
     <meta name="twitter:image" value="https://jpeoples.github.io/my_name.png" />
     <meta name="twitter:title" value="Note: October 17, 2019, 18:03" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     
 </head>
-<body class="width-95p container-full-width bg-blue-darkest text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-darkest text-white purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
@@ -73,7 +73,7 @@ ga('send', 'pageview');
     
     </nav>
 </header>
-<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
+<main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 
 <article class="post">
 
@@ -88,22 +88,22 @@ ga('send', 'pageview');
 
 
 
-<p>This is a trick I've been using in LaTeX recently when laying out grids of figures.</p>
+<p>This is a trick I&rsquo;ve been using in LaTeX recently when laying out grids of figures.</p>
 
 
 
 <p>If I want to layout columns with specific width in LaTeX I can use <code>m{width}</code> or <code>p{width}</code> or <code>b{width}</code> as the column specifiers (rather than the typical <code>l</code> <code>c</code> or <code>r</code>). <code>m</code> creates vertically centered entries, where as <code>p</code> and <code>b</code> align to the top or bottom respectively.</p>
-<p>However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of <code>m{0.5\linewidth}</code> (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an "overfull hbox". To fix this, we can use an additional specifier <code>@{}</code> on either side of the column spec which removes the padding.</p>
+<p>However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of <code>m{0.5\linewidth}</code> (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an &ldquo;overfull hbox&rdquo;. To fix this, we can use an additional specifier <code>@{}</code> on either side of the column spec which removes the padding.</p>
 <p>Finally, if we want our content centered within the cell, as I often find prefereable for grid figure layouts, we can also add <code>&gt;{\centering}</code>, which adds <code>\centering</code> to the beginning of the contents of each cell. Alternatively, you could use <code>\raggedleft</code>/<code>\hfill</code> for right alignment. This part requires the <code>array</code> package.</p>
 <p>An example with two columns:</p>
-<div class="codehilite"><pre><span></span>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>
+<div class="codehilite"><pre><span></span><code>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>
         @<span class="nb">{}</span>&gt;<span class="nb">{</span><span class="k">\centering</span><span class="nb">}</span>m<span class="nb">{</span>0.5<span class="k">\linewidth</span><span class="nb">}</span>@<span class="nb">{}</span>
         @<span class="nb">{}</span>&gt;<span class="nb">{</span><span class="k">\centering</span><span class="nb">}</span>m<span class="nb">{</span>0.5<span class="k">\linewidth</span><span class="nb">}</span>@<span class="nb">{}</span>
     <span class="nb">}</span>
         <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="nb">&amp;</span> <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="k">\tabularnewline</span>
         <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="nb">&amp;</span> <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span>
     <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
-</pre></div>
+</code></pre></div>
 
 
 

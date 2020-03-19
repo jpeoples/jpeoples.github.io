@@ -41,22 +41,22 @@ ga('send', 'pageview');
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://jpeoples.github.io/site.css" />
     
-    <meta name="description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
-    <meta property="og:description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta name="description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug “must” be. We may even have seemingly valid rational arguments as to why the bugs “must” be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta property="og:description" content="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug “must” be. We may even have seemingly valid rational arguments as to why the bugs “must” be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
     <meta property="og:title" content="Pinpoint Bugs Based on Data, Not Intuition" />
     <meta property="og:url" content="https://jpeoples.github.io/blog/2019/10/debugging-pinpoint-with-data/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://jpeoples.github.io/blog/2019/10/debugging.png" />
     <meta name="twitter:card" value="summary" />
     <meta name="twitter:site" value="@__jpeoples" />
-    <meta name="twitter:description" value="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug 'must' be. We may even have seemingly valid rational arguments as to why the bugs 'must' be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
+    <meta name="twitter:description" value="Often when debugging a problem, our brains have a strong intuition as to exactly where the bug “must” be. We may even have seemingly valid rational arguments as to why the bugs “must” be located in this particular part of the code. Whenever possible, I think it is best to ignore these impulses and pinpoint bugs based on hard data." />
     <meta name="twitter:image" value="https://jpeoples.github.io/blog/2019/10/debugging.png" />
     <meta name="twitter:title" value="Pinpoint Bugs Based on Data, Not Intuition" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta charset="UTF-8" />
     
 </head>
-<body class="width-95p container-full-width bg-blue-darkest text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-darkest text-white purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
@@ -71,7 +71,7 @@ ga('send', 'pageview');
     
     </nav>
 </header>
-<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
+<main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 
 <article class="post">
 
@@ -80,7 +80,7 @@ ga('send', 'pageview');
 <header class="text-center text-body-sans">
 <h1>Pinpoint Bugs Based on Data, Not Intuition</h1>
 
-<p id="date" class="">October 23, 2019</p>
+<p id="date" class="text-gray ">October 23, 2019</p>
 
 </header>
 <hr />
@@ -88,8 +88,8 @@ ga('send', 'pageview');
 
 
 <p>Often when debugging a problem, our brains have a strong intuition as to
-exactly where the bug "must" be. We may even have seemingly valid
-rational arguments as to why the bugs "must" be located in this
+exactly where the bug &ldquo;must&rdquo; be. We may even have seemingly valid
+rational arguments as to why the bugs &ldquo;must&rdquo; be located in this
 particular part of the code. <em>Whenever possible, I think it is best to
 ignore these impulses and pinpoint bugs based on hard data</em>.</p>
 
@@ -113,23 +113,23 @@ how it works. Stepping through, both mentally and literally in the
 debugger, I simply could not see any problem.</p>
 <p>I even racked my brain to come up with two alternative inputs, which
 theoretically, in a correct implementation, should have produced
-identical results. In actuality, one hit the bug, and the other didn't.
+identical results. In actuality, one hit the bug, and the other didn&rsquo;t.
 Bingo!</p>
 <p>At each stage of the algorithm, I plotted the output to try and pinpoint
 exactly <em>when</em> along the way the error occured. It told me nothing I
-didn't already suspect: the bug was in that aforementioned
+didn&rsquo;t already suspect: the bug was in that aforementioned
 less-commonly-used code path just like I knew it had to be.</p>
 <p>The only problem was, staring at the code, I could still find no error.</p>
 <p>Finally, I realized there was theoretically an invariant that should be
 maintained across several of the steps taken in the relevant code path.
 <em>Computing this invariant quantity after each line affecting the
 relevant variables provided a hard data-based test.</em> If ever the
-invariant was broken, the bug -- or at least <em>a</em> bug -- was found.</p>
+invariant was broken, the bug &ndash; or at least <em>a</em> bug &ndash; was found.</p>
 <p>This was exactly what solved it: it turned out that the error was in
 a particular method, being called only in that less-commonly-used code
 path, that was so simple in intent that my intuition would
 never have taken me there. I quickly fixed it, and proceeded to find a
-couple other bugs, similar in nature, that simply hadn't bitten me yet.</p>
+couple other bugs, similar in nature, that simply hadn&rsquo;t bitten me yet.</p>
 <p>What I observed from this is that while my intuition and reasoning got
 me to the right area of the code right away, it proceeded to lead me
 astray. I was sure the bug was an error in the complicated logic of the
@@ -137,26 +137,26 @@ algorithm, when in fact it was a simple oversight in a simple method
 being called in the process of executing that complicated logic. Only by
 using data in the form of a broken invariant to prove the bug <em>had to
 occur within that method</em> did it occur to me to even look there.</p>
-<p>I think this gets back at the fact that as programmers we often can't
+<p>I think this gets back at the fact that as programmers we often can&rsquo;t
 reason that accurately about the complexity of our programs.  Conceptual
 complexity and complexity of implementation are not the same.  But worse
 is that even the simplest implementations are subject to the complexity
 of evolution over time.  The problematic method in my case was
-conceptually trivial. It's implementation was clear and concise.  But in
+conceptually trivial. It&rsquo;s implementation was clear and concise.  But in
 the course of the evolution of the code a few new options had been added
 to the class somewhere along the way which were not properly being taken
 into account in this particular method. And because this method was only
 called in what was a largely neglected code path, the bug remained
 hidden in plain sight for a long time. In contrast, the big, complicated
-block of logic implementing the algorithm -- a seemingly ideal habitat
-for all kinds of nasty bugs -- where my intuition immediately led me,
+block of logic implementing the algorithm &ndash; a seemingly ideal habitat
+for all kinds of nasty bugs &ndash; where my intuition immediately led me,
 having me step through code with my eyes glazed over for over an hour,
 was, at the end of it all, just fine.</p>
 <p>And so, I conclude, when investigating a bug, try to ground your
 investigation in hard data as quickly as possible. Avoid just blindly
 stepping around the code except as a last resort. And ignore that
 intuition that tells you the problem just has to be in this nasty bit of
-logic here, because sometimes it's the rosy patches that are the thorn
+logic here, because sometimes it&rsquo;s the rosy patches that are the thorn
 in your side.</p>
 
 

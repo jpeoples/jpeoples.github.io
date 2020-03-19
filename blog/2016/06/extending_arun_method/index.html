@@ -80,7 +80,7 @@ ga('send', 'pageview');
     <meta charset="UTF-8" />
     
 </head>
-<body class="width-95p container-full-width bg-blue-darkest text-white green-link text-body-sans">
+<body class="width-95p container-full-width bg-blue-darkest text-white purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
@@ -95,7 +95,7 @@ ga('send', 'pageview');
     
     </nav>
 </header>
-<main class="border-top-bot text-linespace-mid text-body-serif text-h-sans">
+<main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 
 <article class="post">
 
@@ -104,7 +104,7 @@ ga('send', 'pageview');
 <header class="text-center text-body-sans">
 <h1>Extending Arun's Method for Least Square Point Set Fitting with Isotropic Scaling</h1>
 
-<p id="date" class="">June 30, 2016</p>
+<p id="date" class="text-gray ">June 30, 2016</p>
 
 </header>
 <hr />
@@ -114,16 +114,16 @@ ga('send', 'pageview');
 
 <p>I recently wanted to extend my implementation of the ICP algorithm to
 include isotropic scaling.  Internally, ICP alternates between finding
-the closest points in the target shape to those in the source shape --
-thus giving two corresponding point sets -- and finding the optimal
+the closest points in the target shape to those in the source shape &ndash;
+thus giving two corresponding point sets &ndash; and finding the optimal
 rigid transformation to align those point sets.  As the alignment of the
 shapes improve, so do the estimates of the closest points, and so on,
 hence, the Iterative Closest Point algorithm.</p>
 <p>In the original paper Besl and McKay<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>
 use a quaternion based method for finding the optimal rigid
 transformation, but the algorithm can be implemented just as well
-using a rotation-matrix method such as Arun's method.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<h2 id="without-scaling">Without Scaling</h2>
+using a rotation-matrix method such as Arun&rsquo;s method.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<h3 id="without-scaling">Without Scaling<a class="headerlink" href="#without-scaling" title="Permanent link">&para;</a></h3>
 <p>The method of Arun et al. is as follows:</p>
 <p>Given <script type="math/tex">\{X_i\}</script>, and <script type="math/tex">\{Y_i\}</script> as two sets of <script type="math/tex">N</script>
 <script type="math/tex">d</script>-dimensional points,  we want to find rotation matrix <script type="math/tex">R</script> and
@@ -159,7 +159,7 @@ S = \left\lbrace
 \right.
 </script>
 </p>
-<h2 id="adding-scaling">Adding Scaling</h2>
+<h3 id="adding-scaling">Adding Scaling<a class="headerlink" href="#adding-scaling" title="Permanent link">&para;</a></h3>
 <p>A solution including isotropic scaling was published by Umeyama in
 1991.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> However, I also gave a shot at my own derivation, and I will
 show that our results are the same.</p>
@@ -219,8 +219,8 @@ s = \frac{ \sum_i (Y_i^T R X_i) - N \mu_Y^T R \mu_X }{ \sum_j || X_j - \mu_X ||^
 both of which are pretty nice.</p>
 <p><em>Note: In my implementation I found that though the second form is more
 satisfying to me mathematically, the 1st form seemed to work better for
-computations. I don't have an explanation for this.</em></p>
-<h2 id="comparing-with-umeyamas-solution">Comparing with Umeyama's Solution</h2>
+computations. I don&rsquo;t have an explanation for this.</em></p>
+<h3 id="comparing-with-umeyamas-solution">Comparing with Umeyama&rsquo;s Solution<a class="headerlink" href="#comparing-with-umeyamas-solution" title="Permanent link">&para;</a></h3>
 <p>Using the notation I have been using in this post, Umeyama showed that
 <script type="math/tex; mode=display">
 s = \frac{\operatorname{Tr}(\Lambda S)}{\sum_j ||X_j - \mu_X||^2}
@@ -231,7 +231,7 @@ s = \frac{\operatorname{Tr}(\Lambda S)}{\sum_j ||X_j - \mu_X||^2}
 \operatorname{Tr}(\Lambda S) = \sum_i (Y_i- \mu_Y)^T R (X_i - \mu_X)
 </script>
 </p>
-<p>Somehow we have to get the trace in there, so we'll need two facts about
+<p>Somehow we have to get the trace in there, so we&rsquo;ll need two facts about
 trace:</p>
 <ol>
 <li>The trace of the product of two matrices is related by
@@ -271,7 +271,7 @@ as required.</p>
 <hr />
 <ol>
 <li id="fn:1">
-<p>Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Besl, Paul J., and Neil D. McKay. &ldquo;Method for registration of 3-D shapes.&rdquo; In Robotics-DL tentative, pp. 586-606. International Society for Optics and Photonics, 1992.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>Arun, K. S.; Huang, T. S. &amp; Blostein, S. D. Least-squares fitting of two 3-D point sets IEEE Transactions on pattern analysis and machine intelligence, IEEE, 1987, 698-700&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
