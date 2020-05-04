@@ -96,14 +96,14 @@ ga('send', 'pageview');
 <p>However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of <code>m{0.5\linewidth}</code> (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an &ldquo;overfull hbox&rdquo;. To fix this, we can use an additional specifier <code>@{}</code> on either side of the column spec which removes the padding.</p>
 <p>Finally, if we want our content centered within the cell, as I often find prefereable for grid figure layouts, we can also add <code>&gt;{\centering}</code>, which adds <code>\centering</code> to the beginning of the contents of each cell. Alternatively, you could use <code>\raggedleft</code>/<code>\hfill</code> for right alignment. This part requires the <code>array</code> package.</p>
 <p>An example with two columns:</p>
-<div class="codehilite"><pre><span></span><code>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>
+<div class="codehilite"><pre><span></span>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>
         @<span class="nb">{}</span>&gt;<span class="nb">{</span><span class="k">\centering</span><span class="nb">}</span>m<span class="nb">{</span>0.5<span class="k">\linewidth</span><span class="nb">}</span>@<span class="nb">{}</span>
         @<span class="nb">{}</span>&gt;<span class="nb">{</span><span class="k">\centering</span><span class="nb">}</span>m<span class="nb">{</span>0.5<span class="k">\linewidth</span><span class="nb">}</span>@<span class="nb">{}</span>
     <span class="nb">}</span>
         <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="nb">&amp;</span> <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="k">\tabularnewline</span>
         <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="nb">&amp;</span> <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span>
     <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
-</code></pre></div>
+</pre></div>
 
 
 
