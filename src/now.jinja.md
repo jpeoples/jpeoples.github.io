@@ -5,14 +5,14 @@
 {% import "layouts/macros.html" as macros %}
 
 {% block content_header %}
-{{macros.header("What I'm Doing Now", "Last updated: 2019-12-13")}}
+{{macros.header("What I'm Doing Now", "Last updated: 2020-05-04")}}
 {% endblock %}
 
 {% block content %}
 {% filter markdown %}
 
-I am currently writing my PhD thesis in computer science at Queen's
-University, with an expectation to graduate in the summer of 2020.
+I successfully defended my PhD thesis on April 21, 2020, on the
+*Composition of Transformations in Feature-Based Registration*.
 
 **I am actively looking for work opportunities, ideally to start in
 August or September 2020.** I am located in Ontario, Canada, but am
