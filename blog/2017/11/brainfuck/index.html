@@ -81,9 +81,9 @@ ga('send', 'pageview');
 
 
 
-<div class="codehilite"><pre><span></span>$ bf &quot;++++++++[&gt;++++[&gt;++&gt;+++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;+&gt;+&gt;-&gt;&gt;+[&lt;]&lt;-]&gt;&gt;.&gt;---.+++++++..+++.&gt;&gt;.&lt;-.&lt;.+++.------.--------.&gt;&gt;+.&gt;++.&quot;
+<div class="codehilite"><pre><span></span><code>$ bf &quot;++++++++[&gt;++++[&gt;++&gt;+++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;+&gt;+&gt;-&gt;&gt;+[&lt;]&lt;-]&gt;&gt;.&gt;---.+++++++..+++.&gt;&gt;.&lt;-.&lt;.+++.------.--------.&gt;&gt;+.&gt;++.&quot;
 Hello World!
-</pre></div>
+</code></pre></div>
 
 
 <p><a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a> is a minimalistic esoteric programming language. The
@@ -106,7 +106,7 @@ interpreters I&rsquo;ve seen around online use a fixed data array. Below I&rsquo
 discuss a nice simple means for implementing a dynamically
 growing data array.</p>
 <h3 id="the-block-structure">The block structure<a class="headerlink" href="#the-block-structure" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="k">struct</span> <span class="n">block_data</span>
+<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">block_data</span>
 <span class="p">{</span>
     <span class="kt">size_t</span> <span class="n">block_size</span><span class="p">;</span>
     <span class="kt">size_t</span> <span class="n">blocks_allocated</span><span class="p">;</span>
@@ -126,7 +126,7 @@ growing data array.</p>
 
 <span class="cm">/* Lookup a cell */</span>
 <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">block_data_get_cell</span><span class="p">(</span><span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blks</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Here <code>blocks</code> is an array of <code>block_array_cap</code> pointers to blocks.
@@ -139,9 +139,9 @@ index inside that block, returning a pointer to the requested data.</p>
 <h3 id="the-interpreter-loop">The interpreter loop<a class="headerlink" href="#the-interpreter-loop" title="Permanent link">&para;</a></h3>
 <p>Given this structure, implementing the interpreter is pretty easy. The
 whole shebang lives in one function:</p>
-<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
                <span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blocks</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><code>begin</code> and <code>end</code> point to the instructions to interpret, <code>in</code> and
@@ -152,7 +152,7 @@ that in the various
 <a href="https://github.com/saulpw/brainfuck/blob/master/main.c">fixed-size</a>
 <a href="https://gist.github.com/maxcountryman/1699708">interpreters</a>
 floating around on the internet:</p>
-<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">begin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">end</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span>
                <span class="k">struct</span> <span class="n">block_data</span> <span class="o">*</span><span class="n">blocks</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">int</span>           <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -198,7 +198,7 @@ floating around on the internet:</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">SUCCESS</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Here <code>match_pairs</code> is a function to search for matching brackets in a
@@ -208,10 +208,10 @@ error handling than shown here is available
 <a href="https://gist.github.com/jpeoples/e71d432d1765c1d67f9ebb91b9b906e2">here</a>.
 It includes a bit of additional code for reading files for instructions.
 You can call the interpreter with</p>
-<div class="codehilite"><pre><span></span>bf your,instructions.here
+<div class="codehilite"><pre><span></span><code>bf your,instructions.here
 # OR
 bf -f path/to/file/with/bf/code
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="making-it-better">Making it better<a class="headerlink" href="#making-it-better" title="Permanent link">&para;</a></h3>

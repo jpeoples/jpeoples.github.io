@@ -105,7 +105,7 @@ outliers, and the outliers are plotted individually using the &lsquo;+&rsquo;
 symbol.</p>
 </blockquote>
 <p>Using simple MATLAB built-ins I might then write</p>
-<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[q1,q2,q3,w0,w1,outliers] <span class="p">=</span><span class="w"> </span><span class="nf">boxplot_statistics</span><span class="p">(</span>data<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[q1,q2,q3,w0,w1,outliers] <span class="p">=</span><span class="w"> </span><span class="nf">boxplot_statistics</span><span class="p">(</span>data<span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="c">% quantile(data,3) will return the 25th, 50th, and 75th percentile</span>
     <span class="c">% for each column</span>
@@ -123,8 +123,8 @@ symbol.</p>
     <span class="n">data</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span> <span class="p">=</span> <span class="n">NaN</span><span class="p">;</span>
     <span class="n">w0</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,[],</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">w1</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,[],</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">end</span>
-</pre></div>
+<span class="n">end</span>
+</code></pre></div>
 
 
 <p>But here is the result.</p>

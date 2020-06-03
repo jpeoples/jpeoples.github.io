@@ -90,9 +90,9 @@ that process I hit a few road-blocks, so I thought I&rsquo;d put the details
 here in one place in case anyone else is having similar problems.</p>
 <h3 id="installing">Installing<a class="headerlink" href="#installing" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://github.com/jgm/yst">readme</a> on github makes it sound so easy:</p>
-<div class="codehilite"><pre><span></span>cabal update
+<div class="codehilite"><pre><span></span><code>cabal update
 cabal install yst
-</pre></div>
+</code></pre></div>
 
 
 <p>I did not get the error detailed in the readme regarding
@@ -108,27 +108,27 @@ it now.</p>
 <h3 id="first-run">First Run<a class="headerlink" href="#first-run" title="Permanent link">&para;</a></h3>
 <p>After getting yst installed the next step in the read me is to generate
 the test site:</p>
-<div class="codehilite"><pre><span></span>yst create mysite
-</pre></div>
+<div class="codehilite"><pre><span></span><code>yst create mysite
+</code></pre></div>
 
 
 <p>generates the test site source, then</p>
-<div class="codehilite"><pre><span></span>cd mysite
+<div class="codehilite"><pre><span></span><code>cd mysite
 yst
-</pre></div>
+</code></pre></div>
 
 
 <p>and voilà! Under the <code>site</code> subdirectory you have your static site.</p>
 <p>Right?  Wrong.</p>
 <p>Here&rsquo;s the output when I run yst:</p>
-<div class="codehilite"><pre><span></span>Updating site\js\nav.js
+<div class="codehilite"><pre><span></span><code>Updating site\js\nav.js
 Updating site\css\screen.css
 Updating site\css\print.css
 Updating site\css\hk-pyg.css
 Updating site\april_events.tex
 yst: site\april_events.tex: commitBuffer: invalid argument (invalid
 character)
-</pre></div>
+</code></pre></div>
 
 
 <p>Invalid character?</p>
@@ -147,8 +147,8 @@ the former case) or read (in the latter) from an UTF-8 encoded file.</p>
 <p>So for some reason yst can&rsquo;t write unicode to the output file.</p>
 <p>I&rsquo;m not sure why, but the same FAQ page provides a solution for Windows
 just a short ways down the page.  Running</p>
-<div class="codehilite"><pre><span></span>chcp 65001
-</pre></div>
+<div class="codehilite"><pre><span></span><code>chcp 65001
+</code></pre></div>
 
 
 <p>before running <code>yst</code> solved the problem for me, and left me with a
