@@ -1,5 +1,6 @@
 {% extends "layouts/web_cv.html" %}
 {% set title = "About" %}
+{% set about = "About Jacob Peoples" %}
 
 {% import "layouts/macros.html" as macros %}
 
@@ -9,10 +10,11 @@
 {{ macros.figure("me.png" | ensure_fullhref, "Photo of Jacob Peoples", class="margin-none float-right", imwidth=150, imheight=150) }}
 {% filter markdown %}
 
-I am a computer science PhD student studying probabilistic deformable
-point set registration algorithms with applications in computer assisted
-surgery and computer vision. I have also done research on the
-preprocessing and statistical analysis of 3D shapes.
+I am a computer scientist and researcher, having recently defended my
+PhD at Queen's University. My PhD research focused on point set
+registration algorithms with applications in computer assisted surgery
+and computer vision. I have also done research on the preprocessing and
+statistical analysis of 3D shapes.
 
 You can **find me** on [Twitter](https://twitter.com/__jpeoples) or
 [GitHub](https://github.com/jpeoples).

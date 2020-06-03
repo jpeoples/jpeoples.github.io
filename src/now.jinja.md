@@ -1,11 +1,12 @@
 {% extends "layouts/base.html" %}
 {% set title = "Now" %}
 {% set social_image = "now.png" | ensure_fullhref %}
+{% set description = "What I'm doing now" %}
 
 {% import "layouts/macros.html" as macros %}
 
 {% block content_header %}
-{{macros.header("What I'm Doing Now", "Last updated: 2020-05-04")}}
+{{macros.header("What I'm Doing Now", "Last updated: 2020-06-03")}}
 {% endblock %}
 
 {% block content %}
@@ -15,8 +16,9 @@ I successfully defended my PhD thesis on April 21, 2020, on the
 *Composition of Transformations in Feature-Based Registration*.
 
 **I am actively looking for work opportunities, ideally to start in
-August or September 2020.** I am located in Ontario, Canada, but am
-**open to relocation, especially within North America**.
+September 2020.** I am located in Ontario, Canada, but am
+**open to relocation, especially within North America** (post-lockdown
+of course).
 
 If you are interested, please contact me on [LinkedIn][my_linkedin],
 [Twitter][my_twitter], or email me at `jacobjpeoples` at gmail.
