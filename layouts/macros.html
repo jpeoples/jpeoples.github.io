@@ -1,11 +1,12 @@
-{% macro header(title, sub_head=none, subhead_id="", subhead_class="") %}
-<header class="text-center text-body-sans">
+{% macro header(title, subhead=none, subhead_id="", subhead_class="") %}
+<header class="text-center text-body-sans border-bot">
+{% if title %}
 <h1>{{title}}</h1>
-{% if sub_head %}
-<p id="{{subhead_id}}" class="text-gray {{subhead_class}}">{{sub_head}}</p>
+{% endif %}
+{% if subhead %}
+<p id="{{subhead_id}}" class="{{subhead_class}}">{{subhead}}</p>
 {% endif %}
 </header>
-<hr />
 {% endmacro %}
 
 {% macro figure(src, txt, caption="", class="", imwidth=none, imheight=none, imclass="") -%}

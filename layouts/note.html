@@ -1,4 +1,5 @@
 {% extends "layouts/post.html" %}
+{% import "layouts/macros.html" as macros %}
 {% set title = "Note: " + date | format_datetime %}
 {% block metadata %}
 {{ super()  }}
@@ -8,11 +9,6 @@
 {% endblock %}
 
 {% block content_header %}
-<header>
-{% if date is defined %}
-<p id="date">From: {{date | format_datetime}}</p>
-{% endif %}
-</header>
-<hr />
+{{ macros.header(title=none, subhead="From: "+(date|format_datetime), subhead_id="date", subhead_class="text-left")}}
 {% endblock %}
 
