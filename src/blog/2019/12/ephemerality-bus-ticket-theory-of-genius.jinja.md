@@ -78,7 +78,7 @@ But the ephemerality runs even deeper and more literally than this:
 >   Merchants](https://www.amazon.com/Attention-Merchants-Scramble-Inside-Heads/dp/0385352018)_
 >   (p. 7)
 
-Even if you maintain a low-latency information diet—unplugging,
+Even if you maintain a high-latency information diet—unplugging,
 meditating, reading old books in a cabin in the woods all day—central to
 your experience will still be a stream of consciousness that is
 constantly shifting. The experience of reading a book is in itself
