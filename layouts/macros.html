@@ -6,6 +6,7 @@
 {% if subhead %}
 <p id="{{subhead_id}}" class="{{subhead_class}}">{{subhead}}</p>
 {% endif %}
+{% if caller is defined %}{{ caller() }}{% endif %}
 </header>
 {% endmacro %}
 
@@ -15,6 +16,27 @@
     {%- if caption != "" %}<figcaption class="s-gray">{{caption}}</figcaption>{% endif %}
 </figure>
 {%- endmacro %}
+
+{% macro render_blog_chain(chain, posts, default_open=false, summary_text=none) %}
+<details{% if default_open %} open{% endif %}><summary>{% if summary_text is none %}{{ chain }}{% else %}{{ summary_text }}{% endif %}</summary>
+    <ul class="list-no-bullet">
+        {% for post in posts %}
+    <li><details>
+    <summary>{{post.date | format_date}} &ndash; <a href="{{post.fullhref}}">{{post.title}}</a></summary>
+    <blockquote>
+        {% if post.description is defined and post.description %}
+            {{post.description}}
+            {% if not post.description_is_full %}
+                <p><a href="{{post.fullhref}}">Read More</a></p>
+            {% endif%}
+        {% else %}
+            <p><a href="{{post.fullhref}}">Read Post</a></p>
+        {% endif %}
+    </blockquote></li>
+        {% endfor %}
+    </ul>
+</details>
+{% endmacro %}
 
 {% macro grouped_page_list(pages) %}
 {% for year, items in pages | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}

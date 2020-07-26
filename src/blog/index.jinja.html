@@ -8,11 +8,21 @@
 {% filter markdown %}
 You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
 {% endfilter %}
-{% call(post) macros.grouped_page_list(posts) %}
+<section>
+<h1>Blogchains</h1>
+<ul class="pad-none list-no-bullet">
+{% for chain, posts in user_context.post_collections.blog_chains.items() %}
+<li>{{ macros.render_blog_chain(chain, posts) }}</li>
+{% endfor %}
+</ul>
+</section>
+<section>
+<h1>All Posts</h1>
+{% call(post) macros.grouped_page_list(user_context.post_collections.articles) %}
 <details>
     <summary>{{post.date | format_date}} &ndash; <a href="{{post.fullhref}}">{{post.title}}</a></summary>
     <blockquote>
-        {% if post.description is defined %}
+        {% if post.description is defined and post.description %}
             {{post.description}}
             {% if not post.description_is_full %}
                 <p><a href="{{post.fullhref}}">Read More</a></p>
@@ -23,4 +33,5 @@ You can subscribe via the [RSS feed]({{base_url}}blog/rss.xml).
     </blockquote>
 </details>
 {% endcall %}
+</section>
 {% endblock %}

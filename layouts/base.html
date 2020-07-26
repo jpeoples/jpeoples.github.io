@@ -20,13 +20,21 @@ ga('send', 'pageview');
 {% block metadata scoped %}
     {% if description is defined %}
         {% set ns.safe_description = description | striptags | replace('\n', ' ') | replace('"', "'")%}
-    {%endif %}
+    {% elif data_template is defined and data_template.description is defined %}
+        {% set ns.safe_description = data_template.description | striptags | replace('\n', ' ') | replace('"', "'")%}
+    {% endif %}
     {% if title is defined %}
         {% set ns.social_title = title | striptags | replace('\n', ' ') %}
+        {% set ns.page_title = ns.social_title + " | Jacob Peoples" %}
+    {% elif data_template is defined and data_template.title is defined %}
+        {% set ns.social_title = data_template.title | striptags | replace('\n', ' ') %}
         {% set ns.page_title = ns.social_title + " | Jacob Peoples" %}
     {% endif %}
     {% if social_image is defined %}
         {% set ns.social_image = social_image | ensure_fullhref %}
+        {# set ns.social_image = base_url + social_image #}
+    {% elif data_template is defined and data_template.social_image is defined %}
+        {% set ns.social_image = data_template.social_image | ensure_fullhref %}
         {# set ns.social_image = base_url + social_image #}
     {% endif %}
 {% endblock metadata %}
@@ -37,7 +45,7 @@ ga('send', 'pageview');
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="{{base_url}}{{css}}" />
-    {% if has_math is defined and has_math %}
+    {% if (has_math is defined and has_math) or (data_template is defined and data_template.has_math is defined and data_template.has_math) %}
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -87,11 +95,13 @@ ga('send', 'pageview');
 <body class="width-95p container-full-width bg-white text-black purple-link text-body-sans">
     <!--<header class="s-center s-pad-above">-->
 <header>
+{% block page_header %}
     <nav class="novisit nodecorate container-full-width text-center pad-none" >
     {% block nav %}
       {% include "layouts/main_nav.html" %}
     {% endblock %}
     </nav>
+{% endblock %}
 </header>
 <main class="border-top-bot text-linespace-mid text-body-sans nodecorate text-h-sans">
 {% block main %}
@@ -102,9 +112,11 @@ ga('send', 'pageview');
 {% endblock %}
 </main>
 <footer>
+{% block page_footer %}
     <nav class="novisit nodecorate container-full-width text-center pad-none">
         {% include "layouts/main_nav.html" %}
     </nav>
+{% endblock %}
 </footer>
 
 {% block footer_scripts %}

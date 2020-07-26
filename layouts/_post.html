@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %}
+{% import "layouts/macros.html" as macros %}
+
+{% block metadata scoped %}
+    {{super()}}
+    {% set ns.push_dict = {'title': data_template.title, 'date': data_template.date | parse_date, 'content': all_content} %}
+    {% if data_template.description is defined %}
+        {% set _ = ns.push_dict.update({'description': data_template.description, 'description_is_full': False}) %}
+    {% endif %}
+{% endblock %}
+
+{% block content_header %}
+{{ macros.header(data_template.title, data_template.date | format_date, "date") }}
+{% endblock %}
+
+{% block page_header %}
+{{ super() }}
+{% endblock %}
+
+
+{% block main %}
+<article class="post">
+{{ super() }}
+</article>
+{% endblock %}
+{% set all_content %}
+{% block content %}
+{% if data_template.blog_chain is defined %}
+<div class="text-left container-full-width bg-blue-lightest pad-mid">
+{{ macros.render_blog_chain(data_template.blog_chain, user_context.post_collections.blog_chains[data_template.blog_chain], summary_text="This post is part of the <em>" + data_template.blog_chain + "</em> blogchain:") }}
+</div>
+{% endif %}
+{{ data_template.body_html }}
+{% if data_template.blog_chain is defined %}
+<div class="text-left container-full-width bg-blue-lightest pad-mid">
+{{ macros.render_blog_chain(data_template.blog_chain, user_context.post_collections.blog_chains[data_template.blog_chain], default_open=true, summary_text="<em>" + data_template.blog_chain + "</em>:") }}
+</div>
+{% endif %}
+{% endblock %}
+{% endset %}
+
+{% block footer_scripts %}
+{{super() }}
+<div>
+    <h2 class="text-center">Comments</h2>
+</div>
+<div class="text-center" id="disqus_thread"><a onclick="load_comments();">Load comments</a></div>
+<script>
+    function load_comments() {
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        var disqus_config = function () {
+            this.page.url = '{{fullhref}}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{fullhref}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+
+            s.src = '//jpeoples.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% endblock %}
+{# Push post onto list of posts #}

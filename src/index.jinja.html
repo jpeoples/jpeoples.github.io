@@ -11,7 +11,7 @@
 You can subscribe via the [RSS feed]({{base_url}}shared_rss.xml).
 {% endfilter %}
 
-{% call(post) macros.grouped_page_list(full_archive) %}
+{% call(post) macros.grouped_page_list(user_context.post_collections.full_archive) %}
 <details open>
 {% if post.is_note is defined and post.is_note %}
 <summary>{{post.date | format_date}}, <a href="{{post.fullhref}}">{{ (post.date | format_datetime).split()[3]}}</a></summary>
@@ -24,7 +24,7 @@ You can subscribe via the [RSS feed]({{base_url}}shared_rss.xml).
 {% else %}
     <summary>{{post.date | format_date}} &ndash; <a href="{{post.fullhref}}">{{post.title}}</a></summary>
         <blockquote>
-        {% if post.description is defined %}
+        {% if post.description is defined and post.description is not none %}
             {{post.description}}
             {% if not post.description_is_full %}
                 <p><a href="{{post.fullhref}}">Read More</a></p>
