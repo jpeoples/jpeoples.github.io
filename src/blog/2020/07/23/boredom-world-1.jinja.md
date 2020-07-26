@@ -1,6 +1,7 @@
 {% set content_layout="layouts/_post.html" %}
 {% set title = "Boredom World 1: Boredom, Overload, and Meaning Collapse" %}
 {% set date = "2020-07-23, 18:17:44" %}
+{% set social_image = "boredom-world.jpg" | ensure_fullhref %}
 {% set blog_chain = "Boredom World" %}
 {% set description | markdown %}
 In a couple of my most [recent][web-service] [posts][bus-ticket], I've been gesturing at the notion of ephemerality as a source of overload and anxiety, and trying to determine some strategy for alleviating it. Here I'm going to give this problem a new name: boredom.
