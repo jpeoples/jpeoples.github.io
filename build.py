@@ -18,26 +18,9 @@ def compute_href(render_context, build_dir, inpath, outpath, s, rel_name="href",
     }
     return additional_ctx
 
-#def push_page(pages, info, additional_info=None):
-#    if additional_info is not None:
-#        info = info.copy()
-#        info.update(additional_info)
-#    pages.append(info)
-
 def sort_pages(pages, key='date'):
     return sorted(pages, key=lambda x: x[key], reverse=True)
 
-#def add_push_to_collection(render_context, inpath, outpath, s, page_collection):
-#    additional_info = {
-#        "href": render_context['href'],
-#        'fullhref': render_context['fullhref']
-#    }
-#
-#    additional_ctx = {
-#        'push_to_collection': lambda x: push_page(page_collection, x, additional_info)
-#    }
-#
-#    return additional_ctx
 
 # For now: no touching the context generation stuff. Just using these
 # listeners for the sake of implementing the post collections.
@@ -54,9 +37,6 @@ class PostCollections:
 
         ctx = data['context']
         t = data['template']
-
-        # DO NOT MAKE MODULE BECUASE THIS WILL RUN EVERYTHING TWICE
-        # tmod = t.make_module(ctx)
 
         # For every jinja_template: we need to know if it is a blog
         # article. For now, the test will be:
@@ -230,50 +210,21 @@ if __name__ == "__main__":
                     lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
                     ).add_render_context(ctx)
 
-    #blog_entries = []
-    #jinja_blog = jinja_file.add_immediate_context(
-    #        lambda ctx, inf,outf,s: add_push_to_collection(ctx, inf, outf, s, blog_entries))
     jinja_blog = jinja_file
 
-    env.build((
-            # ignore drafts, index page, rss feed, and swap files
-            (('*.draft.*', '*index*', '*.xml', '*.swp'), env.ignore_file),
-            # Process all posts
-            (('*.jinja.md', '*.jinja.html'), (nice_url, jinja_blog)),
-            # Copy any other files under the blog dir
-            ('*', env.mirror_file),
-            ), "blog")
-
-    #notes = []
-    #jinja_notes = jinja_file.add_immediate_context(
-    #        lambda ctx, inf,outf,s: add_push_to_collection(ctx, inf, outf, s, notes))
     note_map = note_jinja(jinja_file)
-    env.build((
-            # ignore drafts, index page, rss feed, and swap files
-            (('*.draft.*', '*index*', '*.xml', '*.swp'), None),
-            # Process all posts
-            (('*.md', '*.txt'), (nice_url, note_map)),
-            # Copy any other files under the blog dir
-            ('*', env.mirror_file)
-            ), "notes")
-
-
-    # blog_entries = sort_pages(blog_entries)
-    # notes = sort_pages(notes)
-    # full_archive = sort_pages(blog_entries + notes)
-    #jinja_file = jinja_file.add_render_context({'posts': blog_entries, 'notes': notes, 'full_archive': full_archive})
-    #print(notes[0])
 
     env.build((
-        # now process index pages and rss
-        (('blog/rss.jinja.xml', 'notes/rss.jinja.xml', 'shared_rss.jinja.xml'), (jssg.remove_internal_extensions, jinja_file.as_layout)),
-        (('*.swp',), None),
-        (('*index.jinja.*'), (jssg.remove_internal_extensions, jinja_file.as_layout)),
-        # but ignore the rest of the blog files
-        (('blog/*', 'notes/*', '*.swp'), None),
-        # and build any other jinja pages
-        ('*.jinja.md', (nice_url, jinja_file.as_layout)),
-        ('*.jinja.*', (nice_url, jinja_file.as_layout)),
-        # and copy any _other_ files
-        ('*', env.mirror_file)
+        # Ignore
+        (('*.swp', "*.draft.*"), None),
+        # Index pages and rss
+        (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, jinja_file.as_layout)),
+        # Blog posts
+        (("blog/*.html", "blog/*.md"), (nice_url, jinja_file)),
+        # Notes
+        (("notes/*",), (nice_url, note_map)),
+        # Any other pages
+        (("*.jinja.*", ), (nice_url, jinja_file.as_layout)),
+        # All other files get copied
+        ("*", env.mirror_file)
         ))
