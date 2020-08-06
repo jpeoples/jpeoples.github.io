@@ -1,12 +1,6 @@
 {% extends "layouts/_post.html" %}
 {% import "layouts/macros.html" as macros %}
 {% set title = "Note: " + data_template.date | format_datetime %}
-{% block metadata %}
-{{ super()  }}
-{% set _ = ns.push_dict.update({'description_is_full': data_template.remainder.strip() == '', 'is_note': True}) %}
-{# On the python side, a note should be considered to have no title! #}
-{% set _ = ns.push_dict.pop('title') %}
-{% endblock %}
 
 {% block content_header %}
 {{ macros.header(title=none, subhead="From: "+(data_template.date|format_datetime), subhead_id="date", subhead_class="text-left")}}

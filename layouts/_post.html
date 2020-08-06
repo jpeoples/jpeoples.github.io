@@ -1,13 +1,6 @@
 {% extends "layouts/base.html" %}
 {% import "layouts/macros.html" as macros %}
 
-{% block metadata scoped %}
-    {{super()}}
-    {% set ns.push_dict = {'title': data_template.title, 'date': data_template.date | parse_date, 'content': all_content} %}
-    {% if data_template.description is defined %}
-        {% set _ = ns.push_dict.update({'description': data_template.description, 'description_is_full': False}) %}
-    {% endif %}
-{% endblock %}
 
 {% block content_header %}
 {{ macros.header(data_template.title, data_template.date | format_date, "date") }}
