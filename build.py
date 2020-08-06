@@ -111,12 +111,19 @@ note_jinja_template="""
 format_dt = jssg.jinja_utils.date_formatter('%B %d, %Y, %H:%M')
 
 # TODO Simplify this!!!!
+
 def note_jinja(jinja_file):
+    env = jinja_file.env
+    ctx = jinja_file.ctx
+
     class NoteJinja(jssg.ExecutionRule):
-        # TODO Obviously, simplify this......
+        def __init__(self, env, ctx):
+            self.env = env
+            self.ctx = ctx
+
         def __call__(self, fs, inf, outf):
             s = fs.read(inf)
-            add_ctx = jinja_file.get_immediate_context(fs, inf, outf, s)
+
             items = s.split('%%%')
             n = len(items)
             if n > 1:
@@ -127,27 +134,21 @@ def note_jinja(jinja_file):
             if n > 3:
                 remainder = items[3]
 
-            t, render_context = jinja_file.pre_render(note_jinja_template.format(dstring,  desc, remainder), add_ctx)
-            tmod = t.make_module(render_context)
-            layout = jinja_file.env.get_template(tmod.content_layout)
-            def update_context(state):
-                ctx = render_context.copy()
-                assert 'user_context' not in ctx
-                ctx['user_context'] = state
-                return ctx
+            t = self.env.template_from_string(note_jinja_template.format(dstring,  desc, remainder))
 
-            def finish_render(state):
-                ctx = update_context(state)
-                ctx['data_template'] = tmod
-                s = layout.render(ctx)
-                fs.write(outf, s)
+            ctx = self.ctx.with_immediate(fs, inf, outf, s)
+            tmod = self.env.as_module(t, ctx)
+            layout = self.env.load_template(tmod.content_layout)
 
-            # TODO Simplify all this stuff omg
-            execution = lambda state: finish_render(state)
-            state = dict(type="jinja_template", context=render_context.copy(), template=tmod)
+            execution = lambda state: fs.write(outf,
+                    ctx.add(dict(user_context=state, data_template=tmod)).render(layout))
+
+            state = dict(type="jinja_template", context=ctx.as_dict(), template=tmod)
             return execution, state
 
-    return NoteJinja()
+    return NoteJinja(env, ctx)
+
+
 
 def nice_url(fn):
     return pathlib.Path(jssg.remove_extensions(fn), "index.html").as_posix()
@@ -179,6 +180,10 @@ if __name__ == "__main__":
         print(base_url)
 
     env = jssg.Environment.default("src", "build")
+    env.jinja_base_context = env.jinja_base_context.add(
+            {"css": "site.css", "base_url": base_url}).add_immediate(
+                    lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
+                    ).add(ctx)
     env.build_env.add_listener('post_collections', PostCollections())
     env.jinja_filters.update({
             'format_datetime': format_dt,
@@ -205,26 +210,26 @@ if __name__ == "__main__":
     mdfilter = markdown_filter(extensions=md_extensions, extension_configs=md_extension_configs)
     env.jinja_filters['markdown'] = mdfilter
 
-    jinja_file = env.jinja.add_render_context(
-            {"css": "site.css", "base_url": base_url}).add_immediate_context(
-                    lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
-                    ).add_render_context(ctx)
+    #jinja_file = env.jinja.add_render_context(
+    #        {"css": "site.css", "base_url": base_url}).add_immediate_context(
+    #                lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
+    #                ).add_render_context(ctx)
 
-    jinja_blog = jinja_file
+    #jinja_blog = jinja_file
 
-    note_map = note_jinja(jinja_file)
+    note_map = note_jinja(env.jinja)
 
     env.build((
         # Ignore
         (('*.swp', "*.draft.*"), None),
         # Index pages and rss
-        (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, jinja_file.as_layout)),
+        (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, env.jinja.as_layout)),
         # Blog posts
-        (("blog/*.html", "blog/*.md"), (nice_url, jinja_file)),
+        (("blog/*.html", "blog/*.md"), (nice_url, env.jinja)),
         # Notes
         (("notes/*",), (nice_url, note_map)),
         # Any other pages
-        (("*.jinja.*", ), (nice_url, jinja_file.as_layout)),
+        (("*.jinja.*", ), (nice_url, env.jinja.as_layout)),
         # All other files get copied
         ("*", env.mirror_file)
         ))
