@@ -1,17 +1,16 @@
 import sys
 
-#import jssg
-import jssg
-from jssg.jinja_utils import markdown_filter
 import pathlib
-import jinja2
 
+import jssg
+import jinja2
 import dateutil.parser
 
-def compute_href(render_context, build_dir, inpath, outpath, s, rel_name="href", full_name="fullhref"):
+def compute_href(render_context, inpath, outpath, rel_name="href", full_name="fullhref"):
+    href = outpath
     if outpath.endswith("index.html"):
-        outpath = pathlib.Path(outpath).parent.as_posix()
-    href = pathlib.Path(outpath).relative_to(build_dir).as_posix() + "/"
+        href = pathlib.Path(outpath).parent.as_posix() + "/"
+    #href = pathlib.Path(outpath).relative_to(build_dir).as_posix() + "/"
     additional_ctx = {
         rel_name: href,
         full_name: render_context['base_url'] + href
@@ -22,9 +21,6 @@ def sort_pages(pages, key='date'):
     return sorted(pages, key=lambda x: x[key], reverse=True)
 
 
-# For now: no touching the context generation stuff. Just using these
-# listeners for the sake of implementing the post collections.
-
 class PostCollections:
     def __init__(self):
         self.articles = []
@@ -33,18 +29,17 @@ class PostCollections:
 
     def on_data_return(self, inf, outf, data):
         # For now, we only work with jinja_template
-        if data['type'] != "jinja_template": return
-
-        ctx = data['context']
-        t = data['template']
-
-        # For every jinja_template: we need to know if it is a blog
-        # article. For now, the test will be:
-        #   1) has a date; and
-        #   2) is in the blog folder
+        tp = data['type']
+        if tp == 'blog_post' or tp == 'note':
+            ctx = data['context']
+            t = ctx.get('data_template')
+            if t is None: return
+        else:
+            return
 
 
-        if ctx['href'].startswith('blog') and hasattr(t, 'date'):
+
+        if tp=='blog_post':
             article_info=dict(
                 title = t.title,
                 date = dateutil.parser.parse(t.date),
@@ -59,14 +54,14 @@ class PostCollections:
                 chain_name = t.blog_chain
                 chain = self.blog_chains.setdefault(chain_name, [])
                 chain.append(article_info)
-        if ctx['href'].startswith('note') and hasattr(t, 'date'):
+        if tp=='note':
             note_info=dict(
                 title = None,
-                date = dateutil.parser.parse(t.date),
+                date = t['date'],
                 is_note=True,
-                content = t.body_html,
-                description=t.description.strip(),
-                description_is_full = t.remainder.strip()=="",
+                content = t['body_html'],
+                description=t['description'].strip(),
+                description_is_full = t['remainder'].strip()=="",
                 href = ctx['href'],
                 fullhref = ctx['fullhref']
                 )
@@ -87,71 +82,44 @@ class PostCollections:
         return dict(articles=articles, notes=notes, blog_chains=blog_chains, full_archive=full_archive)
 
 
-note_jinja_template="""
-{{% extends "layouts/note.html" %}}
-{{% set date = "{}" %}}
-{{% set description %}}
-{{% filter markdown %}}
-{}
-{{% endfilter %}}
-{{% endset %}}
-{{% set remainder %}}
-{{% filter markdown %}}
-{}
-{{% endfilter %}}
-{{% endset %}}
-{{%set body_html %}}
-{{{{ description }}}}
-{{% if remainder.strip() != '' %}}
-{{{{remainder }}}}
-{{% endif %}}
-{{% endset %}}
-""".strip()
 
-format_dt = jssg.jinja_utils.date_formatter('%B %d, %Y, %H:%M')
+def note_load_file(jf, fs, inf, outf, ctx):
+    s = fs.read(inf)
 
-# TODO Simplify this!!!!
+    items = s.split('%%%')
+    n = len(items)
+    if n > 1:
+        dstring = items[1]
+    if n > 2:
+        desc = items[2]
+        remainder = ''
+    if n > 3:
+        remainder = items[3]
 
-def note_jinja(jinja_file):
-    env = jinja_file.env
-    ctx = jinja_file.ctx
+    # interpolate context values with jinja !
+    mdf = lambda s: jf.render_markdown_string(s, ctx)
 
-    class NoteJinja(jssg.ExecutionRule):
-        def __init__(self, env, ctx):
-            self.env = env
-            self.ctx = ctx
-
-        def __call__(self, fs, inf, outf):
-            s = fs.read(inf)
-
-            items = s.split('%%%')
-            n = len(items)
-            if n > 1:
-                dstring = items[1]
-            if n > 2:
-                desc = items[2]
-                remainder = ''
-            if n > 3:
-                remainder = items[3]
-
-            t = self.env.template_from_string(note_jinja_template.format(dstring,  desc, remainder))
-
-            ctx = self.ctx.with_immediate(fs, inf, outf, s)
-            tmod = self.env.as_module(t, ctx)
-            layout = self.env.load_template(tmod.content_layout)
-
-            execution = lambda state: fs.write(outf,
-                    ctx.add(dict(user_context=state, data_template=tmod)).render(layout))
-
-            state = dict(type="jinja_template", context=ctx.as_dict(), template=tmod)
-            return execution, state
-
-    return NoteJinja(env, ctx)
+    tmod = dict(
+        date = dateutil.parser.parse(dstring),
+        description = mdf(desc),
+        remainder = mdf(remainder),
+    )
+    tmod['body_html'] = "\n".join((tmod['description'], tmod['remainder']))
 
 
+    layout = jf.env.get_template("layouts/_note.html")
+    ctx['data_template'] = tmod
+    state = dict(type="jinja_template_file", context=ctx)
+    return layout
 
-def nice_url(fn):
-    return pathlib.Path(jssg.remove_extensions(fn), "index.html").as_posix()
+def post_load_file(jf, fs, inf, outf, ctx):
+    s = fs.read(inf)
+    t = jf.env.from_string(s)
+    tmod = t.make_module(ctx)
+    layout = jf.env.get_template(tmod.content_layout)
+    ctx['data_template'] = tmod
+    return layout
+
 
 @jinja2.contextfilter
 def ensure_fullhref(ctx, val):
@@ -172,23 +140,12 @@ def ensure_fullhref(ctx, val):
 
 if __name__ == "__main__":
     # set base url
-    ctx = {"production_mode": True}
+    production_mode = True
     base_url = 'https://jpeoples.github.io/'
     if len(sys.argv) > 1 and sys.argv[1] == 'local':
-        ctx['production_mode'] = False
+        production_mode = False
         base_url = 'http://localhost:8080/'
         print(base_url)
-
-    env = jssg.Environment.default("src", "build")
-    env.jinja_base_context = env.jinja_base_context.add(
-            {"css": "site.css", "base_url": base_url}).add_immediate(
-                    lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
-                    ).add(ctx)
-    env.build_env.add_listener('post_collections', PostCollections())
-    env.jinja_filters.update({
-            'format_datetime': format_dt,
-            'ensure_fullhref': ensure_fullhref
-        })
 
     md_extensions = [
         'markdown.extensions.extra',
@@ -207,29 +164,31 @@ if __name__ == "__main__":
             'mdx_math': {'enable_dollar_delimiter': True}
     }
 
-    mdfilter = markdown_filter(extensions=md_extensions, extension_configs=md_extension_configs)
-    env.jinja_filters['markdown'] = mdfilter
 
-    #jinja_file = env.jinja.add_render_context(
-    #        {"css": "site.css", "base_url": base_url}).add_immediate_context(
-    #                lambda cx, inf, outf, s: compute_href(cx, "build", inf, outf, s)
-    #                ).add_render_context(ctx)
+    jenv = jssg.jinja_env(search_paths=(".",), support_rss=True,
+            filters=dict(
+                markdown=jssg.markdown_filter(extensions=md_extensions, extension_configs=md_extension_configs),
+                format_date=jssg.date_formatter("%B %d, %Y"),
+                format_datetime=jssg.date_formatter('%B %d, %Y, %H:%M'),
+                ensure_fullhref=ensure_fullhref
+                ))
 
-    #jinja_blog = jinja_file
+    jinja_file = jssg.JinjaFile(jenv, {"css": "site.css", "base_url": base_url, "production_mode": production_mode}, hooks=[compute_href])
+    blog_map = jinja_file.renderer(name="blog_post", load_file=post_load_file)
+    note_map = jinja_file.renderer(name="note", load_file=note_load_file)
+    layout = jinja_file
 
-    note_map = note_jinja(env.jinja)
-
-    env.build((
-        # Ignore
+    listeners = dict(post_collections=PostCollections())
+    jssg.build("src", "build", (
         (('*.swp', "*.draft.*"), None),
         # Index pages and rss
-        (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, env.jinja.as_layout)),
+        (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, layout)),
         # Blog posts
-        (("blog/*.html", "blog/*.md"), (nice_url, env.jinja)),
+        (("blog/*.html", "blog/*.md"), (jssg.nice_url, blog_map)),
         # Notes
-        (("notes/*",), (nice_url, note_map)),
+        (("notes/*",), (jssg.nice_url, note_map)),
         # Any other pages
-        (("*.jinja.*", ), (nice_url, env.jinja.as_layout)),
+        (("*.jinja.*", ), (jssg.nice_url, layout)),
         # All other files get copied
-        ("*", env.mirror_file)
-        ))
+        ("*", jssg.mirror_file)),
+        listeners=listeners)
