@@ -41,12 +41,8 @@
         <link>https://jpeoples.github.io/notes/2020-05-04-1/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2020-05-04-1/</guid>
         <pubDate>Mon, 04 May 2020 11:08:00 -0000</pubDate>
-        <description>
-
-&lt;p&gt;I successfully defended my PhD thesis, &lt;em&gt;Composition of Transformations
+        <description>&lt;p&gt;I successfully defended my PhD thesis, &lt;em&gt;Composition of Transformations
 in Feature-Based Registration&lt;/em&gt;, on April 21, 2020.&lt;/p&gt;
-
-
 </description>
     </item>
     
@@ -55,12 +51,8 @@ in Feature-Based Registration&lt;/em&gt;, on April 21, 2020.&lt;/p&gt;
         <link>https://jpeoples.github.io/notes/2019-12-06-1/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-12-06-1/</guid>
         <pubDate>Fri, 06 Dec 2019 13:58:42 -0000</pubDate>
-        <description>
-
-&lt;p&gt;I have added a &lt;a href=&#34;https://nownownow.com&#34;&gt;now page&lt;/a&gt;: see
+        <description>&lt;p&gt;I have added a &lt;a href=&#34;https://nownownow.com&#34;&gt;now page&lt;/a&gt;: see
 &lt;a href=&#34;https://jpeoples.github.io/now/&#34;&gt;here&lt;/a&gt;, or on the nav bar.&lt;/p&gt;
-
-
 </description>
     </item>
     
@@ -801,12 +793,7 @@ in your side.&lt;/p&gt;</description>
         <link>https://jpeoples.github.io/notes/2019-10-17/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-10-17/</guid>
         <pubDate>Thu, 17 Oct 2019 18:03:38 -0000</pubDate>
-        <description>
-
-&lt;p&gt;This is a trick I&amp;rsquo;ve been using in LaTeX recently when laying out grids of figures.&lt;/p&gt;
-
-
-
+        <description>&lt;p&gt;This is a trick I&amp;rsquo;ve been using in LaTeX recently when laying out grids of figures.&lt;/p&gt;
 &lt;p&gt;If I want to layout columns with specific width in LaTeX I can use &lt;code&gt;m{width}&lt;/code&gt; or &lt;code&gt;p{width}&lt;/code&gt; or &lt;code&gt;b{width}&lt;/code&gt; as the column specifiers (rather than the typical &lt;code&gt;l&lt;/code&gt; &lt;code&gt;c&lt;/code&gt; or &lt;code&gt;r&lt;/code&gt;). &lt;code&gt;m&lt;/code&gt; creates vertically centered entries, where as &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; align to the top or bottom respectively.&lt;/p&gt;
 &lt;p&gt;However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of &lt;code&gt;m{0.5\linewidth}&lt;/code&gt; (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an &amp;ldquo;overfull hbox&amp;rdquo;. To fix this, we can use an additional specifier &lt;code&gt;@{}&lt;/code&gt; on either side of the column spec which removes the padding.&lt;/p&gt;
 &lt;p&gt;Finally, if we want our content centered within the cell, as I often find prefereable for grid figure layouts, we can also add &lt;code&gt;&amp;gt;{\centering}&lt;/code&gt;, which adds &lt;code&gt;\centering&lt;/code&gt; to the beginning of the contents of each cell. Alternatively, you could use &lt;code&gt;\raggedleft&lt;/code&gt;/&lt;code&gt;\hfill&lt;/code&gt; for right alignment. This part requires the &lt;code&gt;array&lt;/code&gt; package.&lt;/p&gt;
@@ -818,10 +805,7 @@ in your side.&lt;/p&gt;</description>
         &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\tabularnewline&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;\includegraphics&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;...&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
     &lt;span class=&#34;k&#34;&gt;\end&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;tabular&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -906,13 +890,9 @@ like to be able to handle that too. Hence the final answer is:&lt;/p&gt;
         <link>https://jpeoples.github.io/notes/2019-09-22-1/</link>
         <guid isPermaLink="true">https://jpeoples.github.io/notes/2019-09-22-1/</guid>
         <pubDate>Sun, 22 Sep 2019 20:56:49 -0000</pubDate>
-        <description>
-
-&lt;p&gt;Support for short notes (like this) has been added to the blog.&lt;/p&gt;
+        <description>&lt;p&gt;Support for short notes (like this) has been added to the blog.&lt;/p&gt;
 &lt;p&gt;To see all short notes, navigate to &lt;a href=&#34;https://jpeoples.github.io/notes&#34;&gt;Notes&lt;/a&gt;. To see just
 the posts go to &lt;a href=&#34;https://jpeoples.github.io/blog&#34;&gt;Posts&lt;/a&gt;.&lt;/p&gt;
-
-
 </description>
     </item>
     

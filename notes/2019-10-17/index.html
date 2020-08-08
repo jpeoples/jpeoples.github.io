@@ -15,8 +15,6 @@ ga('send', 'pageview');
 
     
 
-
-    
     
         
     
@@ -25,15 +23,6 @@ ga('send', 'pageview');
         
     
     
-
-    
-    
-        
-    
-
-
-
-
 
     
     <title>Note: October 17, 2019, 18:03 | Jacob Peoples</title>
@@ -94,12 +83,7 @@ ga('send', 'pageview');
 
 
 
-
-
 <p>This is a trick I&rsquo;ve been using in LaTeX recently when laying out grids of figures.</p>
-
-
-
 <p>If I want to layout columns with specific width in LaTeX I can use <code>m{width}</code> or <code>p{width}</code> or <code>b{width}</code> as the column specifiers (rather than the typical <code>l</code> <code>c</code> or <code>r</code>). <code>m</code> creates vertically centered entries, where as <code>p</code> and <code>b</code> align to the top or bottom respectively.</p>
 <p>However, if my goal is to fit the grid precisely into the width of the page (particularly useful in 2-column papers, IME), using a width of <code>m{0.5\linewidth}</code> (for two columns) will fail due to additional padding on the left and right of the cell content. This will lead to an &ldquo;overfull hbox&rdquo;. To fix this, we can use an additional specifier <code>@{}</code> on either side of the column spec which removes the padding.</p>
 <p>Finally, if we want our content centered within the cell, as I often find prefereable for grid figure layouts, we can also add <code>&gt;{\centering}</code>, which adds <code>\centering</code> to the beginning of the contents of each cell. Alternatively, you could use <code>\raggedleft</code>/<code>\hfill</code> for right alignment. This part requires the <code>array</code> package.</p>
@@ -112,9 +96,6 @@ ga('send', 'pageview');
         <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span> <span class="nb">&amp;</span> <span class="k">\includegraphics</span><span class="nb">{</span>...<span class="nb">}</span>
     <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
 </code></pre></div>
-
-
-
 
 
 
