@@ -142,9 +142,11 @@ if __name__ == "__main__":
     # set base url
     production_mode = True
     base_url = 'https://jpeoples.github.io/'
+    build_dir="build"
     if len(sys.argv) > 1 and sys.argv[1] == 'local':
         production_mode = False
         base_url = 'http://localhost:8080/'
+        build_dir = "build_local"
         print(base_url)
 
     md_extensions = [
@@ -179,7 +181,7 @@ if __name__ == "__main__":
     layout = jinja_file
 
     listeners = dict(post_collections=PostCollections())
-    jssg.build("src", "build", (
+    jssg.build("src", build_dir, (
         (('*.swp', "*.draft.*"), None),
         # Index pages and rss
         (("*index.jinja.*", "*rss.jinja.xml"), (jssg.remove_internal_extensions, layout)),
