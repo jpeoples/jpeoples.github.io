@@ -1,3 +1,4 @@
+mkdir build_local
 pushd build_local
 rm -rf *
 popd

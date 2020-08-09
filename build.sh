@@ -1,3 +1,4 @@
+mkdir build
 pushd build
 git rm -rf .
 git clean -fxd
