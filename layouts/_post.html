@@ -19,14 +19,22 @@
 {% set all_content %}
 {% block content %}
 {% if data_template.blog_chain is defined %}
+{% set chain = user_context.post_collections.blog_chains[data_template.blog_chain] %}
 <div class="text-left container-full-width bg-blue-lightest pad-mid">
-{{ macros.render_blog_chain(data_template.blog_chain, user_context.post_collections.blog_chains[data_template.blog_chain], summary_text="This post is part of the <em>" + data_template.blog_chain + "</em> blogchain:") }}
+    <details>
+        <summary>This post is part of the <em><a href="{{chain.fullhref}}">{{chain.title}}</a></em> blogchain:</summary>
+        {{ chain.posts | details_page_list | render_ul }}
+    </details>
 </div>
 {% endif %}
 {{ data_template.body_html }}
 {% if data_template.blog_chain is defined %}
+{% set chain = user_context.post_collections.blog_chains[data_template.blog_chain] %}
 <div class="text-left container-full-width bg-blue-lightest pad-mid">
-{{ macros.render_blog_chain(data_template.blog_chain, user_context.post_collections.blog_chains[data_template.blog_chain], default_open=true, summary_text="<em>" + data_template.blog_chain + "</em>:") }}
+    <details open>
+        <summary><a href="{{chain.fullhref}}">{{chain.title}}</a></summary>
+        {{ chain.posts | details_page_list | render_ul }}
+    </details>
 </div>
 {% endif %}
 {% endblock %}

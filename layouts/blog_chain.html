@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+{% import "layouts/macros.html" as macros %}
+{% set title = data_template.blog_chain %}
+
+{% block content_header %}
+{{ macros.header(data_template.blog_chain) }}
+{% endblock %}
+
+{% block content %}
+{% if data_template.body_html is defined %}
+<section class="post border-bot">
+{{data_template.body_html}}
+</section>
+{% endif %}
+<section>
+{{ user_context.post_collections.blog_chains[data_template.blog_chain].posts | details_page_list(default_open=true) | render_ul(nopad=true) }}
+</section>
+{% endblock %}

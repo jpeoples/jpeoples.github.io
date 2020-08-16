@@ -1,7 +1,7 @@
-{% macro header(title, subhead=none, subhead_id="", subhead_class="") %}
+{% macro header(title, subhead=none, subhead_id="", subhead_class="", title_link=none) %}
 <header class="text-center text-body-sans border-bot">
 {% if title %}
-<h1>{{title}}</h1>
+<h1>{% if title_link %}<a href="{{title_link}}">{%endif %}{{title}}{%if title_link%}</a>{%endif%}</h1>
 {% endif %}
 {% if subhead %}
 <p id="{{subhead_id}}" class="{{subhead_class}}">{{subhead}}</p>
@@ -16,37 +16,3 @@
     {%- if caption != "" %}<figcaption class="s-gray">{{caption}}</figcaption>{% endif %}
 </figure>
 {%- endmacro %}
-
-{% macro render_blog_chain(chain, posts, default_open=false, summary_text=none) %}
-<details{% if default_open %} open{% endif %}><summary>{% if summary_text is none %}{{ chain }}{% else %}{{ summary_text }}{% endif %}</summary>
-    <ul class="list-no-bullet">
-        {% for post in posts %}
-    <li><details>
-    <summary>{{post.date | format_date}} &ndash; <a href="{{post.fullhref}}">{{post.title}}</a></summary>
-    <blockquote>
-        {% if post.description is defined and post.description %}
-            {{post.description}}
-            {% if not post.description_is_full %}
-                <p><a href="{{post.fullhref}}">Read More</a></p>
-            {% endif%}
-        {% else %}
-            <p><a href="{{post.fullhref}}">Read Post</a></p>
-        {% endif %}
-    </blockquote></li>
-        {% endfor %}
-    </ul>
-</details>
-{% endmacro %}
-
-{% macro grouped_page_list(pages) %}
-{% for year, items in pages | groupby('date.year') | reverse -%} {# Note that this reverse is necessary to keep the years sorted reverse chronologically, even when the input posts is sorted correctly. #}
-  <h2 class="">{{year}}</h2>
-  <ul class="list-no-bullet pad-none">
-    {% for post in items %}
-    <li class="">
-        {{caller(post)}}
-    </li>
-    {%endfor %}
-</ul>
-{% endfor %}
-{% endmacro %}

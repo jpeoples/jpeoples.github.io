@@ -7,15 +7,8 @@
 {% filter markdown %}
 You can subscribe via the [RSS feed]({{base_url}}notes/rss.xml).
 {% endfilter %}
-{% call(post) macros.grouped_page_list(user_context.post_collections.notes) %}
-<details open>
-    <summary>{{post.date | format_date}}, <a href="{{post.fullhref}}">{{ (post.date | format_datetime).split()[3]}}</a></summary>
-    <blockquote>
-        {{post.description}}
-        {% if not post.description_is_full %}
-            <p><a href="{{post.fullhref}}">Read More</a></p>
-        {% endif%}
-    </blockquote>
-</details>
-{% endcall %}
+{% for year, pages in user_context.post_collections.notes | groupby('date.year') | reverse %}
+<h2>{{year}}</h2>
+{{ pages | details_page_list(default_open=true) | render_ul(nopad=true) }}
+{% endfor %}
 {% endblock %}
