@@ -338,13 +338,17 @@ GREEN
 
 .width-95p { width: 95%; }
 .container-full-width { max-width: 800px; margin: 0 auto; padding-left: 0; padding-right: 0; }
+.container-small-width { max-width: 400px; margin: 0 auto; padding-left: 0; padding-right: 0; }
 .border-thin { border: 1px solid white; }
 .border-top-bot { border-top: 0.5px solid black; border-bottom: 0.5px solid black; }
 .border-bot { border-bottom: 0.5px solid black; }
 
 .strong-gray strong { color: #8998a6; font-weight: bold; }
 
+main:after { clear:both; }
 
+
+.float-left { float: left }
 .float-right { float: right }
 
 .list-no-bullet { list-style: none; }
