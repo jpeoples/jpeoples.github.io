@@ -2,7 +2,8 @@
 {% set title = 'What if this Web Service Dies? Connecting "Service Anxiety" and Information Overload' %}
 {% set date = "2019-11-06, 17:26:56" %}
 {% set description | markdown %}
-Connecting the fear of the loss of access to web services we use with
+Connecting the fear of the loss of access to web services we use -- what
+I call "service anxiety" -- with
 the idea of information overload, and considering how strategies to
 manage the latter map to the former.
 {% endset %}
@@ -294,6 +295,8 @@ in mind.
 > [There is no need for trust in information when there is faith in
 > process.](https://twitter.com/context_ing/status/1160734161948168193)
 
+*Update: I've begun a blogchain in which I further examine some of
+these themes: [Boredom World]({{ "/blog/boredom-world/" | ensure_fullhref }}).*
 
 
 [^backup]: Obviously not all contexts really allow one to embrace

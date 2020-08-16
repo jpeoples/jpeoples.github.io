@@ -111,6 +111,8 @@ relinquishing of control and top-down intentionality, allowing one to
 embrace the following of curiosity, the serendipitous realizations of
 new connections, and the gradual emergence of a body of work.
 
+*Update: I've begun a blogchain in which I further examine some of
+these themes: [Boredom World]({{ "/blog/boredom-world/" | ensure_fullhref }}).*
 
 [^1]:
      Credit to this post for putting the idea of structure preserving
