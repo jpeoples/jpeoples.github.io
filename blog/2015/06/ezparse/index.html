@@ -101,7 +101,7 @@ languages like Python do.  To get around this I have seen a couple of
 approaches.</p>
 <p>One approach is to use an options struct.  For this  you would write
 your function as</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[outputargs] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, args, options<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[outputargs] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, args, options<span class="p">)</span><span class="w"></span>
 <span class="c">%</span>
 <span class="c">% Let&#39;s imagine we want 3 optional parameters, foo, bar, baz, each</span>
 <span class="c">% taking default values of 0.</span>
@@ -114,24 +114,24 @@ your function as</p>
 <span class="k">if</span> <span class="n">nargin</span> <span class="o">&gt;</span> <span class="mi">3</span>
 <span class="k">if</span> <span class="n">isfield</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">)</span>
     <span class="n">foo</span> <span class="p">=</span> <span class="n">options</span><span class="p">.</span><span class="n">foo</span><span class="p">;</span>
-<span class="n">end</span>
-<span class="s">if</span> <span class="s">isfield(options,</span> <span class="s">&#39;bar&#39;)</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">isfield</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="s">&#39;bar&#39;</span><span class="p">)</span>
     <span class="n">bar</span> <span class="p">=</span> <span class="n">options</span><span class="p">.</span><span class="n">bar</span><span class="p">;</span>
-<span class="n">end</span>
-<span class="s">if</span> <span class="s">isfield(options</span> <span class="s">&#39;baz&#39;)</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">isfield</span><span class="p">(</span><span class="n">options</span> <span class="s">&#39;baz&#39;</span><span class="p">)</span>
     <span class="n">baz</span> <span class="p">=</span> <span class="n">options</span><span class="p">.</span><span class="n">baz</span><span class="p">;</span>
-<span class="n">end</span>
-<span class="s">end</span>
+<span class="k">end</span>
+<span class="k">end</span>
 
 <span class="c">% get on with the code</span>
 <span class="c">% ...</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Then for a user to use this function they can simply do something like</p>
-<div class="codehilite"><pre><span></span><code><span class="n">opt</span><span class="p">.</span><span class="n">foo</span> <span class="p">=</span> <span class="mi">24</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><span class="n">opt</span><span class="p">.</span><span class="n">foo</span> <span class="p">=</span> <span class="mi">24</span><span class="p">;</span>
 <span class="n">funcname</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">ever</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">opt</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>and the function will run with <code>foo = 24</code>, <code>bar = 0</code> and <code>baz = 0</code>.  If
@@ -141,15 +141,15 @@ struct, or simply leave out the argument altogether.</p>
 name-value pairs of arguments.  This uses a builtin MATLAB feature,
 <code>varargin</code>, which allows you to collect all parameters beyond a certain
 number into a single cell array.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, varargin<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, varargin<span class="p">)</span><span class="w"></span>
 <span class="c">% ...</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>In this code, if I call</p>
-<div class="codehilite"><pre><span></span><code><span class="n">funcname</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="c">...</span>
+<div class="codehilite"><pre><span></span><span class="n">funcname</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="c">...</span>
     <span class="s">&#39;everybody in the car so come on lets ride&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>then the function will have <code>what = 1</code>, <code>ever = 2</code> and
@@ -161,8 +161,8 @@ optional parameter, and the second is the value to assign to the
 optional parameter.  Therefore, going back to the <code>foo</code>, <code>bar</code>, <code>baz</code>
 example above, if I wanted to simply set <code>foo</code> to 24 I would call the
 function as</p>
-<div class="codehilite"><pre><span></span><code><span class="n">funcname</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">ever</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><span class="n">funcname</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">ever</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+</pre></div>
 
 
 <p>It is the function&rsquo;s job to parse this input, but MATLAB provides a tool
@@ -171,7 +171,7 @@ this tool provides a good deal of flexibility, it offers more options
 than I really need, and requires more work to use than I would really
 prefer.  For a while I found myself instead writing something along the
 following lines whenever I needed such optional arguments:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, varargin<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, varargin<span class="p">)</span><span class="w"></span>
 <span class="c">% set defaults</span>
 <span class="n">foo</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="n">bar</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -182,26 +182,26 @@ following lines whenever I needed such optional arguments:</p>
 <span class="c">% ensure there are optional arguments supplied, and there should be</span>
 <span class="c">% an even number if they are name-value pairs</span>
 <span class="k">if</span> <span class="n">na</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">mod</span><span class="p">(</span><span class="n">na</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-    <span class="n">for</span> <span class="s">i=1:2:na</span>
+    <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="n">na</span>
         <span class="n">name</span> <span class="p">=</span> <span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="p">};</span>
-        <span class="n">switch</span> <span class="s">name</span>
-            <span class="n">case</span> <span class="s">&#39;foo&#39;</span>
+        <span class="k">switch</span> <span class="n">name</span>
+            <span class="k">case</span> <span class="s">&#39;foo&#39;</span>
                 <span class="n">foo</span> <span class="p">=</span> <span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>
-            <span class="n">case</span> <span class="s">&#39;bar&#39;</span>
+            <span class="k">case</span> <span class="s">&#39;bar&#39;</span>
                 <span class="n">var</span> <span class="p">=</span> <span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>
-            <span class="n">case</span> <span class="s">&#39;baz&#39;</span>
+            <span class="k">case</span> <span class="s">&#39;baz&#39;</span>
                 <span class="n">var</span> <span class="p">=</span> <span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>
-            <span class="n">otherwise</span>
-                <span class="s">error(&#39;Argument %s not recognised.&#39;,</span> <span class="s">name)</span><span class="p">;</span>
-        <span class="n">end</span>
-    <span class="s">end</span>
+            <span class="k">otherwise</span>
+                <span class="n">error</span><span class="p">(</span><span class="s">&#39;Argument %s not recognised.&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
 <span class="k">elseif</span> <span class="n">na</span><span class="o">&gt;</span><span class="mi">0</span>
     <span class="c">% there are not an even number of arguments</span>
     <span class="n">error</span><span class="p">(</span><span class="s">&#39;Every argument after &#39;&#39;ever&#39;&#39; must be a name-value pair.&#39;</span><span class="p">);</span>
-<span class="n">end</span>
+<span class="k">end</span>
 
-<span class="s">%</span> <span class="s">...</span>
-</code></pre></div>
+<span class="c">% ...</span>
+</pre></div>
 
 
 <p>This wasn&rsquo;t so bad, I could copy and paste the code between files
@@ -234,7 +234,7 @@ value is used to indicate that the field should create a flag, instead
 of a name-value pair.</p>
 <p>To clarify, recreating our foo, bar, baz example above, and adding a
 &lsquo;verbose&rsquo; flag would look like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, args, varargin<span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>what, ever, args, varargin<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">opt</span><span class="p">.</span><span class="n">foo</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">opt</span><span class="p">.</span><span class="n">bar</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">opt</span><span class="p">.</span><span class="n">baz</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -244,7 +244,7 @@ of a name-value pair.</p>
 
     <span class="c">% rest of code here</span>
     <span class="c">% ...</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Now <code>opt</code> contains all user supplied values, and defaults where no user
@@ -257,27 +257,27 @@ arguments not following the name-value pattern, repeated options, etc.
 Whether or not the existence of unparsed arguments should throw an
 error, or simply be ignored is up to the function author.</p>
 <p>To give an example, if I passed in</p>
-<div class="codehilite"><pre><span></span><code><span class="n">funcname</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">ever</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
+<div class="codehilite"><pre><span></span><span class="n">funcname</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">ever</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
          <span class="s">&#39;verbose&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>then the resulting <code>opt</code> struct would have</p>
-<div class="codehilite"><pre><span></span><code><span class="n">opt</span><span class="p">.</span><span class="n">foo</span> <span class="p">=</span> <span class="mi">24</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><span class="n">opt</span><span class="p">.</span><span class="n">foo</span> <span class="p">=</span> <span class="mi">24</span><span class="p">;</span>
 <span class="n">opt</span><span class="p">.</span><span class="n">bar</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="n">opt</span><span class="p">.</span><span class="n">baz</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="n">opt</span><span class="p">.</span><span class="n">verbose</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>and</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">unparsed</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span>    <span class="n">unparsed</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+</pre></div>
 
 
 <p>The resulting function is available <a href="https://github.com/jpeoples/matlab-ezparse">here</a>, but for
 completeness here is the code listing.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="w"> </span>[ argstruct, unparsed ] <span class="p">=</span><span class="w"> </span><span class="nf">ezparse</span><span class="p">(</span> argstruct, argin <span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="k">function</span><span class="w"> </span>[ argstruct, unparsed ] <span class="p">=</span><span class="w"> </span><span class="nf">ezparse</span><span class="p">(</span> argstruct, argin <span class="p">)</span><span class="w"></span>
 <span class="c">%EZPARSE Fast and easy arg parser for &#39;key&#39;,val pair type optional args.</span>
 <span class="c">%   Pass in 2 parameters:</span>
 <span class="c">%       ARGSTRUCT: a struct populated with default values for all optional</span>
@@ -307,38 +307,38 @@ completeness here is the code listing.</p>
 <span class="n">na</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">argin</span><span class="p">);</span>
 <span class="n">nf</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">argnames</span><span class="p">);</span>
 
-<span class="n">for</span> <span class="s">j=1:nf</span>
+<span class="k">for</span> <span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">nf</span>
     <span class="n">fld</span> <span class="p">=</span> <span class="n">argnames</span><span class="p">{</span><span class="nb">j</span><span class="p">};</span>
-    <span class="n">for</span> <span class="s">i=1:na</span>
+    <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">na</span>
         <span class="n">arg</span> <span class="p">=</span> <span class="n">argin</span><span class="p">{</span><span class="nb">i</span><span class="p">};</span>
-        <span class="n">if</span> <span class="s">strcmpi(arg,</span> <span class="s">fld)</span>
+        <span class="k">if</span> <span class="n">strcmpi</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">fld</span><span class="p">)</span>
             <span class="c">% then we have matched a field</span>
             <span class="c">% check for flag</span>
-            <span class="n">if</span> <span class="s">strcmp(argstruct.(fld),</span> <span class="s">&#39;%FLAG%&#39;)</span>
+            <span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">argstruct</span><span class="p">.(</span><span class="n">fld</span><span class="p">),</span> <span class="s">&#39;%FLAG%&#39;</span><span class="p">)</span>
                 <span class="c">% arg is a flag</span>
                 <span class="n">argstruct</span><span class="p">.(</span><span class="n">fld</span><span class="p">)</span> <span class="p">=</span> <span class="n">true</span><span class="p">;</span>
                 <span class="n">argin</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% delete field from argin</span>
                 <span class="n">na</span> <span class="p">=</span> <span class="n">na</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
                 <span class="k">break</span><span class="p">;</span> <span class="c">% no need to search for this fld anymore</span>
-            <span class="n">end</span>
-            <span class="s">argstruct.(fld)</span> <span class="s">=</span> <span class="s">argin{i+1}</span><span class="p">;</span>
+            <span class="k">end</span>
+            <span class="n">argstruct</span><span class="p">.(</span><span class="n">fld</span><span class="p">)</span> <span class="p">=</span> <span class="n">argin</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>
             <span class="n">argin</span><span class="p">(</span><span class="nb">i</span><span class="p">:</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">%delete field from argin</span>
             <span class="n">na</span> <span class="p">=</span> <span class="n">na</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span>
             <span class="k">break</span><span class="p">;</span>
-        <span class="n">end</span>
-    <span class="s">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
     <span class="c">% set a field arg to false if not found in argin</span>
-    <span class="n">if</span> <span class="s">strcmp(argstruct.(fld),</span> <span class="s">&#39;%FLAG%&#39;)</span>
+    <span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">argstruct</span><span class="p">.(</span><span class="n">fld</span><span class="p">),</span> <span class="s">&#39;%FLAG%&#39;</span><span class="p">)</span>
         <span class="n">argstruct</span><span class="p">.(</span><span class="n">fld</span><span class="p">)</span> <span class="p">=</span> <span class="n">false</span><span class="p">;</span>
-    <span class="n">end</span>
-<span class="s">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
 <span class="c">% all remaining args could not be parsed!</span>
 <span class="n">unparsed</span> <span class="p">=</span> <span class="n">argin</span><span class="p">;</span>
 
 
-<span class="n">end</span>
-</code></pre></div>
+<span class="k">end</span>
+</pre></div>
 
 
 <p>So that&rsquo;s it.  It is only a few lines longer than the manual

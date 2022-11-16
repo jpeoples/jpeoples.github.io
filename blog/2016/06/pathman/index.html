@@ -107,21 +107,21 @@ control.</p>
 <p><a href="https://github.com/jpeoples/PATHMAN">PATHMAN</a> is a tool, implemented in MATLAB, to help with this
 situation.  In particular it allows you to give short names to packs of
 code, and add/remove them from the path using the commands</p>
-<div class="codehilite"><pre><span></span><code>pathman use shortname
+<div class="codehilite"><pre><span></span>pathman use shortname
 % and
 pathman unuse shortname
-</code></pre></div>
+</pre></div>
 
 
 <p>It also allows you to list installed packs via</p>
-<div class="codehilite"><pre><span></span><code>pathman list [glob]
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman list [glob]
+</pre></div>
 
 
 <p>where <code>glob</code> can be used to narrow pack names, and update installed
 packs after editing their source directories via</p>
-<div class="codehilite"><pre><span></span><code>pathman update packname
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman update packname
+</pre></div>
 
 
 <p>Such usage becomes particularly useful if you have many different code
@@ -134,7 +134,7 @@ intended to be run on the MATLAB command line).</p>
 project located in <code>~/research/somealgs</code> which I now want to add to
 PATHMAN with the name &ldquo;somealgs&rdquo;.  Suppose the source directory looks
 like</p>
-<div class="codehilite"><pre><span></span><code>somealgs/
+<div class="codehilite"><pre><span></span>somealgs/
     somesubalgs/
         % functions
     moresubalgs/
@@ -142,59 +142,59 @@ like</p>
     examples/
         % example scripts
     % more functions
-</code></pre></div>
+</pre></div>
 
 
 <p>If I run</p>
-<div class="codehilite"><pre><span></span><code>pathman install ~/research/somealgs as somealgs
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman install ~/research/somealgs as somealgs
+</pre></div>
 
 
 <p>then this directory will be copied to a configurable PATHMAN root
 directory, and that copy directory, and all subdirectories can be added
 to path via</p>
-<div class="codehilite"><pre><span></span><code>pathman use somealgs
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman use somealgs
+</pre></div>
 
 
 <p>and removed via</p>
-<div class="codehilite"><pre><span></span><code>pathman unuse somealgs
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman unuse somealgs
+</pre></div>
 
 
 <p>Suppose I then realize the examples/ subdirectory should not be added to
 the path.</p>
 <p>In my source directory, I can add the functions <code>addtopath</code> and
 <code>rmfrompath</code> to implement this addpath, rmpath logic.</p>
-<div class="codehilite"><pre><span></span><code><span class="c">% addtopath.m</span>
+<div class="codehilite"><pre><span></span><span class="c">% addtopath.m</span>
 <span class="k">function</span><span class="w"> </span><span class="nf">addtopath</span><span class="p">(</span>root<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="c">% root will be passed by pathman, specifying the root of source</span>
     <span class="c">% tree</span>
     <span class="n">addpath</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
     <span class="n">addpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;somesubalgs&#39;</span><span class="p">));</span>
     <span class="n">addpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;moresubalgs&#39;</span><span class="p">));</span>
-<span class="n">end</span>
+<span class="k">end</span>
 
-<span class="s">%</span> <span class="s">rmfrompath.m</span>
+<span class="c">% rmfrompath.m</span>
 <span class="k">function</span><span class="w"> </span><span class="nf">rmfrompath</span><span class="p">(</span>root<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">rmpath</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
     <span class="n">rmpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;somesubalgs&#39;</span><span class="p">));</span>
     <span class="n">rmpath</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">&#39;moresubalgs&#39;</span><span class="p">));</span>
-<span class="n">end</span>
-</code></pre></div>
+<span class="k">end</span>
+</pre></div>
 
 
 <p>Finally, to tell PATHMAN about my updated source tree I call</p>
-<div class="codehilite"><pre><span></span><code>pathman update somealgs
-</code></pre></div>
+<div class="codehilite"><pre><span></span>pathman update somealgs
+</pre></div>
 
 
 <p>Now PATHMAN will use that logic when I call <code>use</code> and <code>unuse</code>.</p>
 <p>Alternatively, I can tell PATHMAN to exclude that directory when copying
 and then just use the default use/unuse logic.  To do so, add the file
 <code>.pathmanignore</code> to the source directory containing the single line</p>
-<div class="codehilite"><pre><span></span><code>example
-</code></pre></div>
+<div class="codehilite"><pre><span></span>example
+</pre></div>
 
 
 <p>This will cause PATHMAN to delete the copied example subdirectory after
@@ -204,10 +204,10 @@ work).</p>
 <h4 id="installation-and-more-information">Installation and More Information<a class="headerlink" href="#installation-and-more-information" title="Permanent link">&para;</a></h4>
 <p>For install information and further usage guidelines see the <a href="https://github.com/jpeoples/PATHMAN">PATHMAN
 repository</a> and the PATHMAN MATLAB help</p>
-<div class="codehilite"><pre><span></span><code>pathman help
+<div class="codehilite"><pre><span></span>pathman help
 % or
 help(pathman)
-</code></pre></div>
+</pre></div>
 
 
 <p>which lists and documents all the command-line options for pathman.</p>

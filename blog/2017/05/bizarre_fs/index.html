@@ -97,16 +97,16 @@ The usual.</p>
 <p>However, I noticed that the dates I wanted to appear underneath the
 title of blog posts were not showing up. I double checked the template,
 which seemed to be correct. It is a snippet like so:</p>
-<div class="codehilite"><pre><span></span><code>{% if formatted_date is defined %}
+<div class="codehilite"><pre><span></span>{% if formatted_date is defined %}
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;</span>{{formatted_date}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 {% endif %}
-</code></pre></div>
+</pre></div>
 
 
 <p>The odd thing was that in the rendered templates I was viewing in the
 browser, the actual result was:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
 
 
 <p>So somehow the <code>formated_date</code> variable was being defined, but was
@@ -125,22 +125,22 @@ server. I don&rsquo;t know that much about web stuff in general so I can
 believe anything.</p>
 <p>But here&rsquo;s the thing. I closed the server and reopened it. Still the
 date didn&rsquo;t show up. Weird. So then I literally typed:</p>
-<div class="codehilite"><pre><span></span><code>cat path/to/post | less
-</code></pre></div>
+<div class="codehilite"><pre><span></span>cat path/to/post | less
+</pre></div>
 
 
 <p>and scrolled down to where the date should be. It still wasn&rsquo;t there.
 Meanwhile, I have the very same file open in the browser and it <em>is</em>.</p>
 <p>Then I go:</p>
-<div class="codehilite"><pre><span></span><code>pushd path/to/
+<div class="codehilite"><pre><span></span>pushd path/to/
 cat post | less
-</code></pre></div>
+</pre></div>
 
 
 <p>and sure enough, <em>the date shows up!</em>. Then:</p>
-<div class="codehilite"><pre><span></span><code>popd
+<div class="codehilite"><pre><span></span>popd
 cat path/to/post | less
-</code></pre></div>
+</pre></div>
 
 
 <p>and it still shows up!</p>
