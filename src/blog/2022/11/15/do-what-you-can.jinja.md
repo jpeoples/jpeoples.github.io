@@ -2,6 +2,7 @@
 {% set title = "Boredom World 4: You can't \"do anything\", so do what you can" %}
 {% set date = "2022-11-14 09:00:00" %}
 {% set blog_chain = "Boredom World" %}
+{% set social_image = "model_diagram_white.png" %}
 {% set description | markdown %}
 In this post, I apply the concept of an [orientation][bw2] to career choices, using a case study from Meg Jay's book, [_The Defining Decade_][dd].
 
